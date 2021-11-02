@@ -19,9 +19,9 @@
         </font>
     </Label>
 
-    <TextField fx:id="username" promptText="Username" focusTraversable="false" maxWidth="300"/>
+    <TextField fx:id="username" promptText="Username" focusTraversable="false" prefHeight="30" maxWidth="300"/>
 
-    <PasswordField fx:id="password" promptText="Password" focusTraversable="false" maxWidth="300"/>
+    <PasswordField fx:id="password" promptText="Password" focusTraversable="false" prefHeight="30" maxWidth="300"/>
 
     <Button text="Sign in" focusTraversable="false"/>
 </VBox>
