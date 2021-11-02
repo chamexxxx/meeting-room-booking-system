@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.PasswordField?>
+<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.github.chamexxxx.meetingroombookingsystem.LoginController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+
+    <Label text="Log in to your account"/>
+
+    <TextField fx:id="username" promptText="Username" focusTraversable="false" maxWidth="300"/>
+
+    <PasswordField fx:id="password" promptText="Password" focusTraversable="false" maxWidth="300"/>
+
+    <Button text="Sign in" focusTraversable="false"/>
+</VBox>
