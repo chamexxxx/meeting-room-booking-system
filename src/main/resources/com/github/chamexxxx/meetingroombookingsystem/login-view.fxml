@@ -23,5 +23,5 @@
 
     <PasswordField fx:id="password" promptText="Password" focusTraversable="false" prefHeight="30" maxWidth="300"/>
 
-    <Button text="Sign in" focusTraversable="false"/>
+    <Button text="Sign in" focusTraversable="false" onAction="#onLoginButtonClick"/>
 </VBox>
