@@ -24,7 +24,7 @@ tasks.withType(JavaCompile) {
 
 application {
     mainModule = 'com.github.chamexxxx.meetingroombookingsystem'
-    mainClass = 'com.github.chamexxxx.meetingroombookingsystem.HelloApplication'
+    mainClass = 'com.github.chamexxxx.meetingroombookingsystem.Application'
 }
 
 javafx {
