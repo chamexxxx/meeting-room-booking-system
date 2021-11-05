@@ -32,7 +32,7 @@ public class HomeController implements Initializable {
 
         var column = new TableColumn<Meet, String>("Time");
 
-        this.configureColumn(column);
+        this.configureColumn(column, 20);
 
         columns.add(0, column);
 
@@ -45,7 +45,7 @@ public class HomeController implements Initializable {
         for (String day : days) {
             var column = new TableColumn<Meet, String>(day);
 
-            this.configureColumn(column);
+            this.configureColumn(column, 50);
 
             columns.add(column);
         }
@@ -57,10 +57,12 @@ public class HomeController implements Initializable {
         table.setItems(items);
         table.setSelectionModel(null);
         table.setFocusTraversable(false);
+        table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
     }
 
-    private void configureColumn(TableColumn<?,?> column) {
+    private void configureColumn(TableColumn<?,?> column, Integer size) {
         column.setReorderable(false);
         column.setSortable(false);
+        column.setMaxWidth(1f * Integer.MAX_VALUE * size);
     }
 }
