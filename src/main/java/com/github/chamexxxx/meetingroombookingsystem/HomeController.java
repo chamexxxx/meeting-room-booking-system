@@ -18,12 +18,9 @@ public class HomeController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        table.setSelectionModel(null);
-        table.setFocusTraversable(false);
-
         ObservableList<Meet> meets = FXCollections.observableArrayList();
 
-        table.setItems(meets);
+        this.configureTable(table, meets);
 
         var columns = getTableColumns();
 
@@ -35,7 +32,7 @@ public class HomeController implements Initializable {
 
         var column = new TableColumn<Meet, String>("Time");
 
-        // set cell value factory here...
+        this.configureColumn(column);
 
         columns.add(0, column);
 
@@ -48,14 +45,22 @@ public class HomeController implements Initializable {
         for (String day : days) {
             var column = new TableColumn<Meet, String>(day);
 
-            // set cell value factory here...
-
-            column.setReorderable(false);
-            column.setSortable(false);
+            this.configureColumn(column);
 
             columns.add(column);
         }
 
         return columns;
+    }
+
+    private void configureTable(TableView<Meet> table, ObservableList<Meet> items) {
+        table.setItems(items);
+        table.setSelectionModel(null);
+        table.setFocusTraversable(false);
+    }
+
+    private void configureColumn(TableColumn<?,?> column) {
+        column.setReorderable(false);
+        column.setSortable(false);
     }
 }
