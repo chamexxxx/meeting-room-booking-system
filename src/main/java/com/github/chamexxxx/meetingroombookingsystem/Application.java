@@ -14,6 +14,8 @@ public class Application extends javafx.application.Application {
         Scene scene = new Scene(fxmlLoader.load(), 800, 600);
         stage.getIcons().add(new Image("file:logo.png"));
         stage.setTitle("Meeting room booking system");
+        stage.setMinWidth(800);
+        stage.setMinHeight(600);
         stage.setMaximized(true);
         stage.setScene(scene);
         stage.show();
