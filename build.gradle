@@ -35,6 +35,7 @@ javafx {
 dependencies {
     implementation 'com.calendarfx:view:11.10.1'
     implementation 'org.slf4j:slf4j-simple:1.7.32'
+    implementation 'org.xerial:sqlite-jdbc:3.36.0.3'
     implementation 'com.j256.ormlite:ormlite-core:5.7'
     implementation 'com.j256.ormlite:ormlite-jdbc:5.7'
 
