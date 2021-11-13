@@ -22,3 +22,6 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### Database files ###
+*.db
