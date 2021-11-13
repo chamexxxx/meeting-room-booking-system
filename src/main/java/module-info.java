@@ -8,4 +8,6 @@ module com.github.chamexxxx.meetingroombookingsystem {
 
     opens com.github.chamexxxx.meetingroombookingsystem to javafx.fxml;
     exports com.github.chamexxxx.meetingroombookingsystem;
+    opens com.github.chamexxxx.meetingroombookingsystem.models to ormlite.core;
+    exports com.github.chamexxxx.meetingroombookingsystem.models;
 }
