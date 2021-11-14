@@ -125,12 +125,12 @@ public class HomeController implements Initializable {
         var startDate = localDateTimeToTimestamp(entry.getStartAsLocalDateTime());
         var endDate = localDateTimeToTimestamp(entry.getEndAsLocalDateTime());
 
-        var queryBuilder = Database.meetDao.deleteBuilder();
+        var deleteBuilder = Database.meetDao.deleteBuilder();
 
-        queryBuilder.where().eq("startDate", startDate);
-        queryBuilder.where().eq("endDate", endDate);
+        deleteBuilder.where().eq("startDate", startDate);
+        deleteBuilder.where().eq("endDate", endDate);
 
-        queryBuilder.delete();
+        deleteBuilder.delete();
     }
 
     private List<Meet> getMeets() throws SQLException {
