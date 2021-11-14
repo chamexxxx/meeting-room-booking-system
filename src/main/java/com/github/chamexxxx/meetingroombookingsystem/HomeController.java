@@ -85,6 +85,8 @@ public class HomeController implements Initializable {
             try {
                 if (calendar != null) {
                     createMeet(entry);
+                } else {
+                    deleteMeet(entry);
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -117,7 +119,16 @@ public class HomeController implements Initializable {
         Database.meetDao.create(meet);
     }
 
-        return columns;
+    private void deleteMeet(Entry<?> entry) throws SQLException {
+        var startDate = localDateTimeToTimestamp(entry.getStartAsLocalDateTime());
+        var endDate = localDateTimeToTimestamp(entry.getEndAsLocalDateTime());
+
+        var queryBuilder = Database.meetDao.deleteBuilder();
+
+        queryBuilder.where().eq("startDate", startDate);
+        queryBuilder.where().eq("endDate", endDate);
+
+        queryBuilder.delete();
     }
 
     private List<Meet> getMeets() throws SQLException {
