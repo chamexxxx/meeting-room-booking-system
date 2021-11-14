@@ -4,10 +4,18 @@ import com.github.chamexxxx.meetingroombookingsystem.dao.MeetDaoImpl;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
+import java.sql.Timestamp;
+
 @DatabaseTable(tableName = "meets", daoClass = MeetDaoImpl.class)
 public class Meet {
     @DatabaseField(canBeNull = false)
     private String room;
+
+    @DatabaseField(canBeNull = false)
+    private Timestamp startDate;
+
+    @DatabaseField(canBeNull = false)
+    private Timestamp endDate;
 
     public String getRoom() {
         return room;
@@ -15,6 +23,22 @@ public class Meet {
 
     public void setRoom(String room) {
         this.room = room;
+    }
+
+    public Timestamp getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Timestamp startDate) {
+        this.startDate = startDate;
+    }
+
+    public Timestamp getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Timestamp endDate) {
+        this.endDate = endDate;
     }
 
     public Meet() {
