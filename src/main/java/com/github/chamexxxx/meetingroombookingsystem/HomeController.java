@@ -41,6 +41,8 @@ public class HomeController implements Initializable {
 
     private void configureWeekPage() {
         weekPage.getCalendarSources().add(meetCalendarSource);
+
+        weekPage.getDetailedWeekView().getTimeScaleView().setTimeFormatter(DateTimeFormatter.ofPattern("HH:mm"));
     }
 
     private void configureCalendar() {
