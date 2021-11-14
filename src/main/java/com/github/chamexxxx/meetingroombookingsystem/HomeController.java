@@ -2,42 +2,81 @@ package com.github.chamexxxx.meetingroombookingsystem;
 
 import com.calendarfx.model.*;
 import com.calendarfx.view.page.WeekPage;
+import com.github.chamexxxx.meetingroombookingsystem.models.Meet;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 import java.net.URL;
-import java.util.*;
+import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.util.ResourceBundle;
 
 public class HomeController implements Initializable {
     @FXML
     private WeekPage weekPage;
 
+    Calendar meetCalendar = new Calendar("meets");
+    CalendarSource meetCalendarSource = new CalendarSource("Meets");
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ObservableList<Meet> meets = FXCollections.observableArrayList();
+        configureWeekPage(this.weekPage);
 
-        configureWeekPage();
+        meetCalendarSource.getCalendars().add(meetCalendar);
+
+        meetCalendar.addEventHandler(this::calendarHandler);
     }
 
-    private void configureWeekPage() {
+    private void calendarHandler(CalendarEvent event) {
+        var eventType = event.getEventType();
+
+        if (eventType.toString().equals("ENTRY_CALENDAR_CHANGED")) {
+            var calendar = event.getCalendar();
+            var entry = event.getEntry();
+
+            try {
+                if (calendar != null) {
+                    createMeet(entry);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
-    private ArrayList<TableColumn<Meet, String>> getTableColumns() {
-        var columns = getWeeklyColumns();
+    private Timestamp getEntryStartTimestamp(Entry <?> entry) {
+        return localDateTimeToTimestamp(entry.getStartAsLocalDateTime());
+    }
 
-        var column = new TableColumn<Meet, String>("Time");
+    private Timestamp getEntryEndTimestamp(Entry <?> entry) {
+        return localDateTimeToTimestamp(entry.getEndAsLocalDateTime());
+    }
 
-        this.configureColumn(column, 20);
+    private Timestamp localDateTimeToTimestamp(LocalDateTime localDateTime) {
+        return Timestamp.valueOf(localDateTime);
+    }
 
-        columns.add(0, column);
+    private void createMeet(Entry<?> entry) throws SQLException {
+        var startTimestamp = getEntryStartTimestamp(entry);
+        var endTimestamp = getEntryEndTimestamp(entry);
+
+        var meet = new Meet();
+
+        meet.setRoom(entry.getTitle());
+        meet.setStartDate(startTimestamp);
+        meet.setEndDate(endTimestamp);
+
+        Database.meetDao.create(meet);
+    }
 
         return columns;
     }
 
-    private ArrayList<TableColumn<Meet, String>> getWeeklyColumns() {
-        var columns = new ArrayList<TableColumn<Meet, String>>();
+    private void configureWeekPage(WeekPage weekPage) {
+        weekPage.getCalendarSources().add(meetCalendarSource);
 
         for (String day : days) {
             var column = new TableColumn<Meet, String>(day);
