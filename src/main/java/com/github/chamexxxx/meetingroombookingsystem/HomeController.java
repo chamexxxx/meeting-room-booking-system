@@ -26,17 +26,26 @@ public class HomeController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        configureWeekPage(this.weekPage);
-
-        meetCalendarSource.getCalendars().add(meetCalendar);
-
         try {
+            configure();
             initializeMeetEntries();
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
 
+    private void configure() {
+        configureWeekPage();
+        configureCalendar();
+    }
+
+    private void configureWeekPage() {
+        weekPage.getCalendarSources().add(meetCalendarSource);
+    }
+
+    private void configureCalendar() {
         meetCalendar.addEventHandler(this::calendarHandler);
+        meetCalendarSource.getCalendars().add(meetCalendar);
     }
 
     private void initializeMeetEntries() throws SQLException {
