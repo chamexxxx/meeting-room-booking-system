@@ -12,6 +12,9 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class HomeController implements Initializable {
@@ -27,7 +30,40 @@ public class HomeController implements Initializable {
 
         meetCalendarSource.getCalendars().add(meetCalendar);
 
+        try {
+            initializeMeetEntries();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         meetCalendar.addEventHandler(this::calendarHandler);
+    }
+
+    private void initializeMeetEntries() throws SQLException {
+        var meets = getMeets();
+
+        var entries = convertMeetsToEntries(meets);
+
+        for (Entry<Meet> entry : entries) {
+            meetCalendar.addEntry(entry);
+        }
+    }
+
+    private ArrayList<Entry<Meet>> convertMeetsToEntries(List<Meet> meets) {
+        var entries = new ArrayList<Entry<Meet>>();
+
+        for (Meet meet : meets) {
+            var startDate = meet.getStartDate();
+            var endDate = meet.getEndDate();
+
+            var entry = new Entry<Meet>(meet.getRoom());
+
+            entry.setInterval(startDate.toLocalDateTime(), endDate.toLocalDateTime());
+
+            entries.add(entry);
+        }
+
+        return entries;
     }
 
     private void calendarHandler(CalendarEvent event) {
@@ -73,6 +109,10 @@ public class HomeController implements Initializable {
     }
 
         return columns;
+    }
+
+    private List<Meet> getMeets() throws SQLException {
+        return Database.meetDao.queryForAll();
     }
 
     private void configureWeekPage(WeekPage weekPage) {
