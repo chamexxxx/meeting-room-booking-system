@@ -27,8 +27,8 @@ public class HomeController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            configure();
             initializeMeetEntries();
+            configure();
         } catch (SQLException e) {
             e.printStackTrace();
         }
