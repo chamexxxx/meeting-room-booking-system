@@ -38,13 +38,7 @@ public class Application extends javafx.application.Application {
     }
 
     private void configureDatabase() throws SQLException {
-        ConnectionSource connectionSource = new JdbcConnectionSource("jdbc:sqlite:database.db");
-        createDatabaseTables(connectionSource);
-    }
-
-    private void createDatabaseTables(ConnectionSource connectionSource) throws SQLException {
-        TableUtils.createTableIfNotExists(connectionSource, Account.class);
-        TableUtils.createTableIfNotExists(connectionSource, Meet.class);
+        Database.createTables();
     }
 
     public static void main(String[] args) {
