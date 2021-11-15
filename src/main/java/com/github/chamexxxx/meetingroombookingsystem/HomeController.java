@@ -83,19 +83,24 @@ public class HomeController implements Initializable {
     private void calendarHandler(CalendarEvent event) {
         var eventType = event.getEventType();
 
-        if (eventType.toString().equals("ENTRY_CALENDAR_CHANGED")) {
-            var calendar = event.getCalendar();
-            var entry = event.getEntry();
+        try {
+            if (eventType.toString().equals("ENTRY_CALENDAR_CHANGED")) {
+                var calendar = event.getCalendar();
+                var entry = event.getEntry();
 
-            try {
                 if (calendar != null) {
                     createMeet(entry);
                 } else {
                     deleteMeet(entry);
                 }
-            } catch (SQLException e) {
-                e.printStackTrace();
+            } else if (eventType.toString().equals("ENTRY_INTERVAL_CHANGED")) {
+                var entry = event.getEntry();
+                var oldInterval = event.getOldInterval();
+
+                changeMeetDates(entry, oldInterval.getStartDateTime(), oldInterval.getEndDateTime());
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
@@ -134,6 +139,18 @@ public class HomeController implements Initializable {
         deleteBuilder.where().eq("endDate", endDate);
 
         deleteBuilder.delete();
+    }
+
+    private void changeMeetDates(Entry<?> entry, LocalDateTime startDate, LocalDateTime endDate) throws SQLException {
+        var updateBuilder = Database.meetDao.updateBuilder();
+
+        updateBuilder.where().eq("startDate", localDateTimeToTimestamp(startDate));
+        updateBuilder.where().eq("endDate", localDateTimeToTimestamp(endDate));
+
+        updateBuilder.updateColumnValue("startDate", localDateTimeToTimestamp(entry.getStartAsLocalDateTime()));
+        updateBuilder.updateColumnValue("endDate", localDateTimeToTimestamp(entry.getEndAsLocalDateTime()));
+
+        updateBuilder.update();
     }
 
     private List<Meet> getMeets() throws SQLException {
