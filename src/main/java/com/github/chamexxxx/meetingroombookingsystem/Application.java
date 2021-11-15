@@ -1,10 +1,5 @@
 package com.github.chamexxxx.meetingroombookingsystem;
 
-import com.github.chamexxxx.meetingroombookingsystem.models.Account;
-import com.github.chamexxxx.meetingroombookingsystem.models.Meet;
-import com.j256.ormlite.jdbc.JdbcConnectionSource;
-import com.j256.ormlite.support.ConnectionSource;
-import com.j256.ormlite.table.TableUtils;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
