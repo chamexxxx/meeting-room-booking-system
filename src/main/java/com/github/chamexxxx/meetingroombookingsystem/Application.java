@@ -13,8 +13,8 @@ public class Application extends javafx.application.Application {
     @Override
     public void start(Stage stage) throws IOException, SQLException {
         Locale.setDefault(Locale.US);
-        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("home-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+
+        var scene = createScene();
 
         configureStage(stage);
 
@@ -22,6 +22,11 @@ public class Application extends javafx.application.Application {
 
         stage.setScene(scene);
         stage.show();
+    }
+
+    private Scene createScene() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("home-view.fxml"));
+        return new Scene(fxmlLoader.load(), 800, 600);
     }
 
     private void configureStage(Stage stage) {
