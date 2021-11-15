@@ -3,6 +3,7 @@ package com.github.chamexxxx.meetingroombookingsystem;
 import com.calendarfx.model.*;
 import com.calendarfx.view.page.WeekPage;
 import com.github.chamexxxx.meetingroombookingsystem.models.Meet;
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -21,6 +22,7 @@ public class HomeController implements Initializable {
     @FXML
     private WeekPage weekPage;
 
+    ObservableList<CalendarSource> meetCalendarSources = FXCollections.observableArrayList();
     Calendar meetCalendar = new Calendar("meets");
     CalendarSource meetCalendarSource = new CalendarSource("Meets");
 
@@ -35,19 +37,20 @@ public class HomeController implements Initializable {
     }
 
     private void configure() {
-        configureWeekPage();
         configureCalendar();
-    }
-
-    private void configureWeekPage() {
-        weekPage.getCalendarSources().add(meetCalendarSource);
-
-        weekPage.getDetailedWeekView().getTimeScaleView().setTimeFormatter(DateTimeFormatter.ofPattern("HH:mm"));
+        configureWeekPage();
     }
 
     private void configureCalendar() {
         meetCalendar.addEventHandler(this::calendarHandler);
         meetCalendarSource.getCalendars().add(meetCalendar);
+        meetCalendarSources.add(meetCalendarSource);
+    }
+
+    private void configureWeekPage() {
+        Bindings.bindContentBidirectional(weekPage.getCalendarSources(), meetCalendarSources);
+
+        weekPage.getDetailedWeekView().getTimeScaleView().setTimeFormatter(DateTimeFormatter.ofPattern("HH:mm"));
     }
 
     private void initializeMeetEntries() throws SQLException {
@@ -96,11 +99,11 @@ public class HomeController implements Initializable {
         }
     }
 
-    private Timestamp getEntryStartTimestamp(Entry <?> entry) {
+    private Timestamp getEntryStartTimestamp(Entry<?> entry) {
         return localDateTimeToTimestamp(entry.getStartAsLocalDateTime());
     }
 
-    private Timestamp getEntryEndTimestamp(Entry <?> entry) {
+    private Timestamp getEntryEndTimestamp(Entry<?> entry) {
         return localDateTimeToTimestamp(entry.getEndAsLocalDateTime());
     }
 
