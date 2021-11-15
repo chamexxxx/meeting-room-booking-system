@@ -1,7 +1,9 @@
-package com.github.chamexxxx.meetingroombookingsystem;
+package com.github.chamexxxx.meetingroombookingsystem.controllers;
 
 import com.calendarfx.model.*;
 import com.calendarfx.view.page.WeekPage;
+import com.github.chamexxxx.meetingroombookingsystem.Database;
+import com.github.chamexxxx.meetingroombookingsystem.EntryDialog;
 import com.github.chamexxxx.meetingroombookingsystem.models.Meet;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
@@ -36,6 +38,16 @@ public class HomeController implements Initializable {
         }
     }
 
+    private void initializeMeetEntries() throws SQLException {
+        var meets = getMeets();
+
+        var entries = convertMeetsToEntries(meets);
+
+        for (Entry<Meet> entry : entries) {
+            meetCalendar.addEntry(entry);
+        }
+    }
+
     private void configure() {
         configureCalendar();
         configureWeekPage();
@@ -51,16 +63,6 @@ public class HomeController implements Initializable {
         Bindings.bindContentBidirectional(weekPage.getCalendarSources(), meetCalendarSources);
 
         weekPage.getDetailedWeekView().getTimeScaleView().setTimeFormatter(DateTimeFormatter.ofPattern("HH:mm"));
-    }
-
-    private void initializeMeetEntries() throws SQLException {
-        var meets = getMeets();
-
-        var entries = convertMeetsToEntries(meets);
-
-        for (Entry<Meet> entry : entries) {
-            meetCalendar.addEntry(entry);
-        }
     }
 
     private ArrayList<Entry<Meet>> convertMeetsToEntries(List<Meet> meets) {
@@ -82,6 +84,7 @@ public class HomeController implements Initializable {
 
     private void calendarHandler(CalendarEvent event) {
         var eventType = event.getEventType();
+        System.out.println(event);
 
         try {
             if (eventType.toString().equals("ENTRY_CALENDAR_CHANGED")) {

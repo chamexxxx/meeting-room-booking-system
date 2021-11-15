@@ -8,7 +8,7 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.text.Font?>
 <VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.github.chamexxxx.meetingroombookingsystem.LoginController">
+      fx:controller="com.github.chamexxxx.meetingroombookingsystem.controllers.LoginController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </padding>

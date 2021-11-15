@@ -1,4 +1,4 @@
-package com.github.chamexxxx.meetingroombookingsystem;
+package com.github.chamexxxx.meetingroombookingsystem.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;

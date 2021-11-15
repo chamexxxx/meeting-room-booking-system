@@ -4,7 +4,7 @@
 <?import com.calendarfx.view.page.WeekPage?>
 <GridPane xmlns="http://javafx.com/javafx"
           xmlns:fx="http://javafx.com/fxml"
-          fx:controller="com.github.chamexxxx.meetingroombookingsystem.HomeController">
+          fx:controller="com.github.chamexxxx.meetingroombookingsystem.controllers.HomeController">
     <WeekPage fx:id="weekPage" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
 
     <columnConstraints>
