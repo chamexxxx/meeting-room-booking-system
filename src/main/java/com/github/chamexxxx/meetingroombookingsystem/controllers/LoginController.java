@@ -1,20 +1,29 @@
 package com.github.chamexxxx.meetingroombookingsystem.controllers;
 
+import com.github.chamexxxx.meetingroombookingsystem.control.LoginForm;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 
-public class LoginController {
+import java.net.URL;
+import java.util.HashMap;
+import java.util.ResourceBundle;
+
+public class LoginController implements Initializable {
     @FXML
-    private TextField username;
+    private LoginForm loginForm;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        loginForm.setOnAction(this::onLoginButtonClick);
+    }
 
     @FXML
-    private PasswordField password;
+    protected void onLoginButtonClick(HashMap<String, String> formData) {
+        var username = formData.get("username");
+        var password = formData.get("password");
 
-    @FXML
-    protected void onLoginButtonClick() throws Exception {
-        if (username.getText().equals("username") && password.getText().equals("password")) {
+        if (username.equals("username") && password.equals("password")) {
             // redirect to home scene
         } else {
             showLoginError();
