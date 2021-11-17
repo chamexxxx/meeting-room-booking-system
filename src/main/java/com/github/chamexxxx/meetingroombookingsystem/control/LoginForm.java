@@ -40,6 +40,7 @@ public class LoginForm extends VBox {
     }
 
     private void configureButton() {
+        button.setMaxWidth(Double.MAX_VALUE);
         setDefaultButtonText();
         setOnDefaultButtonAction();
     }
