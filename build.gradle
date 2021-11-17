@@ -38,6 +38,7 @@ dependencies {
     implementation 'org.xerial:sqlite-jdbc:3.36.0.3'
     implementation 'com.j256.ormlite:ormlite-core:5.7'
     implementation 'com.j256.ormlite:ormlite-jdbc:5.7'
+    implementation 'at.favre.lib:bcrypt:0.2.0'
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
