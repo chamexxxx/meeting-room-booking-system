@@ -1,11 +1,15 @@
 package com.github.chamexxxx.meetingroombookingsystem.controllers;
 
+import com.github.chamexxxx.meetingroombookingsystem.Database;
 import com.github.chamexxxx.meetingroombookingsystem.control.RegisterForm;
+import com.github.chamexxxx.meetingroombookingsystem.models.Account;
+import com.github.chamexxxx.meetingroombookingsystem.utils.PasswordHashing;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
@@ -31,6 +35,17 @@ public class RegisterController implements Initializable {
         if (!password.equals(confirmPassword)) {
             showConfirmPasswordError();
             return;
+        }
+
+        var user = new Account();
+
+        user.setUsername(username);
+        user.setPassword(PasswordHashing.hash(password));
+
+        try {
+            Database.accountDao.create(user);
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
