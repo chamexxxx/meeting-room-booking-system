@@ -10,7 +10,7 @@ public class PasswordValidator {
                     "    a digit must occur at least once\n" +
                     "    a lower case letter must occur at least once\n" +
                     "    an upper case letter must occur at least once\n" +
-                    "    a special character must occur at least once\n" +
+                    "    a special character (@#$%^&+=) must occur at least once\n" +
                     "    no whitespace allowed in the entire string\n" +
                     "    anything, at least eight places though";
 
