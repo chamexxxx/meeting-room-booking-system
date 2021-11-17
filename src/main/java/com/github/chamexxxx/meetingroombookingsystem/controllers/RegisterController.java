@@ -59,7 +59,11 @@ public class RegisterController implements Initializable {
             Database.accountDao.create(user);
             Router.switchScene("home");
         } catch (SQLException e) {
-            e.printStackTrace();
+            var errorCode = e.getErrorCode();
+
+            if (errorCode == 0) {
+                showAlertError("A user with the same name already exists");
+            }
         }
     }
 
