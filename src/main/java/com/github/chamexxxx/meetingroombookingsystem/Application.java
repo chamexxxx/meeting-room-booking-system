@@ -14,6 +14,7 @@ public class Application extends javafx.application.Application {
     public void start(Stage stage) throws IOException, SQLException {
         Locale.setDefault(Locale.US);
 
+        configureDatabase();
         configureStage(stage);
 
         var initialScene = createInitialScene();
@@ -24,8 +25,6 @@ public class Application extends javafx.application.Application {
         Router.addScene("login", "login-view.fxml");
         Router.addScene("register", "register-view.fxml");
         Router.addScene("home", "home-view.fxml");
-
-        configureDatabase();
 
         stage.setScene(initialScene);
         stage.show();
