@@ -18,7 +18,9 @@ public class Application extends javafx.application.Application {
 
         configureStage(stage);
 
-        var initialScene = createScene();
+        var initialScene = createInitialScene();
+
+        initialScene.getStylesheets().add(Application.class.getResource("app.css").toExternalForm());
 
         Router.setInitialScene(initialScene);
         Router.addScene("login", "login-view.fxml");
@@ -31,8 +33,8 @@ public class Application extends javafx.application.Application {
         stage.show();
     }
 
-    private Scene createScene() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("home-view.fxml"));
+    private Scene createInitialScene() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("register-view.fxml"));
         return new Scene(fxmlLoader.load(), 800, 600);
     }
 
