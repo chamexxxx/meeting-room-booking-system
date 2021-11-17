@@ -28,12 +28,12 @@ public class RegisterController implements Initializable {
         var confirmPassword = formData.get("confirmPassword");
 
         if (!everyoneIsNotEmpty(username, password, confirmPassword)) {
-            showRequiredFieldsError();
+            showAlertError("All fields are required");
             return;
         }
 
         if (!password.equals(confirmPassword)) {
-            showConfirmPasswordError();
+            showAlertError("Passwords are not identical");
             return;
         }
 
@@ -47,14 +47,6 @@ public class RegisterController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-
-    private void showRequiredFieldsError() {
-        showAlertError("All fields are required");
-    }
-
-    private void showConfirmPasswordError() {
-        showAlertError("Passwords are not identical");
     }
 
     private void showAlertError(String contentText) {
