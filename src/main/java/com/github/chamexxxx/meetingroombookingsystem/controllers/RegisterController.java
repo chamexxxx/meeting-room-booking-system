@@ -4,6 +4,8 @@ import com.github.chamexxxx.meetingroombookingsystem.Database;
 import com.github.chamexxxx.meetingroombookingsystem.control.RegisterForm;
 import com.github.chamexxxx.meetingroombookingsystem.models.Account;
 import com.github.chamexxxx.meetingroombookingsystem.utils.PasswordHashing;
+import com.github.chamexxxx.meetingroombookingsystem.utils.PasswordValidator;
+import com.github.chamexxxx.meetingroombookingsystem.utils.UsernameValidator;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -29,6 +31,16 @@ public class RegisterController implements Initializable {
 
         if (!everyoneIsNotEmpty(username, password, confirmPassword)) {
             showAlertError("All fields are required");
+            return;
+        }
+
+        if (!UsernameValidator.isValid(username)) {
+            showAlertError(UsernameValidator.message);
+            return;
+        };
+
+        if (!PasswordValidator.isValid(password)) {
+            showAlertError(PasswordValidator.message);
             return;
         }
 
