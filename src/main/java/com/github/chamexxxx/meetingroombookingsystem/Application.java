@@ -14,8 +14,6 @@ public class Application extends javafx.application.Application {
     public void start(Stage stage) throws IOException, SQLException {
         Locale.setDefault(Locale.US);
 
-        var scene = createScene();
-
         configureStage(stage);
 
         var initialScene = createInitialScene();
