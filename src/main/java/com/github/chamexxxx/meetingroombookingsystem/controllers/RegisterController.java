@@ -1,6 +1,7 @@
 package com.github.chamexxxx.meetingroombookingsystem.controllers;
 
 import com.github.chamexxxx.meetingroombookingsystem.Database;
+import com.github.chamexxxx.meetingroombookingsystem.Router;
 import com.github.chamexxxx.meetingroombookingsystem.control.RegisterForm;
 import com.github.chamexxxx.meetingroombookingsystem.models.Account;
 import com.github.chamexxxx.meetingroombookingsystem.utils.PasswordHashing;
@@ -56,6 +57,7 @@ public class RegisterController implements Initializable {
 
         try {
             Database.accountDao.create(user);
+            Router.switchScene("home");
         } catch (SQLException e) {
             e.printStackTrace();
         }
