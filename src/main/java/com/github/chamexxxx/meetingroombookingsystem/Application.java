@@ -18,9 +18,16 @@ public class Application extends javafx.application.Application {
 
         configureStage(stage);
 
+        var initialScene = createScene();
+
+        Router.setInitialScene(initialScene);
+        Router.addScene("login", "login-view.fxml");
+        Router.addScene("register", "register-view.fxml");
+        Router.addScene("home", "home-view.fxml");
+
         configureDatabase();
 
-        stage.setScene(scene);
+        stage.setScene(initialScene);
         stage.show();
     }
 
