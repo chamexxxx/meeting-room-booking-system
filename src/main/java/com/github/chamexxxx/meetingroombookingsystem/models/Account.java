@@ -7,17 +7,17 @@ import com.j256.ormlite.table.DatabaseTable;
 @DatabaseTable(tableName = "accounts", daoClass = AccountDaoImpl.class)
 public class Account {
     @DatabaseField(id = true)
-    private String name;
+    private String username;
 
     @DatabaseField
     private String password;
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
