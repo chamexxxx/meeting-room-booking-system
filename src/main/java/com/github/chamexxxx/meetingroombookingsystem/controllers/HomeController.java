@@ -64,6 +64,16 @@ public class HomeController implements Initializable {
         Bindings.bindContentBidirectional(weekPage.getCalendarSources(), meetCalendarSources);
         weekPage.setContextMenuCallback(new ContextMenuProvider());
         weekPage.getDetailedWeekView().getTimeScaleView().setTimeFormatter(DateTimeFormatter.ofPattern("HH:mm"));
+
+        var entryContextMenuCallback = weekPage.getEntryContextMenuCallback();
+
+        weekPage.setEntryContextMenuCallback(param -> {
+            var menu = entryContextMenuCallback.call(param);
+
+            menu.getItems().remove(0, 2);
+
+            return menu;
+        });
     }
 
     private ArrayList<Entry<Meet>> convertMeetsToEntries(List<Meet> meets) {
