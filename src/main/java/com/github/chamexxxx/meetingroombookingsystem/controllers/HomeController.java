@@ -74,6 +74,21 @@ public class HomeController implements Initializable {
 
             return menu;
         });
+
+        weekPage.setEntryDetailsCallback(param -> {
+            InputEvent evt = param.getInputEvent();
+
+            if (evt instanceof MouseEvent) {
+                var mouseEvent = (MouseEvent) evt;
+
+                if (mouseEvent.getClickCount() == 2) {
+
+                    return true;
+                }
+            }
+
+            return true;
+        });
     }
 
     private ArrayList<Entry<Meet>> convertMeetsToEntries(List<Meet> meets) {
