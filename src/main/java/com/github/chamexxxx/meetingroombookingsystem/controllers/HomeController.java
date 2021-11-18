@@ -4,6 +4,7 @@ import com.calendarfx.model.*;
 import com.calendarfx.view.page.WeekPage;
 import com.github.chamexxxx.meetingroombookingsystem.Database;
 import com.github.chamexxxx.meetingroombookingsystem.EntryDialog;
+import com.github.chamexxxx.meetingroombookingsystem.calendar.ContextMenuProvider;
 import com.github.chamexxxx.meetingroombookingsystem.models.Meet;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
@@ -61,7 +62,7 @@ public class HomeController implements Initializable {
 
     private void configureWeekPage() {
         Bindings.bindContentBidirectional(weekPage.getCalendarSources(), meetCalendarSources);
-
+        weekPage.setContextMenuCallback(new ContextMenuProvider());
         weekPage.getDetailedWeekView().getTimeScaleView().setTimeFormatter(DateTimeFormatter.ofPattern("HH:mm"));
     }
 
