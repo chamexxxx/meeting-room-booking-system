@@ -1,0 +1,40 @@
+.root, .calendar-page, .weekend-day, .all-day-view > .container > .weekend, .today {
+    -fx-background-color: -fx-secondary-color;
+}
+
+.label {
+    -fx-text-fill: #ffffff;
+}
+
+.text-field {
+    -fx-background-color: lightgray;
+    -fx-prompt-text-fill: #6f777d;
+    -fx-text-inner-color: -fx-primary-color;
+    -fx-label-padding: 10px;
+    -fx-font-size:15px;
+    -fx-border-radius: 4px;
+    -fx-padding: 10px;
+}
+
+.button {
+    -fx-border-radius: 4px;
+    -fx-background-color: -fx-primary-color;
+    -fx-text-fill: #fbfcfc;
+    -fx-padding: 10px;
+    -fx-font-size:15px;
+    -fx-cursor: hand;
+    -fx-font-weight: bold;
+}
+
+.context-menu {
+    -fx-background-color: -fx-primary-color;
+    -fx-text-fill: white;
+}
+
+.context-menu .menu-item .label {
+    -fx-text-fill: white;
+}
+
+.context-menu .menu-item:focused .label {
+    -fx-text-fill: white;
+}
