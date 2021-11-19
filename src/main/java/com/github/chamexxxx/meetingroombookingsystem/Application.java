@@ -19,8 +19,8 @@ public class Application extends javafx.application.Application {
 
         var initialScene = createInitialScene();
 
-        initialScene.getStylesheets().add(Application.class.getResource("variables.css").toExternalForm());
-        initialScene.getStylesheets().add(Application.class.getResource("app.css").toExternalForm());
+        initialScene.getStylesheets().add(getCssResource("variables.css"));
+        initialScene.getStylesheets().add(getCssResource("app.css"));
 
         Router.setInitialScene(initialScene);
         Router.addScene("login", "login-view.fxml");
@@ -46,6 +46,10 @@ public class Application extends javafx.application.Application {
 
     private void configureDatabase() throws SQLException {
         Database.createTables();
+    }
+
+    private String getCssResource(String resourceName) {
+        return Application.class.getResource(resourceName).toExternalForm();
     }
 
     public static void main(String[] args) {
