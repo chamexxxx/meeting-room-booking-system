@@ -19,6 +19,7 @@ public class Application extends javafx.application.Application {
 
         var initialScene = createInitialScene();
 
+        initialScene.getStylesheets().add(Application.class.getResource("variables.css").toExternalForm());
         initialScene.getStylesheets().add(Application.class.getResource("app.css").toExternalForm());
 
         Router.setInitialScene(initialScene);
