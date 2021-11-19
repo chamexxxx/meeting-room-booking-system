@@ -82,13 +82,9 @@ public class HomeController implements Initializable {
         weekPage.setEntryDetailsCallback(param -> {
             InputEvent evt = param.getInputEvent();
 
-            if (evt instanceof MouseEvent) {
-                var mouseEvent = (MouseEvent) evt;
+            if (evt instanceof ContextMenuEvent) {
 
-                if (mouseEvent.getClickCount() == 2) {
-
-                    return true;
-                }
+                return true;
             }
 
             return true;
