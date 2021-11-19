@@ -6,6 +6,7 @@ import com.github.chamexxxx.meetingroombookingsystem.Database;
 import com.github.chamexxxx.meetingroombookingsystem.EntryDialog;
 import com.github.chamexxxx.meetingroombookingsystem.calendar.ContextMenuProvider;
 import com.github.chamexxxx.meetingroombookingsystem.models.Meet;
+import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,7 +16,9 @@ import javafx.fxml.Initializable;
 import java.net.URL;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +35,7 @@ public class HomeController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
+            startUpdatingTimeThread();
             initializeMeetEntries();
             configure();
         } catch (SQLException e) {
@@ -89,6 +93,35 @@ public class HomeController implements Initializable {
 
             return true;
         });
+    }
+
+    private void startUpdatingTimeThread() {
+        var updateTimeThread = createUpdatingTimeThread();
+
+        updateTimeThread.setPriority(Thread.MIN_PRIORITY);
+        updateTimeThread.setDaemon(true);
+        updateTimeThread.start();
+    }
+
+    private Thread createUpdatingTimeThread() {
+        return new Thread("Calendar: Update Time Thread") {
+            @Override
+            public void run() {
+                while (true) {
+                    Platform.runLater(() -> {
+                        weekPage.setToday(LocalDate.now());
+                        weekPage.setTime(LocalTime.now());
+                    });
+
+                    try {
+                        // update every 5 seconds
+                        sleep(5000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            };
+        };
     }
 
     private ArrayList<Entry<Meet>> convertMeetsToEntries(List<Meet> meets) {
