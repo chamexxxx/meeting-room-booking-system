@@ -16,7 +16,7 @@ public class RegisterForm extends LoginForm {
 
     @Override
     protected final void setDefaultButtonText() {
-        button.setText("Sign up");
+        button.setText("Sign up".toUpperCase());
     }
 
     @Override

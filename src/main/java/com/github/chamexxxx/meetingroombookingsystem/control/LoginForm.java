@@ -36,7 +36,7 @@ public class LoginForm extends VBox {
     }
 
     protected void setDefaultButtonText() {
-        button.setText("Log in");
+        button.setText("Log in".toUpperCase());
     }
 
     private void configureButton() {
