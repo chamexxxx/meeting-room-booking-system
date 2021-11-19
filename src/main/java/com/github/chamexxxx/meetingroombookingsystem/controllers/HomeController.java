@@ -12,6 +12,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.SelectionMode;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -66,6 +67,7 @@ public class HomeController implements Initializable {
 
     private void configureWeekPage() {
         Bindings.bindContentBidirectional(weekPage.getCalendarSources(), meetCalendarSources);
+        weekPage.setSelectionMode(SelectionMode.SINGLE);
         weekPage.setContextMenuCallback(new ContextMenuProvider());
         weekPage.getDetailedWeekView().getTimeScaleView().setTimeFormatter(DateTimeFormatter.ofPattern("HH:mm"));
 
