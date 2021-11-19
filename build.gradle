@@ -22,6 +22,20 @@ tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
 
+task copyLicense {
+    outputs.file new File("$buildDir/LICENSE")
+    doLast {
+        copy {
+            from "LICENSE"
+            into "$buildDir"
+        }
+    }
+}
+
+applicationDistribution.from(copyLicense) {
+    into ""
+}
+
 application {
     mainModule = 'com.github.chamexxxx.meetingroombookingsystem'
     mainClass = 'com.github.chamexxxx.meetingroombookingsystem.Application'
