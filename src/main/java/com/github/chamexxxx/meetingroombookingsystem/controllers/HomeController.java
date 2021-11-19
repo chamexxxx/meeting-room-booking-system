@@ -61,6 +61,7 @@ public class HomeController implements Initializable {
 
     private void configureCalendar() {
         meetCalendar.addEventHandler(this::calendarHandler);
+        meetCalendar.setStyle(Calendar.Style.STYLE7);
         meetCalendarSource.getCalendars().add(meetCalendar);
         meetCalendarSources.add(meetCalendarSource);
     }
