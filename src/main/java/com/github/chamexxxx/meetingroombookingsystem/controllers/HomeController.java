@@ -77,7 +77,8 @@ public class HomeController implements Initializable {
         weekPage.setEntryContextMenuCallback(param -> {
             var menu = entryContextMenuCallback.call(param);
 
-            menu.getItems().remove(0, 2);
+            menu.getItems().get(0).setText("Edit");
+            menu.getItems().remove(1, 2);
 
             return menu;
         });
