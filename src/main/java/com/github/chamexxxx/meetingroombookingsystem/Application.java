@@ -8,8 +8,11 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Locale;
+import java.util.Objects;
 
 public class Application extends javafx.application.Application {
+    private final String[] stylesheetNames = {"variables", "app"};
+
     @Override
     public void start(Stage stage) throws IOException, SQLException {
         Locale.setDefault(Locale.US);
@@ -19,8 +22,7 @@ public class Application extends javafx.application.Application {
 
         var initialScene = createInitialScene();
 
-        initialScene.getStylesheets().add(getCssResource("variables.css"));
-        initialScene.getStylesheets().add(getCssResource("app.css"));
+        addStylesheetsToScene(initialScene, stylesheetNames);
 
         Router.setInitialScene(initialScene);
         Router.addScene("login", "login-view.fxml");
@@ -48,8 +50,14 @@ public class Application extends javafx.application.Application {
         Database.createTables();
     }
 
+    private void addStylesheetsToScene(Scene scene, String[] resourceNames) {
+        for (String resourceName : resourceNames) {
+            scene.getStylesheets().add(getCssResource(resourceName + ".css"));
+        }
+    }
+
     private String getCssResource(String resourceName) {
-        return Application.class.getResource(resourceName).toExternalForm();
+        return Objects.requireNonNull(Application.class.getResource(resourceName)).toExternalForm();
     }
 
     public static void main(String[] args) {
