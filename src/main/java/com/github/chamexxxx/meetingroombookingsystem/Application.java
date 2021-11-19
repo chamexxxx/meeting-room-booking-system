@@ -11,7 +11,7 @@ import java.util.Locale;
 import java.util.Objects;
 
 public class Application extends javafx.application.Application {
-    private final String[] stylesheetNames = {"variables", "app"};
+    private final String[] stylesheetNames = {"variables", "app", "calendar"};
 
     @Override
     public void start(Stage stage) throws IOException, SQLException {

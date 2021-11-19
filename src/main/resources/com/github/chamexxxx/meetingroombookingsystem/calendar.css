@@ -1,0 +1,61 @@
+/*
+ * --------------------------------------------------------------------------------------------------------------
+ * Overriding styles needed by the time scale (01:00, 02:00, .... 24:00).
+ */
+
+.time-scale > .time-label {
+    -fx-font-size: 1em;
+}
+
+.time-scale > .date-label {
+    -fx-font-size: 1em;
+}
+
+.time-scale > .current-time-label {
+    -fx-font-size: 1em;
+}
+
+/*
+ * --------------------------------------------------------------------------------------------------------------
+ * Overriding styles needed by the day view.
+ */
+
+.day-view > .half-hour-line,
+.day-view > .full-hour-line {
+    -fx-stroke: #c7c7c7;
+    -fx-opacity: 0.5;
+}
+
+.day-view > .current-time-line {
+    -fx-stroke: -fx-primary-color;
+}
+
+.day-view > .current-time-circle {
+    -fx-stroke: -fx-primary-color;
+    -fx-fill: -fx-primary-color;
+}
+
+.day-view > .current-time-circle {
+    -fx-stroke: none;
+    -fx-fill: none;
+}
+
+/*
+ * --------------------------------------------------------------------------------------------------------------
+ * Overriding styles needed by the WeekDayHeaderView.
+ */
+
+.weekday-header-view > .container > .cell {
+    -fx-font-size: 1.2em;
+    -fx-font-weight: bold;
+    -fx-padding: 10;
+}
+
+/*
+ * --------------------------------------------------------------------------------------------------------------
+ * Overriding styles needed by the AllDayView.
+ */
+
+.all-day-view > .container > .today {
+    -fx-border-color: transparent transparent -fx-primary-color transparent;
+}
