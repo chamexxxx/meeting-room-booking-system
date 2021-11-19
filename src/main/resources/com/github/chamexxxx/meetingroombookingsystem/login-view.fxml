@@ -4,12 +4,34 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 <?import com.github.chamexxxx.meetingroombookingsystem.control.LoginForm?>
 <VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.github.chamexxxx.meetingroombookingsystem.controllers.LoginController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </padding>
+
+    <ImageView
+            fitHeight="120.0"
+            fitWidth="170.0"
+            layoutX="61.0"
+            layoutY="83.0"
+            pickOnBounds="true"
+            preserveRatio="true"
+    >
+        <Image
+                url="file:logo.png"
+                backgroundLoading="true"
+        />
+    </ImageView>
+
+    <Label text="Meeting room booking system">
+        <font>
+            <Font size="20.0"/>
+        </font>
+    </Label>
 
     <Label text="Log in to your account">
         <font>

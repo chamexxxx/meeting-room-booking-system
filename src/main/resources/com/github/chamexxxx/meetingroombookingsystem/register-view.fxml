@@ -14,6 +14,26 @@
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </padding>
 
+    <ImageView
+            fitHeight="120.0"
+            fitWidth="170.0"
+            layoutX="61.0"
+            layoutY="83.0"
+            pickOnBounds="true"
+            preserveRatio="true"
+    >
+        <Image
+                url="file:logo.png"
+                backgroundLoading="true"
+        />
+    </ImageView>
+
+    <Label text="Meeting room booking system" styleClass="title">
+        <font>
+            <Font size="23.0"/>
+        </font>
+    </Label>
+
     <Label text="Register your account">
         <font>
             <Font size="15.0"/>
