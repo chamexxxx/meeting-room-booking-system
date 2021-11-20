@@ -105,19 +105,7 @@ public class MeetCalendar {
 
         var entryContextMenuCallback = weekPage.getEntryContextMenuCallback();
 
-        weekPage.setEntryContextMenuCallback(param -> {
-            var menu = entryContextMenuCallback.call(param);
-
-            menu.getItems().get(0).setText("Edit");
-            menu.getItems().remove(1, 2);
-
-            // Delete item handler
-            menu.getItems().get(1).setOnAction(event -> {
-                param.getDateControl().getSelections().forEach(Entry::removeFromCalendar);
-            });
-
-            return menu;
-        });
+        weekPage.setEntryContextMenuCallback(EntryContextMenu::new);
 
         weekPage.setEntryDetailsCallback(param -> {
             InputEvent evt = param.getInputEvent();
