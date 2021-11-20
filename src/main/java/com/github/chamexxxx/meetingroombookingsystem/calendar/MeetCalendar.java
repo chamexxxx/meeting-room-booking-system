@@ -99,7 +99,6 @@ public class MeetCalendar {
 
     private void configureWeekPage() {
         Bindings.bindContentBidirectional(weekPage.getCalendarSources(), calendarSources);
-        weekPage.setSelectionMode(SelectionMode.SINGLE);
         weekPage.setContextMenuCallback(new ContextMenuProvider());
         weekPage.getDetailedWeekView().getTimeScaleView().setTimeFormatter(DateTimeFormatter.ofPattern("HH:mm"));
         configureEntryViewFactory();
@@ -111,6 +110,11 @@ public class MeetCalendar {
 
             menu.getItems().get(0).setText("Edit");
             menu.getItems().remove(1, 2);
+
+            // Delete item handler
+            menu.getItems().get(1).setOnAction(event -> {
+                param.getDateControl().getSelections().forEach(Entry::removeFromCalendar);
+            });
 
             return menu;
         });
