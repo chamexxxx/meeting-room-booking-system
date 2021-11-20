@@ -3,6 +3,7 @@ package com.github.chamexxxx.meetingroombookingsystem.controllers;
 import com.calendarfx.model.*;
 import com.calendarfx.view.page.WeekPage;
 import com.github.chamexxxx.meetingroombookingsystem.Database;
+import com.github.chamexxxx.meetingroombookingsystem.calendar.DayEntryView;
 import com.github.chamexxxx.meetingroombookingsystem.EntryDialog;
 import com.github.chamexxxx.meetingroombookingsystem.calendar.ContextMenuProvider;
 import com.github.chamexxxx.meetingroombookingsystem.models.Meet;
@@ -71,6 +72,7 @@ public class HomeController implements Initializable {
         weekPage.setSelectionMode(SelectionMode.SINGLE);
         weekPage.setContextMenuCallback(new ContextMenuProvider());
         weekPage.getDetailedWeekView().getTimeScaleView().setTimeFormatter(DateTimeFormatter.ofPattern("HH:mm"));
+        configureEntryViewFactory();
 
         var entryContextMenuCallback = weekPage.getEntryContextMenuCallback();
 
@@ -164,6 +166,18 @@ public class HomeController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    private void configureEntryViewFactory() {
+        var weekDayViewFactory = weekPage.getDetailedWeekView().getWeekView().getWeekDayViewFactory();
+
+        weekPage.getDetailedWeekView().getWeekView().setWeekDayViewFactory(param -> {
+            var weekDayView = weekDayViewFactory.call(param);
+
+            weekDayView.setEntryViewFactory(DayEntryView::new);
+
+            return weekDayView;
+        });
     }
 
     private Timestamp getEntryStartTimestamp(Entry<?> entry) {
