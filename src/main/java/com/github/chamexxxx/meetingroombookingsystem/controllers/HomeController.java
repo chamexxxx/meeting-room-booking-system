@@ -4,7 +4,7 @@ import com.calendarfx.model.*;
 import com.calendarfx.view.page.WeekPage;
 import com.github.chamexxxx.meetingroombookingsystem.Database;
 import com.github.chamexxxx.meetingroombookingsystem.calendar.DayEntryView;
-import com.github.chamexxxx.meetingroombookingsystem.EntryDialog;
+import com.github.chamexxxx.meetingroombookingsystem.calendar.EntryDialog;
 import com.github.chamexxxx.meetingroombookingsystem.calendar.ContextMenuProvider;
 import com.github.chamexxxx.meetingroombookingsystem.models.Meet;
 import javafx.application.Platform;
@@ -87,8 +87,12 @@ public class HomeController implements Initializable {
 
         weekPage.setEntryDetailsCallback(param -> {
             InputEvent evt = param.getInputEvent();
+            var entry = param.getEntry();
 
             if (evt instanceof ContextMenuEvent) {
+                var dialog = new EntryDialog(entry);
+
+                dialog.showAndWait();
 
                 return true;
             }
