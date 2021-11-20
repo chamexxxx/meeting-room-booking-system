@@ -1,19 +1,14 @@
 package com.github.chamexxxx.meetingroombookingsystem.calendar;
 
 import com.calendarfx.model.*;
-import com.calendarfx.view.page.WeekPage;
 import com.github.chamexxxx.meetingroombookingsystem.models.Meet;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.SelectionMode;
-import javafx.scene.input.ContextMenuEvent;
-import javafx.scene.input.InputEvent;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
@@ -99,11 +94,6 @@ public class MeetCalendar {
 
     private void configureWeekPage() {
         Bindings.bindContentBidirectional(weekPage.getCalendarSources(), calendarSources);
-        weekPage.setContextMenuCallback(new ContextMenuProvider());
-        weekPage.getDetailedWeekView().getTimeScaleView().setTimeFormatter(DateTimeFormatter.ofPattern("HH:mm"));
-        configureEntryViewFactory();
-
-        var entryContextMenuCallback = weekPage.getEntryContextMenuCallback();
 
         weekPage.setEntryContextMenuCallback(EntryContextMenu::new);
 
@@ -142,17 +132,5 @@ public class MeetCalendar {
 
             onUpdateEntryAction.accept(entry, oldInterval);
         }
-    }
-
-    private void configureEntryViewFactory() {
-        var weekDayViewFactory = weekPage.getDetailedWeekView().getWeekView().getWeekDayViewFactory();
-
-        weekPage.getDetailedWeekView().getWeekView().setWeekDayViewFactory(param -> {
-            var weekDayView = weekDayViewFactory.call(param);
-
-            weekDayView.setEntryViewFactory(DayEntryView::new);
-
-            return weekDayView;
-        });
     }
 }
