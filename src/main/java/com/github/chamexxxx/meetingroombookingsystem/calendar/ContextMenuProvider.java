@@ -12,12 +12,16 @@ public class ContextMenuProvider extends com.calendarfx.view.ContextMenuProvider
 
         configureHoursMenuItem(menu.getItems().get(3));
 
+        removeUnnecessaryMenuItems(menu);
+
+        return menu;
+    }
+
+    private void removeUnnecessaryMenuItems(ContextMenu menu) {
         // remove menu items: Early / Late Hours and Grid
         menu.getItems().remove(1, 3);
         // remove menu item: Show Days
         menu.getItems().remove(2);
-
-        return menu;
     }
 
     private void configureHoursMenuItem(MenuItem hoursItem) {
