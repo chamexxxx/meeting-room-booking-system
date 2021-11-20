@@ -14,6 +14,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.layout.GridPane;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -28,8 +29,9 @@ import java.util.ResourceBundle;
 
 public class HomeController implements Initializable {
     @FXML
-    private WeekPage weekPage;
+    private GridPane gridPane;
 
+    private final WeekPage weekPage = new WeekPage();
     ObservableList<CalendarSource> meetCalendarSources = FXCollections.observableArrayList();
     Calendar meetCalendar = new Calendar("meets");
     CalendarSource meetCalendarSource = new CalendarSource("Meets");
@@ -37,6 +39,7 @@ public class HomeController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
+            gridPane.add(weekPage, 0, 0);
             startUpdatingTimeThread();
             initializeMeetEntries();
             configure();
