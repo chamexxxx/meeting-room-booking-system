@@ -43,6 +43,7 @@ public class EntryContextMenu extends ContextMenu {
 
                 if (!calendar.isReadOnly()) {
                     var selections = control.getSelections();
+                    removeEntryFromCalendar(entry);
                     selections.forEach(this::removeEntryFromCalendar);
                 }
             });
