@@ -82,7 +82,7 @@ public class MeetCalendar {
 
     private void configure() {
         configureCalendar();
-        configureWeekPage();
+        bindWeekPage();
     }
 
     private void configureCalendar() {
@@ -92,25 +92,8 @@ public class MeetCalendar {
         calendarSources.add(calendarSource);
     }
 
-    private void configureWeekPage() {
+    private void bindWeekPage() {
         Bindings.bindContentBidirectional(weekPage.getCalendarSources(), calendarSources);
-
-        weekPage.setEntryContextMenuCallback(EntryContextMenu::new);
-
-        weekPage.setEntryDetailsCallback(param -> {
-            InputEvent evt = param.getInputEvent();
-            var entry = param.getEntry();
-
-            if (evt instanceof ContextMenuEvent) {
-                var dialog = new EntryDialog(entry);
-
-                dialog.showAndWait();
-
-                return true;
-            }
-
-            return true;
-        });
     }
 
     private void calendarHandler(CalendarEvent event) {
