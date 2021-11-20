@@ -1,28 +1,17 @@
 package com.github.chamexxxx.meetingroombookingsystem.controllers;
 
 import com.calendarfx.model.*;
-import com.calendarfx.view.page.WeekPage;
 import com.github.chamexxxx.meetingroombookingsystem.Database;
-import com.github.chamexxxx.meetingroombookingsystem.calendar.DayEntryView;
-import com.github.chamexxxx.meetingroombookingsystem.calendar.EntryDialog;
-import com.github.chamexxxx.meetingroombookingsystem.calendar.ContextMenuProvider;
+import com.github.chamexxxx.meetingroombookingsystem.calendar.MeetCalendar;
 import com.github.chamexxxx.meetingroombookingsystem.models.Meet;
-import javafx.application.Platform;
-import javafx.beans.binding.Bindings;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.SelectionMode;
 import javafx.scene.layout.GridPane;
 
 import java.net.URL;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -31,106 +20,46 @@ public class HomeController implements Initializable {
     @FXML
     private GridPane gridPane;
 
-    private final WeekPage weekPage = new WeekPage();
-    ObservableList<CalendarSource> meetCalendarSources = FXCollections.observableArrayList();
-    Calendar meetCalendar = new Calendar("meets");
-    CalendarSource meetCalendarSource = new CalendarSource("Meets");
+    private MeetCalendar meetCalendar;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            gridPane.add(weekPage, 0, 0);
-            startUpdatingTimeThread();
-            initializeMeetEntries();
-            configure();
+            var meetEntries = getMeetEntries();
+            meetCalendar = new MeetCalendar(meetEntries);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
 
-    private void initializeMeetEntries() throws SQLException {
-        var meets = getMeets();
+        gridPane.add(meetCalendar.getWeekPage(), 0, 0);
 
-        var entries = convertMeetsToEntries(meets);
-
-        for (Entry<Meet> entry : entries) {
-            meetCalendar.addEntry(entry);
-        }
-    }
-
-    private void configure() {
-        configureCalendar();
-        configureWeekPage();
-    }
-
-    private void configureCalendar() {
-        meetCalendar.addEventHandler(this::calendarHandler);
-        meetCalendar.setStyle(Calendar.Style.STYLE7);
-        meetCalendarSource.getCalendars().add(meetCalendar);
-        meetCalendarSources.add(meetCalendarSource);
-    }
-
-    private void configureWeekPage() {
-        Bindings.bindContentBidirectional(weekPage.getCalendarSources(), meetCalendarSources);
-        weekPage.setSelectionMode(SelectionMode.SINGLE);
-        weekPage.setContextMenuCallback(new ContextMenuProvider());
-        weekPage.getDetailedWeekView().getTimeScaleView().setTimeFormatter(DateTimeFormatter.ofPattern("HH:mm"));
-        configureEntryViewFactory();
-
-        var entryContextMenuCallback = weekPage.getEntryContextMenuCallback();
-
-        weekPage.setEntryContextMenuCallback(param -> {
-            var menu = entryContextMenuCallback.call(param);
-
-            menu.getItems().get(0).setText("Edit");
-            menu.getItems().remove(1, 2);
-
-            return menu;
-        });
-
-        weekPage.setEntryDetailsCallback(param -> {
-            InputEvent evt = param.getInputEvent();
-            var entry = param.getEntry();
-
-            if (evt instanceof ContextMenuEvent) {
-                var dialog = new EntryDialog(entry);
-
-                dialog.showAndWait();
-
-                return true;
+        meetCalendar.setOnCreateEntryAction(entry -> {
+            try {
+                createMeet(entry);
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
+        });
 
-            return true;
+        meetCalendar.setOnUpdateEntryAction((entry, interval) -> {
+            try {
+                changeMeetDates(entry, interval.getStartDateTime(), interval.getEndDateTime());
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        });
+
+        meetCalendar.setOnDeleteEntryAction(entry -> {
+            try {
+                deleteMeet(entry);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         });
     }
 
-    private void startUpdatingTimeThread() {
-        var updateTimeThread = createUpdatingTimeThread();
-
-        updateTimeThread.setPriority(Thread.MIN_PRIORITY);
-        updateTimeThread.setDaemon(true);
-        updateTimeThread.start();
-    }
-
-    private Thread createUpdatingTimeThread() {
-        return new Thread("Calendar: Update Time Thread") {
-            @Override
-            public void run() {
-                while (true) {
-                    Platform.runLater(() -> {
-                        weekPage.setToday(LocalDate.now());
-                        weekPage.setTime(LocalTime.now());
-                    });
-
-                    try {
-                        // update every 5 seconds
-                        sleep(5000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            };
-        };
+    private ArrayList<Entry<Meet>> getMeetEntries() throws SQLException {
+        return convertMeetsToEntries(getMeets());
     }
 
     private ArrayList<Entry<Meet>> convertMeetsToEntries(List<Meet> meets) {
@@ -148,43 +77,6 @@ public class HomeController implements Initializable {
         }
 
         return entries;
-    }
-
-    private void calendarHandler(CalendarEvent event) {
-        var eventType = event.getEventType();
-        System.out.println(event);
-
-        try {
-            if (eventType.toString().equals("ENTRY_CALENDAR_CHANGED")) {
-                var calendar = event.getCalendar();
-                var entry = event.getEntry();
-
-                if (calendar != null) {
-                    createMeet(entry);
-                } else {
-                    deleteMeet(entry);
-                }
-            } else if (eventType.toString().equals("ENTRY_INTERVAL_CHANGED")) {
-                var entry = event.getEntry();
-                var oldInterval = event.getOldInterval();
-
-                changeMeetDates(entry, oldInterval.getStartDateTime(), oldInterval.getEndDateTime());
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void configureEntryViewFactory() {
-        var weekDayViewFactory = weekPage.getDetailedWeekView().getWeekView().getWeekDayViewFactory();
-
-        weekPage.getDetailedWeekView().getWeekView().setWeekDayViewFactory(param -> {
-            var weekDayView = weekDayViewFactory.call(param);
-
-            weekDayView.setEntryViewFactory(DayEntryView::new);
-
-            return weekDayView;
-        });
     }
 
     private Timestamp getEntryStartTimestamp(Entry<?> entry) {
