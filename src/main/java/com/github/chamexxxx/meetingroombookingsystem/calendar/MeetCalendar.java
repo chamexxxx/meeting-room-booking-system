@@ -18,6 +18,9 @@ import java.util.ArrayList;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
+/**
+ * Implementing a weekly calendar for booking meets based on the CalendarFX dependency
+ */
 public class MeetCalendar {
     private final WeekPage weekPage = new WeekPage();
     private final Calendar calendar = new Calendar("meets");

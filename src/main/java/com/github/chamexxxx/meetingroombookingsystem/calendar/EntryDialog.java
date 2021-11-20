@@ -5,6 +5,9 @@ import com.github.chamexxxx.meetingroombookingsystem.models.Meet;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 
+/**
+ * Implementation of a dialog for editing entries in the calendar
+ */
 public class EntryDialog extends Dialog<Meet> {
     public EntryDialog(Entry<?> entry) {
         super();
