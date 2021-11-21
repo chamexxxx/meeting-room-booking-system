@@ -57,6 +57,12 @@ public class Meet {
         return participants;
     }
 
+    public Meet(String room, Timestamp startDate, Timestamp endDate) {
+        this.room = room;
+        this.startDate = startDate;
+        this.endDate = endDate;
+    }
+
     public Meet() {
 
     }

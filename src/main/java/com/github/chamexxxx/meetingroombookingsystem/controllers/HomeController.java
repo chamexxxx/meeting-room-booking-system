@@ -96,11 +96,7 @@ public class HomeController implements Initializable {
         var startTimestamp = getEntryStartTimestamp(entry);
         var endTimestamp = getEntryEndTimestamp(entry);
 
-        var meet = new Meet();
-
-        meet.setRoom(entry.getTitle());
-        meet.setStartDate(startTimestamp);
-        meet.setEndDate(endTimestamp);
+        var meet = new Meet(entry.getTitle(), startTimestamp, endTimestamp);
 
         Database.meetDao.create(meet);
 
