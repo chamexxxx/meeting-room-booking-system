@@ -98,7 +98,7 @@ public class MeetCalendar {
 
     private void calendarHandler(CalendarEvent event) {
         var eventType = event.getEventType();
-        System.out.println(event);
+        var entry = (Entry<Meet>) event.getEntry();
 
         if (eventType.toString().equals("ENTRY_CALENDAR_CHANGED")) {
             var calendar = event.getCalendar();
