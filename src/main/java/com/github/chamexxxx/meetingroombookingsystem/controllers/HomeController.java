@@ -71,7 +71,7 @@ public class HomeController implements Initializable {
 
             var entry = new Entry<Meet>(meet.getRoom());
 
-            entry.setId(Integer.toString(meet.getId()));
+            entry.setUserObject(meet);
             entry.setInterval(startDate.toLocalDateTime(), endDate.toLocalDateTime());
 
             entries.add(entry);
@@ -104,7 +104,7 @@ public class HomeController implements Initializable {
 
         Database.meetDao.create(meet);
 
-        entry.setId(Integer.toString(meet.getId()));
+        entry.setUserObject(meet);
     }
 
     private void deleteMeet(Entry<Meet> entry) throws SQLException {
