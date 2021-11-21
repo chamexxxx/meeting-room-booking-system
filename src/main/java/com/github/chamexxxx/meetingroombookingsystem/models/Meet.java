@@ -8,6 +8,9 @@ import java.sql.Timestamp;
 
 @DatabaseTable(tableName = "meets", daoClass = MeetDaoImpl.class)
 public class Meet {
+    @DatabaseField(generatedId = true)
+    private int id;
+
     @DatabaseField(canBeNull = false)
     private String room;
 
@@ -16,6 +19,10 @@ public class Meet {
 
     @DatabaseField(canBeNull = false)
     private Timestamp endDate;
+
+    public int getId() {
+        return id;
+    }
 
     public String getRoom() {
         return room;
