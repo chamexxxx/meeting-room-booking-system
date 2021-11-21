@@ -2,6 +2,7 @@ package com.github.chamexxxx.meetingroombookingsystem;
 
 import com.github.chamexxxx.meetingroombookingsystem.models.Account;
 import com.github.chamexxxx.meetingroombookingsystem.models.Meet;
+import com.github.chamexxxx.meetingroombookingsystem.models.Participant;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
@@ -29,5 +30,6 @@ public class Database {
     public static void createTables() throws SQLException {
         TableUtils.createTableIfNotExists(connectionSource, Account.class);
         TableUtils.createTableIfNotExists(connectionSource, Meet.class);
+        TableUtils.createTableIfNotExists(connectionSource, Participant.class);
     }
 }

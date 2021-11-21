@@ -1,7 +1,9 @@
 package com.github.chamexxxx.meetingroombookingsystem.models;
 
 import com.github.chamexxxx.meetingroombookingsystem.dao.MeetDaoImpl;
+import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 
 import java.sql.Timestamp;
@@ -19,6 +21,9 @@ public class Meet {
 
     @DatabaseField(canBeNull = false)
     private Timestamp endDate;
+
+    @ForeignCollectionField(eager = false)
+    ForeignCollection<Participant> participants;
 
     public int getId() {
         return id;
@@ -46,6 +51,10 @@ public class Meet {
 
     public void setEndDate(Timestamp endDate) {
         this.endDate = endDate;
+    }
+
+    public ForeignCollection<Participant> getParticipants() {
+        return participants;
     }
 
     public Meet() {
