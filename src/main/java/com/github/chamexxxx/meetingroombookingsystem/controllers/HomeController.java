@@ -110,7 +110,9 @@ public class HomeController implements Initializable {
     private void deleteMeet(Entry<Meet> entry) throws SQLException {
         var deleteBuilder = Database.meetDao.deleteBuilder();
 
-        deleteBuilder.where().eq("id", entry.getId());
+        var meet = entry.getUserObject();
+
+        deleteBuilder.where().eq("id", meet.getId());
 
         deleteBuilder.delete();
     }
@@ -118,7 +120,9 @@ public class HomeController implements Initializable {
     private void changeMeetDates(Entry<Meet> entry) throws SQLException {
         var updateBuilder = Database.meetDao.updateBuilder();
 
-        updateBuilder.where().eq("id", entry.getId());
+        var meet = entry.getUserObject();
+
+        updateBuilder.where().eq("id", meet.getId());
 
         updateBuilder.updateColumnValue("startDate", localDateTimeToTimestamp(entry.getStartAsLocalDateTime()));
         updateBuilder.updateColumnValue("endDate", localDateTimeToTimestamp(entry.getEndAsLocalDateTime()));
