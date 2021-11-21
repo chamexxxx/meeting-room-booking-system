@@ -80,11 +80,11 @@ public class HomeController implements Initializable {
         return entries;
     }
 
-    private Timestamp getEntryStartTimestamp(Entry<?> entry) {
+    private Timestamp getEntryStartTimestamp(Entry<Meet> entry) {
         return localDateTimeToTimestamp(entry.getStartAsLocalDateTime());
     }
 
-    private Timestamp getEntryEndTimestamp(Entry<?> entry) {
+    private Timestamp getEntryEndTimestamp(Entry<Meet> entry) {
         return localDateTimeToTimestamp(entry.getEndAsLocalDateTime());
     }
 
@@ -92,7 +92,7 @@ public class HomeController implements Initializable {
         return Timestamp.valueOf(localDateTime);
     }
 
-    private void createMeet(Entry<?> entry) throws SQLException {
+    private void createMeet(Entry<Meet> entry) throws SQLException {
         var startTimestamp = getEntryStartTimestamp(entry);
         var endTimestamp = getEntryEndTimestamp(entry);
 
@@ -107,7 +107,7 @@ public class HomeController implements Initializable {
         entry.setId(Integer.toString(meet.getId()));
     }
 
-    private void deleteMeet(Entry<?> entry) throws SQLException {
+    private void deleteMeet(Entry<Meet> entry) throws SQLException {
         var deleteBuilder = Database.meetDao.deleteBuilder();
 
         deleteBuilder.where().eq("id", entry.getId());
@@ -115,7 +115,7 @@ public class HomeController implements Initializable {
         deleteBuilder.delete();
     }
 
-    private void changeMeetDates(Entry<?> entry) throws SQLException {
+    private void changeMeetDates(Entry<Meet> entry) throws SQLException {
         var updateBuilder = Database.meetDao.updateBuilder();
 
         updateBuilder.where().eq("id", entry.getId());

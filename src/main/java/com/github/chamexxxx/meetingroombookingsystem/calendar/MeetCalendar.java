@@ -21,9 +21,9 @@ public class MeetCalendar {
     private final Calendar calendar = new Calendar("meets");
     private final CalendarSource calendarSource = new CalendarSource("Meets");
     private final ObservableList<CalendarSource> calendarSources = FXCollections.observableArrayList();
-    private Consumer<Entry<?>> onCreateEntryAction;
-    private BiConsumer<Entry<?>, Interval> onUpdateEntryAction;
-    private Consumer<Entry<?>> onDeleteEntryAction;
+    private Consumer<Entry<Meet>> onCreateEntryAction;
+    private BiConsumer<Entry<Meet>, Interval> onUpdateEntryAction;
+    private Consumer<Entry<Meet>> onDeleteEntryAction;
 
     public MeetCalendar(ArrayList<Entry<Meet>> entries) {
         startUpdatingTimeThread();
@@ -35,15 +35,15 @@ public class MeetCalendar {
         return weekPage;
     }
 
-    public void setOnCreateEntryAction(Consumer<Entry<?>> action) {
+    public void setOnCreateEntryAction(Consumer<Entry<Meet>> action) {
         this.onCreateEntryAction = action;
     }
 
-    public void setOnUpdateEntryAction(BiConsumer<Entry<?>, Interval> onUpdateEntryAction) {
+    public void setOnUpdateEntryAction(BiConsumer<Entry<Meet>, Interval> onUpdateEntryAction) {
         this.onUpdateEntryAction = onUpdateEntryAction;
     }
 
-    public void setOnDeleteEntryAction(Consumer<Entry<?>> onDeleteEntryAction) {
+    public void setOnDeleteEntryAction(Consumer<Entry<Meet>> onDeleteEntryAction) {
         this.onDeleteEntryAction = onDeleteEntryAction;
     }
 
@@ -102,15 +102,12 @@ public class MeetCalendar {
 
         if (eventType.toString().equals("ENTRY_CALENDAR_CHANGED")) {
             var calendar = event.getCalendar();
-            var entry = event.getEntry();
-
             if (calendar != null) {
                 onCreateEntryAction.accept(entry);
             } else {
                 onDeleteEntryAction.accept(entry);
             }
         } else if (eventType.toString().equals("ENTRY_INTERVAL_CHANGED")) {
-            var entry = event.getEntry();
             var oldInterval = event.getOldInterval();
 
             onUpdateEntryAction.accept(entry, oldInterval);
