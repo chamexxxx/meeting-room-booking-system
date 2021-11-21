@@ -53,6 +53,7 @@ dependencies {
     implementation 'com.j256.ormlite:ormlite-core:5.7'
     implementation 'com.j256.ormlite:ormlite-jdbc:5.7'
     implementation 'at.favre.lib:bcrypt:0.2.0'
+    implementation 'org.jetbrains:annotations:20.1.0'
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")

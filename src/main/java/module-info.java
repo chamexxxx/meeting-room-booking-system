@@ -6,6 +6,7 @@ module com.github.chamexxxx.meetingroombookingsystem {
     requires ormlite.core;
     requires ormlite.jdbc;
     requires bcrypt;
+    requires org.jetbrains.annotations;
 
     opens com.github.chamexxxx.meetingroombookingsystem to javafx.fxml;
     exports com.github.chamexxxx.meetingroombookingsystem;
