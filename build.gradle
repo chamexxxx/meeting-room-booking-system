@@ -54,6 +54,8 @@ dependencies {
     implementation 'com.j256.ormlite:ormlite-jdbc:5.7'
     implementation 'at.favre.lib:bcrypt:0.2.0'
     implementation 'org.controlsfx:controlsfx:11.1.0'
+    implementation 'org.kordamp.ikonli:ikonli-javafx:12.2.0'
+    implementation 'org.kordamp.ikonli:ikonli-fluentui-pack:12.2.0'
     implementation 'org.jetbrains:annotations:20.1.0'
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
