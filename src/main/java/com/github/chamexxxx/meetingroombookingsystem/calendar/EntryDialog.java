@@ -2,6 +2,8 @@ package com.github.chamexxxx.meetingroombookingsystem.calendar;
 
 import com.calendarfx.model.Entry;
 import com.github.chamexxxx.meetingroombookingsystem.models.Meet;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 
@@ -9,6 +11,8 @@ import javafx.scene.control.Dialog;
  * Implementation of a dialog for editing entries in the calendar
  */
 public class EntryDialog extends Dialog<Meet> {
+    private EntryDetailsView entryDetailsView;
+
     public EntryDialog(Entry<?> entry) {
         super();
         configure(entry);
@@ -18,7 +22,7 @@ public class EntryDialog extends Dialog<Meet> {
         setDefaultTitle();
         setDefaultButtons();
 
-        var entryDetailsView = new EntryDetailsView(entry);
+        entryDetailsView = new EntryDetailsView(entry);
 
         getDialogPane().setContent(entryDetailsView);
     }
@@ -28,6 +32,14 @@ public class EntryDialog extends Dialog<Meet> {
     }
 
     private void setDefaultButtons() {
-        getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+        ButtonType saveButtonType = new ButtonType("Save", ButtonBar.ButtonData.OK_DONE);
+
+        getDialogPane().getButtonTypes().addAll(saveButtonType, ButtonType.CANCEL);
+
+        var saveButton = (Button) getDialogPane().lookupButton(saveButtonType);
+
+        saveButton.setOnAction(e -> {
+            entryDetailsView.save();
+        });
     }
 }

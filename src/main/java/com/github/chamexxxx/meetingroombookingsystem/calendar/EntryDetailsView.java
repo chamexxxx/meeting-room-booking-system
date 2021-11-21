@@ -3,7 +3,6 @@ package com.github.chamexxxx.meetingroombookingsystem.calendar;
 import com.calendarfx.model.Entry;
 import com.calendarfx.view.Messages;
 import com.calendarfx.view.TimeField;
-import javafx.beans.binding.Bindings;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
@@ -19,6 +18,10 @@ public class EntryDetailsView extends VBox {
     private final TextField titleField = new TextField();
     private final Label startDateLabel = new Label(Messages.getString("EntryDetailsView.FROM"));
     private final Label endDateLabel = new Label(Messages.getString("EntryDetailsView.TO"));
+    private final TimeField startTimeField;
+    private final TimeField endTimeField;
+    private final DatePicker startDatePicker;
+    private final DatePicker endDatePicker;
 
     public EntryDetailsView(Entry<?> entry) {
         this.entry = entry;
@@ -26,20 +29,12 @@ public class EntryDetailsView extends VBox {
         configureRegion();
 
         titleField.setText(entry.getTitle());
-        Bindings.bindBidirectional(titleField.textProperty(), entry.titleProperty());
         bindDisableProperty(titleField);
 
-        var startTimeField = createTimeField(entry.getStartTime());
-        var endTimeField = createTimeField(entry.getEndTime());
-        var startDatePicker = createDatePicker(entry.getStartDate());
-        var endDatePicker = createDatePicker(entry.getEndDate());
-
-        entry.intervalProperty().addListener(it -> {
-            startTimeField.setValue(entry.getStartTime());
-            endTimeField.setValue(entry.getEndTime());
-            startDatePicker.setValue(entry.getStartDate());
-            endDatePicker.setValue(entry.getEndDate());
-        });
+        startTimeField = createTimeField(entry.getStartTime());
+        endTimeField = createTimeField(entry.getEndTime());
+        startDatePicker = createDatePicker(entry.getStartDate());
+        endDatePicker = createDatePicker(entry.getEndDate());
 
         var startDateBox = new HBox(10);
         var endDateBox = new HBox(10);
@@ -53,15 +48,17 @@ public class EntryDetailsView extends VBox {
         startDatePicker.setValue(entry.getStartDate());
         endDatePicker.setValue(entry.getEndDate());
 
-        startDatePicker.valueProperty().addListener(evt -> entry.changeStartDate(startDatePicker.getValue(), true));
-        startTimeField.valueProperty().addListener(evt -> entry.changeStartTime(startTimeField.getValue(), true));
-
-        endDatePicker.valueProperty().addListener(evt -> entry.changeEndDate(endDatePicker.getValue(), false));
-        endTimeField.valueProperty().addListener(evt -> entry.changeEndTime(endTimeField.getValue(), false));
-
         var container = new VBox(10, titleField, startDateBox, endDateBox);
 
         getChildren().add(container);
+    }
+
+    public void save() {
+        entry.setTitle(titleField.getText());
+        entry.changeStartDate(startDatePicker.getValue());
+        entry.changeStartTime(startTimeField.getValue());
+        entry.changeEndDate(endDatePicker.getValue());
+        entry.changeEndTime(endTimeField.getValue());
     }
 
     private void configureRegion() {
