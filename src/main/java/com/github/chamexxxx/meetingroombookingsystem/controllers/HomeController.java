@@ -43,7 +43,7 @@ public class HomeController implements Initializable {
 
         meetCalendar.setOnUpdateEntryAction((entry, interval) -> {
             try {
-                changeMeetDates(entry, interval.getStartDateTime(), interval.getEndDateTime());
+                changeMeetDates(entry);
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -71,6 +71,7 @@ public class HomeController implements Initializable {
 
             var entry = new Entry<Meet>(meet.getRoom());
 
+            entry.setId(Integer.toString(meet.getId()));
             entry.setInterval(startDate.toLocalDateTime(), endDate.toLocalDateTime());
 
             entries.add(entry);
@@ -102,25 +103,22 @@ public class HomeController implements Initializable {
         meet.setEndDate(endTimestamp);
 
         Database.meetDao.create(meet);
+
+        entry.setId(Integer.toString(meet.getId()));
     }
 
     private void deleteMeet(Entry<?> entry) throws SQLException {
-        var startDate = localDateTimeToTimestamp(entry.getStartAsLocalDateTime());
-        var endDate = localDateTimeToTimestamp(entry.getEndAsLocalDateTime());
-
         var deleteBuilder = Database.meetDao.deleteBuilder();
 
-        deleteBuilder.where().eq("startDate", startDate);
-        deleteBuilder.where().eq("endDate", endDate);
+        deleteBuilder.where().eq("id", entry.getId());
 
         deleteBuilder.delete();
     }
 
-    private void changeMeetDates(Entry<?> entry, LocalDateTime startDate, LocalDateTime endDate) throws SQLException {
+    private void changeMeetDates(Entry<?> entry) throws SQLException {
         var updateBuilder = Database.meetDao.updateBuilder();
 
-        updateBuilder.where().eq("startDate", localDateTimeToTimestamp(startDate));
-        updateBuilder.where().eq("endDate", localDateTimeToTimestamp(endDate));
+        updateBuilder.where().eq("id", entry.getId());
 
         updateBuilder.updateColumnValue("startDate", localDateTimeToTimestamp(entry.getStartAsLocalDateTime()));
         updateBuilder.updateColumnValue("endDate", localDateTimeToTimestamp(entry.getEndAsLocalDateTime()));
