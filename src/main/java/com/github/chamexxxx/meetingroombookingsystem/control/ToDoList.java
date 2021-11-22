@@ -1,6 +1,9 @@
 package com.github.chamexxxx.meetingroombookingsystem.control;
 
 import com.github.chamexxxx.meetingroombookingsystem.utils.FontIconFactory;
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -9,7 +12,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import org.controlsfx.control.textfield.CustomTextField;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.function.Supplier;
@@ -21,41 +23,30 @@ public class ToDoList<M extends ToDoList.Model> extends VBox {
     }
 
     private final Supplier<M> supplier;
-    private final VBox taskFields = new VBox(10);
+    private final VBox fields = new VBox(10);
+    private final ObservableList<M> models = FXCollections.observableArrayList();
     private final ScrollPane scrollPane;
 
     public ToDoList(Supplier<M> supplier, ArrayList<M> tasks) {
         this.supplier = supplier;
 
-        initializeTaskFields(tasks);
+        initializeModelsListener();
 
-        if (taskFields.getChildren().size() == 0) {
-            taskFields.setVisible(false);
+        models.addAll(tasks);
+
+        if (fields.getChildren().size() == 0) {
+            fields.setVisible(false);
         }
 
         var buttonBox = createButtonBox();
 
-        scrollPane = createScrollPane(taskFields);
+        scrollPane = createScrollPane(fields);
 
         getChildren().addAll(scrollPane, buttonBox);
     }
 
-    public ArrayList<M> getModels() {
-        var tasks = new ArrayList<M>();
-
-        taskFields.getChildren().forEach(taskField -> {
-            if (taskField instanceof CustomTextField) {
-                var text = ((CustomTextField) taskField).getText();
-
-                var model = createModel();
-
-                model.setName(text);
-
-                tasks.add(model);
-            }
-        });
-
-        return tasks;
+    public ObservableList<M> getModels() {
+        return models;
     }
 
     protected String getAddButtonText() {
@@ -66,13 +57,33 @@ public class ToDoList<M extends ToDoList.Model> extends VBox {
         return "Thing";
     }
 
-    private M createModel() {
-        return supplier.get();
-    }
+    private void initializeModelsListener() {
+        models.addListener((ListChangeListener<M>) c -> {
+            while (c.next()) {
+                if (c.wasAdded()) {
+                    for (M addITem : c.getAddedSubList()) {
+                        var customTextField = new CustomTextField();
 
-    private void initializeTaskFields(ArrayList<M> tasks) {
-        tasks.forEach(task -> {
-            createTaskField(task.getName());
+                        customTextField.setText(addITem.getName());
+                        customTextField.setPromptText(getFieldPromptText());
+
+                        fields.getChildren().add(customTextField);
+
+                        var fontIcon = FontIconFactory.createFontIcon(FontIconFactory.ICON.DELETE, 20);
+
+                        customTextField.setRight(fontIcon);
+
+                        customTextField.getRight().setOnMouseClicked(event -> {
+                            fields.getChildren().remove(customTextField);
+                            models.remove(addITem);
+                        });
+
+                        customTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+                            addITem.setName(newValue);
+                        });
+                    }
+                }
+            }
         });
     }
 
@@ -103,31 +114,15 @@ public class ToDoList<M extends ToDoList.Model> extends VBox {
 
         button.getStyleClass().add("action-button");
         button.setOnAction(event -> {
-            createTaskField(null);
-            taskFields.setVisible(true);
+            var model = supplier.get();
+
+            model.setName(null);
+            models.add(model);
+
+            fields.setVisible(true);
             scrollPane.setVvalue(1);
         });
 
         return button;
-    }
-
-    private void createTaskField(@Nullable String name) {
-        var customTextField = new CustomTextField();
-
-        taskFields.getChildren().add(customTextField);
-
-        customTextField.setText(name);
-        customTextField.setPromptText(getFieldPromptText());
-
-//        var fontIcon = new FontIcon("fltral-delete-24");
-//        fontIcon.setIconSize(20);
-
-        var fontIcon = FontIconFactory.createFontIcon(FontIconFactory.ICON.DELETE, 20);
-
-        customTextField.setRight(fontIcon);
-
-        customTextField.getRight().setOnMouseClicked(event -> {
-            taskFields.getChildren().remove(customTextField);
-        });
     }
 }
