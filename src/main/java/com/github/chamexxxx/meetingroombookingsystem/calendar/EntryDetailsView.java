@@ -59,6 +59,7 @@ public class EntryDetailsView extends VBox {
         entry.changeStartTime(startTimeField.getValue());
         entry.changeEndDate(endDatePicker.getValue());
         entry.changeEndTime(endTimeField.getValue());
+        var meetDao = Database.getMeetDao();
     }
 
     private void configureRegion() {

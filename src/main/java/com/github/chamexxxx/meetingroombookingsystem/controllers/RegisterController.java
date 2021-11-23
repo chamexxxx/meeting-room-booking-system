@@ -56,7 +56,7 @@ public class RegisterController implements Initializable {
         user.setPassword(PasswordHashing.hash(password));
 
         try {
-            Database.accountDao.create(user);
+            Database.getAccountDao().create(user);
             Router.switchScene("home");
         } catch (SQLException e) {
             var errorCode = e.getErrorCode();

@@ -12,8 +12,8 @@ import com.j256.ormlite.table.TableUtils;
 import java.sql.SQLException;
 
 public class Database {
-    public static Dao<Meet, ?> meetDao;
-    public static Dao<Account, ?> accountDao;
+    private static Dao<Meet, ?> meetDao;
+    private static Dao<Account, ?> accountDao;
     private static ConnectionSource connectionSource = null;
 
     static {
@@ -25,6 +25,14 @@ public class Database {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public static Dao<Meet, ?> getMeetDao() {
+        return meetDao;
+    }
+
+    public static Dao<Account, ?> getAccountDao() {
+        return accountDao;
     }
 
     public static void createTables() throws SQLException {

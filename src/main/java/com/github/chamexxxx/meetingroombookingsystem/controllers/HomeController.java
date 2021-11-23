@@ -98,13 +98,13 @@ public class HomeController implements Initializable {
 
         var meet = new Meet(entry.getTitle(), startTimestamp, endTimestamp);
 
-        Database.meetDao.create(meet);
+        Database.getMeetDao().create(meet);
 
         entry.setUserObject(meet);
     }
 
     private void deleteMeet(Entry<Meet> entry) throws SQLException {
-        var deleteBuilder = Database.meetDao.deleteBuilder();
+        var deleteBuilder = Database.getMeetDao().deleteBuilder();
 
         var meet = entry.getUserObject();
 
@@ -114,7 +114,7 @@ public class HomeController implements Initializable {
     }
 
     private void changeMeetDates(Entry<Meet> entry) throws SQLException {
-        var updateBuilder = Database.meetDao.updateBuilder();
+        var updateBuilder = Database.getMeetDao().updateBuilder();
 
         var meet = entry.getUserObject();
 
@@ -127,6 +127,6 @@ public class HomeController implements Initializable {
     }
 
     private List<Meet> getMeets() throws SQLException {
-        return Database.meetDao.queryForAll();
+        return Database.getMeetDao().queryForAll();
     }
 }
