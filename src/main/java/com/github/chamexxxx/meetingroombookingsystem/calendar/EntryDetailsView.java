@@ -3,6 +3,7 @@ package com.github.chamexxxx.meetingroombookingsystem.calendar;
 import com.calendarfx.model.Entry;
 import com.calendarfx.view.Messages;
 import com.calendarfx.view.TimeField;
+import com.github.chamexxxx.meetingroombookingsystem.models.Meet;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
@@ -14,7 +15,8 @@ import java.time.LocalTime;
  * Implementing your own {@link com.calendarfx.view.popover.EntryDetailsView} and {@link com.calendarfx.view.popover.EntryHeaderView} for use in a dialog
  */
 public class EntryDetailsView extends VBox {
-    private final Entry<?> entry;
+    private final Entry<Meet> entry;
+    private Meet meet;
     private final TextField titleField = new TextField();
     private final Label startDateLabel = new Label(Messages.getString("EntryDetailsView.FROM"));
     private final Label endDateLabel = new Label(Messages.getString("EntryDetailsView.TO"));
@@ -23,7 +25,7 @@ public class EntryDetailsView extends VBox {
     private final DatePicker startDatePicker;
     private final DatePicker endDatePicker;
 
-    public EntryDetailsView(Entry<?> entry) {
+    public EntryDetailsView(Entry<Meet> entry) {
         this.entry = entry;
 
         configureRegion();

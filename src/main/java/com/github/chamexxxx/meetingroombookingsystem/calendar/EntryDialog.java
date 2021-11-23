@@ -14,12 +14,12 @@ import javafx.scene.control.Dialog;
 public class EntryDialog extends Dialog<Meet> {
     private EntryDetailsView entryDetailsView;
 
-    public EntryDialog(Entry<?> entry) {
+    public EntryDialog(Entry<Meet> entry) {
         super();
         configure(entry);
     }
 
-    private void configure(Entry<?> entry) {
+    private void configure(Entry<Meet> entry) {
         setDefaultTitle();
         setDefaultButtons();
 
