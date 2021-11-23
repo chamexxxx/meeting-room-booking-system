@@ -1,5 +1,7 @@
 package com.github.chamexxxx.meetingroombookingsystem;
 
+import com.github.chamexxxx.meetingroombookingsystem.dao.AccountDao;
+import com.github.chamexxxx.meetingroombookingsystem.dao.MeetDao;
 import com.github.chamexxxx.meetingroombookingsystem.models.Account;
 import com.github.chamexxxx.meetingroombookingsystem.models.Meet;
 import com.github.chamexxxx.meetingroombookingsystem.models.Participant;
@@ -12,8 +14,8 @@ import com.j256.ormlite.table.TableUtils;
 import java.sql.SQLException;
 
 public class Database {
-    private static Dao<Meet, ?> meetDao;
-    private static Dao<Account, ?> accountDao;
+    private static MeetDao meetDao;
+    private static AccountDao accountDao;
     private static ConnectionSource connectionSource = null;
 
     static {
@@ -27,11 +29,11 @@ public class Database {
         }
     }
 
-    public static Dao<Meet, ?> getMeetDao() {
+    public static MeetDao getMeetDao() {
         return meetDao;
     }
 
-    public static Dao<Account, ?> getAccountDao() {
+    public static AccountDao getAccountDao() {
         return accountDao;
     }
 

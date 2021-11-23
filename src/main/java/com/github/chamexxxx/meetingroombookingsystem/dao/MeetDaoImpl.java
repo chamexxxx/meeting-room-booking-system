@@ -6,7 +6,7 @@ import com.j256.ormlite.support.ConnectionSource;
 
 import java.sql.SQLException;
 
-public class MeetDaoImpl extends BaseDaoImpl<Meet, String> {
+public class MeetDaoImpl extends BaseDaoImpl<Meet, String> implements MeetDao {
     public MeetDaoImpl(ConnectionSource connectionSource) throws SQLException {
         super(connectionSource, Meet.class);
     }

@@ -6,7 +6,7 @@ import com.j256.ormlite.support.ConnectionSource;
 
 import java.sql.SQLException;
 
-public class AccountDaoImpl extends BaseDaoImpl<Account, String> {
+public class AccountDaoImpl extends BaseDaoImpl<Account, String> implements AccountDao {
     public AccountDaoImpl(ConnectionSource connectionSource) throws SQLException {
         super(connectionSource, Account.class);
     }
