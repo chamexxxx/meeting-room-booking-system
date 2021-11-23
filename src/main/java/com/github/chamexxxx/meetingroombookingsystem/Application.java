@@ -7,11 +7,12 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Objects;
 
 public class Application extends javafx.application.Application {
-    private final String[] stylesheetNames = {"variables", "app", "calendar"};
+    private static final String[] stylesheetNames = {"variables", "app", "calendar"};
 
     @Override
     public void start(Stage stage) throws IOException, SQLException {
@@ -22,7 +23,7 @@ public class Application extends javafx.application.Application {
 
         var initialScene = createInitialScene();
 
-        addStylesheetsToScene(initialScene, stylesheetNames);
+        addStylesheetsToScene(initialScene, getAllStylesheets());
 
         Router.setInitialScene(initialScene);
         Router.addScene("login", "login-view.fxml");
@@ -31,6 +32,20 @@ public class Application extends javafx.application.Application {
 
         stage.setScene(initialScene);
         stage.show();
+    }
+
+    public static ArrayList<String> getAllStylesheets() {
+        var resources = new ArrayList<String>();
+
+        for (String stylesheetName : stylesheetNames) {
+            resources.add(getStylesheet(stylesheetName));
+        }
+
+        return resources;
+    }
+
+    public static String getStylesheet(String fileName) {
+        return Objects.requireNonNull(Application.class.getResource(fileName + ".css")).toExternalForm();
     }
 
     private Scene createInitialScene() throws IOException {
@@ -50,14 +65,10 @@ public class Application extends javafx.application.Application {
         Database.createTables();
     }
 
-    private void addStylesheetsToScene(Scene scene, String[] resourceNames) {
-        for (String resourceName : resourceNames) {
-            scene.getStylesheets().add(getCssResource(resourceName + ".css"));
+    private void addStylesheetsToScene(Scene scene, ArrayList<String> stylesheets) {
+        for (String stylesheet : stylesheets) {
+            scene.getStylesheets().add(stylesheet);
         }
-    }
-
-    private String getCssResource(String resourceName) {
-        return Objects.requireNonNull(Application.class.getResource(resourceName)).toExternalForm();
     }
 
     public static void main(String[] args) {
