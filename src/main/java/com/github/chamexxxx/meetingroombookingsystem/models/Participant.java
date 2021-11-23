@@ -1,10 +1,11 @@
 package com.github.chamexxxx.meetingroombookingsystem.models;
 
+import com.github.chamexxxx.meetingroombookingsystem.control.ToDoList;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable(tableName = "participants")
-public class Participant {
+public class Participant implements ToDoList.Model {
     @DatabaseField(generatedId = true)
     private int id;
 
