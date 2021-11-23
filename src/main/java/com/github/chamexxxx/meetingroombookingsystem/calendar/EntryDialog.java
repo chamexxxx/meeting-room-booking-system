@@ -1,6 +1,7 @@
 package com.github.chamexxxx.meetingroombookingsystem.calendar;
 
 import com.calendarfx.model.Entry;
+import com.github.chamexxxx.meetingroombookingsystem.Application;
 import com.github.chamexxxx.meetingroombookingsystem.models.Meet;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
@@ -25,6 +26,7 @@ public class EntryDialog extends Dialog<Meet> {
         entryDetailsView = new EntryDetailsView(entry);
 
         getDialogPane().setContent(entryDetailsView);
+        getDialogPane().getStylesheets().addAll(Application.getAllStylesheets());
     }
 
     private void setDefaultTitle() {
