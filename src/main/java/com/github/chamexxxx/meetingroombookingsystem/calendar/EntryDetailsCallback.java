@@ -17,8 +17,6 @@ public class EntryDetailsCallback implements Callback<DateControl.EntryDetailsPa
             var dialog = new EntryDialog(entry);
 
             dialog.showAndWait();
-
-//                System.out.println(evt);
             return true;
         }
 
