@@ -6,7 +6,10 @@ import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable(tableName = "accounts", daoClass = AccountDaoImpl.class)
 public class Account {
-    @DatabaseField(id = true)
+    @DatabaseField(generatedId = true)
+    private int id;
+
+    @DatabaseField(unique = true)
     private String username;
 
     @DatabaseField
