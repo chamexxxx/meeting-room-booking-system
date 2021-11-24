@@ -3,6 +3,7 @@ package com.github.chamexxxx.meetingroombookingsystem.controllers;
 import com.github.chamexxxx.meetingroombookingsystem.Database;
 import com.github.chamexxxx.meetingroombookingsystem.Router;
 import com.github.chamexxxx.meetingroombookingsystem.control.LoginForm;
+import com.github.chamexxxx.meetingroombookingsystem.utils.UserPreferences;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -33,6 +34,8 @@ public class LoginController implements Initializable {
                 showLoginError();
                 return;
             }
+
+            UserPreferences.putAccount(username);
 
             Router.switchScene("home");
         } catch (SQLException e) {
