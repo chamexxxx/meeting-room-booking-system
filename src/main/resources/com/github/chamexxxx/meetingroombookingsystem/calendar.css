@@ -51,6 +51,10 @@
     -fx-padding: 10;
 }
 
+.weekday-header-view > .container > .today {
+    -fx-text-fill: -fx-primary-color;
+}
+
 /*
  * --------------------------------------------------------------------------------------------------------------
  * Overriding styles needed by the AllDayView.
@@ -58,4 +62,15 @@
 
 .all-day-view > .container > .today {
     -fx-border-color: transparent transparent -fx-primary-color transparent;
+    -fx-background-color: #ebebeb;
 }
+
+/*
+ * --------------------------------------------------------------------------------------------------------------
+ * Styles needed by the weekday view.
+ */
+
+.weekday-view.today {
+    -fx-background-color: #ebebeb;
+}
+
