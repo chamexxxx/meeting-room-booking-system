@@ -34,7 +34,7 @@ public class LoginController implements Initializable {
                 return;
             }
 
-            // redirect to home scene
+            Router.switchScene("home");
         } catch (SQLException e) {
             e.printStackTrace();
             showLoginError();
