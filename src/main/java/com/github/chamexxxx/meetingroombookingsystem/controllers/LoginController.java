@@ -1,11 +1,14 @@
 package com.github.chamexxxx.meetingroombookingsystem.controllers;
 
+import com.github.chamexxxx.meetingroombookingsystem.Database;
+import com.github.chamexxxx.meetingroombookingsystem.Router;
 import com.github.chamexxxx.meetingroombookingsystem.control.LoginForm;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
@@ -23,9 +26,17 @@ public class LoginController implements Initializable {
         var username = formData.get("username");
         var password = formData.get("password");
 
-        if (username.equals("username") && password.equals("password")) {
+        try {
+            var accountIsVerified = Database.getAccountDao().verify(username, password);
+
+            if (!accountIsVerified) {
+                showLoginError();
+                return;
+            }
+
             // redirect to home scene
-        } else {
+        } catch (SQLException e) {
+            e.printStackTrace();
             showLoginError();
         }
     }
