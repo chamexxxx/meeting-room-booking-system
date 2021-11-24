@@ -1,11 +1,3 @@
-.root, .calendar-page, .weekend-day, .all-day-view > .container > .weekend, .today {
-    -fx-background-color: -fx-secondary-color;
-}
-
-.label {
-    -fx-text-fill: #ffffff;
-}
-
 .text-field {
     -fx-background-color: lightgray;
     -fx-prompt-text-fill: #6f777d;
