@@ -22,7 +22,7 @@ public class Meet {
     @DatabaseField(canBeNull = false)
     private Timestamp endDate;
 
-    @ForeignCollectionField(eager = false)
+    @ForeignCollectionField()
     ForeignCollection<Participant> participants;
 
     public int getId() {
