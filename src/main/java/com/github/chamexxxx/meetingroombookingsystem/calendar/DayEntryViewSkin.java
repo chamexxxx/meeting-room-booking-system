@@ -50,12 +50,14 @@ public class DayEntryViewSkin extends impl.com.calendarfx.view.DayEntryViewSkin 
     private ArrayList<Label> createParticipantLabels(ForeignCollection<Participant> participants) {
         var labels = new ArrayList<Label>();
 
-        participants.forEach(participant -> {
-            var name = participant.getName();
-            var label = createParticipantLabel(name);
+        if (participants != null) {
+            participants.forEach(participant -> {
+                var name = participant.getName();
+                var label = createParticipantLabel(name);
 
-            labels.add(label);
-        });
+                labels.add(label);
+            });
+        }
 
         return labels;
     }
