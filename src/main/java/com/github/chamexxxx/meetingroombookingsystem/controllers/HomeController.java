@@ -2,7 +2,7 @@ package com.github.chamexxxx.meetingroombookingsystem.controllers;
 
 import com.calendarfx.model.*;
 import com.github.chamexxxx.meetingroombookingsystem.Database;
-import com.github.chamexxxx.meetingroombookingsystem.calendar.MeetCalendar;
+import com.github.chamexxxx.meetingroombookingsystem.calendar.WeeklyCalendar;
 import com.github.chamexxxx.meetingroombookingsystem.models.Meet;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -20,20 +20,20 @@ public class HomeController implements Initializable {
     @FXML
     private GridPane gridPane;
 
-    private MeetCalendar meetCalendar;
+    private WeeklyCalendar weeklyCalendar;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
             var meetEntries = getMeetEntries();
-            meetCalendar = new MeetCalendar(meetEntries);
+            weeklyCalendar = new WeeklyCalendar(meetEntries);
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        gridPane.add(meetCalendar.getWeekPage(), 0, 0);
+        gridPane.add(weeklyCalendar.getWeekPage(), 0, 0);
 
-        meetCalendar.setOnCreateEntryAction(entry -> {
+        weeklyCalendar.setOnCreateEntryAction(entry -> {
             try {
                 createMeet(entry);
             } catch (SQLException e) {
@@ -41,7 +41,7 @@ public class HomeController implements Initializable {
             }
         });
 
-        meetCalendar.setOnUpdateEntryAction((entry, interval) -> {
+        weeklyCalendar.setOnUpdateEntryAction((entry, interval) -> {
             try {
                 changeMeetDates(entry);
             } catch (SQLException e) {
@@ -49,7 +49,7 @@ public class HomeController implements Initializable {
             }
         });
 
-        meetCalendar.setOnDeleteEntryAction(entry -> {
+        weeklyCalendar.setOnDeleteEntryAction(entry -> {
             try {
                 deleteMeet(entry);
             } catch (SQLException e) {

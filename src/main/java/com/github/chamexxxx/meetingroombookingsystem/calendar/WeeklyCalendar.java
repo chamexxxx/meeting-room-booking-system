@@ -16,7 +16,7 @@ import java.util.function.Consumer;
 /**
  * Implementing a weekly calendar for booking meets based on the CalendarFX dependency
  */
-public class MeetCalendar {
+public class WeeklyCalendar {
     private final WeekPage weekPage = new WeekPage();
     private final Calendar calendar = new Calendar("meets");
     private final CalendarSource calendarSource = new CalendarSource("Meets");
@@ -25,7 +25,7 @@ public class MeetCalendar {
     private BiConsumer<Entry<Meet>, Interval> onUpdateEntryAction;
     private Consumer<Entry<Meet>> onDeleteEntryAction;
 
-    public MeetCalendar(ArrayList<Entry<Meet>> entries) {
+    public WeeklyCalendar(ArrayList<Entry<Meet>> entries) {
         startUpdatingTimeThread();
         initializeEntries(entries);
         configure();
