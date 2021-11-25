@@ -23,7 +23,7 @@ public class Meet {
     private Timestamp endDate;
 
     @ForeignCollectionField()
-    ForeignCollection<Participant> participants;
+    private ForeignCollection<Participant> participants;
 
     public int getId() {
         return id;
