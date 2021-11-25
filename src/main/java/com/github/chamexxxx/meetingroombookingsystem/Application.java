@@ -54,7 +54,7 @@ public class Application extends javafx.application.Application {
     }
 
     private Scene createInitialScene() throws IOException {
-        var resourceName = UserPreferences.accountExists() ? "home-view.fxml" : "register-view.fxml";
+        var resourceName = UserPreferences.accountExists() ? "home-view.fxml" : "login-view.fxml";
         FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource(resourceName));
 
         return new Scene(fxmlLoader.load(), 800, 600);
