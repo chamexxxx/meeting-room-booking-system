@@ -30,3 +30,20 @@
 .context-menu .menu-item:focused .label {
     -fx-text-fill: white;
 }
+
+.action-button {
+    -fx-text-fill: #559aed;
+    -fx-background-color: transparent;
+}
+
+.ikonli-font-icon {
+    -fx-cursor: hand;
+}
+
+.background-transparent {
+    -fx-background-color: transparent;
+}
+
+.cursor-hand {
+    -fx-cursor: hand;
+}
