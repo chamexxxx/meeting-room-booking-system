@@ -35,7 +35,6 @@ public class HomeController implements Initializable {
             e.printStackTrace();
         }
 
-        gridPane.add(new TopBar(), 0, 0);
         gridPane.add(weeklyCalendar.getWeekPage(), 0, 1);
 
         weeklyCalendar.setOnCreateEntryAction(entry -> {
