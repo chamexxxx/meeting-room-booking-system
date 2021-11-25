@@ -10,6 +10,7 @@
     </columnConstraints>
 
     <rowConstraints>
-        <RowConstraints percentHeight="100"/>
+        <RowConstraints percentHeight="10"/>
+        <RowConstraints percentHeight="80"/>
     </rowConstraints>
 </GridPane>
