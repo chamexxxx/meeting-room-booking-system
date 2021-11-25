@@ -6,6 +6,7 @@ public class FontIconFactory {
     public enum ICON {
         DELETE,
         USER,
+        USER_BOARD,
         LOCK
     }
 
@@ -27,6 +28,9 @@ public class FontIconFactory {
                 break;
             case USER:
                 iconCode = "fltfmz-person-16";
+                break;
+            case USER_BOARD:
+                iconCode = "fltfmz-person-board-16";
                 break;
             case LOCK:
                 iconCode = "fltfal-lock-24";

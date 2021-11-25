@@ -38,7 +38,7 @@ class AccountMenuButton extends MenuButton {
 
     private HBox createGraphic() {
         var userLabel = createLabel(username);
-        var userIcon = FontIconFactory.createFontIcon(FontIconFactory.ICON.USER, 25);
+        var userIcon = FontIconFactory.createFontIcon(FontIconFactory.ICON.USER_BOARD, 27);
 
         return createContainer(userIcon, userLabel);
     }
