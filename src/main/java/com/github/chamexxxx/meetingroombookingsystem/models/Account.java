@@ -1,7 +1,9 @@
 package com.github.chamexxxx.meetingroombookingsystem.models;
 
 import com.github.chamexxxx.meetingroombookingsystem.dao.AccountDaoImpl;
+import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable(tableName = "accounts", daoClass = AccountDaoImpl.class)
@@ -14,6 +16,9 @@ public class Account {
 
     @DatabaseField
     private String password;
+
+    @ForeignCollectionField()
+    private ForeignCollection<Meet> meets;
 
     public String getUsername() {
         return username;

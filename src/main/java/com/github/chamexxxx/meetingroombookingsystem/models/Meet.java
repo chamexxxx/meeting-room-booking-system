@@ -13,6 +13,9 @@ public class Meet {
     @DatabaseField(generatedId = true)
     private int id;
 
+    @DatabaseField(canBeNull = false, foreign = true)
+    private Account account;
+
     @DatabaseField(canBeNull = false)
     private String room;
 
