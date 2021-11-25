@@ -3,7 +3,7 @@ package com.github.chamexxxx.meetingroombookingsystem.controllers;
 import com.calendarfx.model.*;
 import com.github.chamexxxx.meetingroombookingsystem.Database;
 import com.github.chamexxxx.meetingroombookingsystem.calendar.WeeklyCalendar;
-import com.github.chamexxxx.meetingroombookingsystem.control.AccountMenu;
+import com.github.chamexxxx.meetingroombookingsystem.control.TopBar;
 import com.github.chamexxxx.meetingroombookingsystem.models.Meet;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -35,14 +35,7 @@ public class HomeController implements Initializable {
             e.printStackTrace();
         }
 
-        var accountMenu = new AccountMenu();
-
-        var topBar = new HBox(accountMenu);
-
-        topBar.setAlignment(Pos.CENTER_RIGHT);
-        topBar.setPadding(new Insets(30));
-
-        gridPane.add(topBar, 0, 0);
+        gridPane.add(new TopBar(), 0, 0);
         gridPane.add(weeklyCalendar.getWeekPage(), 0, 1);
 
         weeklyCalendar.setOnCreateEntryAction(entry -> {
