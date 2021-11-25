@@ -1,4 +1,4 @@
-package com.github.chamexxxx.meetingroombookingsystem.calendar;
+package com.github.chamexxxx.meetingroombookingsystem.control.calendar;
 
 public class WeekPage extends com.calendarfx.view.page.WeekPage {
     public WeekPage() {

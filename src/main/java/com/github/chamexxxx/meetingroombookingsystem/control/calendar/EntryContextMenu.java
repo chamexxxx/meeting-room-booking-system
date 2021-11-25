@@ -1,4 +1,4 @@
-package com.github.chamexxxx.meetingroombookingsystem.calendar;
+package com.github.chamexxxx.meetingroombookingsystem.control.calendar;
 
 import com.calendarfx.model.Calendar;
 import com.calendarfx.model.Entry;
