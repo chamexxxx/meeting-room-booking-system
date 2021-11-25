@@ -1,17 +1,21 @@
 package com.github.chamexxxx.meetingroombookingsystem.control;
 
-import javafx.scene.control.PasswordField;
+import org.controlsfx.control.textfield.CustomPasswordField;
 
 import java.util.HashMap;
 
 public class RegisterForm extends LoginForm {
-    public final PasswordField confirmPassword = new PasswordField();
+    public final CustomPasswordField confirmPasswordField = new CustomPasswordField();
 
     public RegisterForm() {
         super();
-        configureControl(confirmPassword);
-        confirmPassword.setPromptText("Confirm password");
-        getChildren().add(2, confirmPassword);
+
+        configureControl(confirmPasswordField);
+
+        confirmPasswordField.setPromptText("Confirm password");
+        confirmPasswordField.setLeft(createPasswordIconContainer());
+
+        getChildren().add(2, confirmPasswordField);
     }
 
     @Override
@@ -23,7 +27,7 @@ public class RegisterForm extends LoginForm {
     protected final HashMap<String, String> getFormData() {
         var hashMap = super.getFormData();
 
-        hashMap.put("confirmPassword", confirmPassword.getText());
+        hashMap.put("confirmPassword", confirmPasswordField.getText());
 
         return hashMap;
     }

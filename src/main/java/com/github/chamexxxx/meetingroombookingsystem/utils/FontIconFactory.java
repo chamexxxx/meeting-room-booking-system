@@ -5,7 +5,8 @@ import org.kordamp.ikonli.javafx.FontIcon;
 public class FontIconFactory {
     public enum ICON {
         DELETE,
-        USER
+        USER,
+        LOCK
     }
 
     public static FontIcon createFontIcon(ICON icon, int size) {
@@ -23,6 +24,12 @@ public class FontIconFactory {
         switch (icon) {
             case DELETE:
                 iconCode = "fltral-delete-24";
+                break;
+            case USER:
+                iconCode = "fltfmz-person-16";
+                break;
+            case LOCK:
+                iconCode = "fltfal-lock-24";
                 break;
         }
 
