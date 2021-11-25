@@ -7,6 +7,8 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
 <?import com.github.chamexxxx.meetingroombookingsystem.control.LoginForm?>
+<?import com.github.chamexxxx.meetingroombookingsystem.control.RouterLink?>
+<?import javafx.scene.control.Hyperlink?>
 <VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.github.chamexxxx.meetingroombookingsystem.controllers.LoginController"
 >
@@ -40,5 +42,8 @@
         </font>
     </Label>
 
-    <LoginForm fx:id="loginForm" maxWidth="300"/>
+    <VBox maxWidth="300" spacing="15">
+        <LoginForm fx:id="loginForm"/>
+        <RouterLink text="Register now" focusTraversable="false" to="register"/>
+    </VBox>
 </VBox>

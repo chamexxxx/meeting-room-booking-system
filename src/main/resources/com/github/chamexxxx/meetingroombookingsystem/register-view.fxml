@@ -7,9 +7,10 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
 <?import com.github.chamexxxx.meetingroombookingsystem.control.RegisterForm?>
+<?import com.github.chamexxxx.meetingroombookingsystem.control.RouterLink?>
 <VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.github.chamexxxx.meetingroombookingsystem.controllers.RegisterController"
-    >
+>
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </padding>
@@ -40,5 +41,8 @@
         </font>
     </Label>
 
-    <RegisterForm fx:id="registerForm" maxWidth="300"/>
+    <VBox maxWidth="300" spacing="15">
+        <RegisterForm fx:id="registerForm"/>
+        <RouterLink text="Sign in to your account" focusTraversable="false" to="login"/>
+    </VBox>
 </VBox>
