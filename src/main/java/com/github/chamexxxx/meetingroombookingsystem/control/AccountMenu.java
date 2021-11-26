@@ -3,6 +3,7 @@ package com.github.chamexxxx.meetingroombookingsystem.control;
 import com.github.chamexxxx.meetingroombookingsystem.Router;
 import com.github.chamexxxx.meetingroombookingsystem.utils.FontIconFactory;
 import com.github.chamexxxx.meetingroombookingsystem.utils.UserSession;
+import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -58,8 +59,9 @@ class AccountMenuButton extends MenuButton {
         var container = new HBox(icon, label);
 
         menuItem.setGraphic(container);
-        label.setMinWidth(110);
+        label.setMinWidth(100);
         label.setPadding(new Insets(0, 0, 0, 10));
+        Platform.runLater(() -> label.setMinWidth(getWidth() != 0.0 ? getWidth() - 20 : 100));
         container.setAlignment(Pos.CENTER);
 
         return menuItem;
