@@ -6,7 +6,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
-<?import com.github.chamexxxx.meetingroombookingsystem.control.RegisterForm?>
+<?import com.github.chamexxxx.meetingroombookingsystem.control.forms.RegisterForm?>
 <?import com.github.chamexxxx.meetingroombookingsystem.control.RouterLink?>
 <?import javafx.scene.layout.HBox?>
 <VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"

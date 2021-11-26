@@ -1,4 +1,4 @@
-package com.github.chamexxxx.meetingroombookingsystem.control;
+package com.github.chamexxxx.meetingroombookingsystem.control.forms;
 
 import org.controlsfx.control.textfield.CustomPasswordField;
 

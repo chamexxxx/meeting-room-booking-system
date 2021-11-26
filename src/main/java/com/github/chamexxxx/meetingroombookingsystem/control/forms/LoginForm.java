@@ -1,4 +1,4 @@
-package com.github.chamexxxx.meetingroombookingsystem.control;
+package com.github.chamexxxx.meetingroombookingsystem.control.forms;
 
 import com.github.chamexxxx.meetingroombookingsystem.utils.FontIconFactory;
 import javafx.geometry.Insets;
