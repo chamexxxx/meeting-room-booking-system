@@ -14,9 +14,11 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 import org.kordamp.ikonli.javafx.FontIcon;
 
+import java.util.Objects;
+
 public class AccountMenu extends AccountMenuButton {
     public AccountMenu() {
-        super(UserSession.getAccount());
+        super(Objects.requireNonNull(UserSession.getAccount()).getUsername());
 
         logoutItem.setOnAction(event -> {
             UserSession.removeAccount();

@@ -26,4 +26,9 @@ public class AccountDaoImpl extends BaseDaoImpl<Account, String> implements Acco
 
         return PasswordHashing.verify(password, account.getPassword());
     }
+
+    @Override
+    public Account queryForUsername(String username) throws SQLException {
+        return queryForFirst(queryBuilder().where().eq("username", username).prepare());
+    }
 }

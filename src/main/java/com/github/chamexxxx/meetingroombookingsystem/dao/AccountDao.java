@@ -7,4 +7,5 @@ import java.sql.SQLException;
 
 public interface AccountDao extends Dao<Account, String> {
     boolean verify(String username, String password) throws SQLException;
+    Account queryForUsername(String username) throws SQLException;
 }
