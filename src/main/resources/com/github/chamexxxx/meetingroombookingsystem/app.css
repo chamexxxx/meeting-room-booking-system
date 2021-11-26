@@ -31,6 +31,10 @@
     -fx-text-fill: white;
 }
 
+.context-menu .menu-item .ikonli-font-icon {
+    -fx-icon-color: white;
+}
+
 .action-button {
     -fx-text-fill: #559aed;
     -fx-background-color: transparent;
