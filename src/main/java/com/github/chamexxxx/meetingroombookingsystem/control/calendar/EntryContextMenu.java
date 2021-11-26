@@ -1,14 +1,13 @@
 package com.github.chamexxxx.meetingroombookingsystem.control.calendar;
 
-import com.calendarfx.model.Calendar;
 import com.calendarfx.model.Entry;
 import com.calendarfx.view.DateControl;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
-import javafx.scene.input.ContextMenuEvent;
 import javafx.util.Callback;
 
 public class EntryContextMenu extends ContextMenu {
+
     public EntryContextMenu(DateControl.EntryContextMenuParameter param) {
         var entryView = param.getEntryView();
         var control = param.getDateControl();
@@ -16,15 +15,15 @@ public class EntryContextMenu extends ContextMenu {
         var entry = entryView.getEntry();
 
         /*
-         * Show dialog with entry details.
+         * Show dialog for edit entry.
          */
-        MenuItem editItem = new MenuItem("Edit");
+        var editItem = new MenuItem("Edit");
 
         editItem.setOnAction(evt -> {
             Callback<DateControl.EntryDetailsParameter, Boolean> detailsCallback = control.getEntryDetailsCallback();
             if (detailsCallback != null) {
-                ContextMenuEvent ctxEvent = param.getContextMenuEvent();
-                DateControl.EntryDetailsParameter entryDetailsParam = new DateControl.EntryDetailsParameter(ctxEvent, control, entryView.getEntry(), control, ctxEvent.getScreenX(), ctxEvent.getScreenY());
+                var ctxEvent = param.getContextMenuEvent();
+                var entryDetailsParam = new DateControl.EntryDetailsParameter(ctxEvent, control, entryView.getEntry(), control, ctxEvent.getScreenX(), ctxEvent.getScreenY());
                 detailsCallback.call(entryDetailsParam);
             }
         });
@@ -34,9 +33,10 @@ public class EntryContextMenu extends ContextMenu {
         /*
          * Delete calendar entry.
          */
-        MenuItem delete = new MenuItem("Delete");
-        delete.setOnAction(evt -> {
-            Calendar calendar = entry.getCalendar();
+        var deleteItem = new MenuItem("Delete");
+        
+        deleteItem.setOnAction(evt -> {
+            var calendar = entry.getCalendar();
 
             if (!calendar.isReadOnly()) {
                 var selections = control.getSelections();
