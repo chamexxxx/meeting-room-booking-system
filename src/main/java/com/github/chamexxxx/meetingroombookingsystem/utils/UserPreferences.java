@@ -9,10 +9,6 @@ public class UserPreferences {
         return userPrefs.get("username", null);
     }
 
-    public static boolean usernameExists() {
-        return getUsername() != null;
-    }
-
     public static void putUsername(String username) {
         userPrefs.put("username", username);
     }
