@@ -1,3 +1,11 @@
+/*.root, .calendar-page, .weekend-day, .all-day-view > .container > .weekend, .today {*/
+/*    -fx-background-color: -fx-secondary-color;*/
+/*}*/
+
+/*.title {*/
+/*    -fx-font-weight: bold;*/
+/*}*/
+
 .text-field {
     -fx-background-color: lightgray;
     -fx-prompt-text-fill: #6f777d;
@@ -8,7 +16,7 @@
     -fx-padding: 10px;
 }
 
-.button {
+.primary-button {
     -fx-border-radius: 4px;
     -fx-background-color: -fx-primary-color;
     -fx-text-fill: #fbfcfc;
