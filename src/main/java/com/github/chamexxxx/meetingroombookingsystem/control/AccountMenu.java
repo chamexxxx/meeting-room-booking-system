@@ -20,6 +20,7 @@ public class AccountMenu extends AccountMenuButton {
 
         logoutItem.setOnAction(event -> {
             UserSession.removeAccount();
+            hide();
             Router.switchScene("login");
         });
     }
