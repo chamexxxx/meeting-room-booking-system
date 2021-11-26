@@ -7,6 +7,7 @@ import com.github.chamexxxx.meetingroombookingsystem.control.RouterLink;
 import com.github.chamexxxx.meetingroombookingsystem.models.Account;
 import com.github.chamexxxx.meetingroombookingsystem.utils.PasswordHashing;
 import com.github.chamexxxx.meetingroombookingsystem.utils.PasswordValidator;
+import com.github.chamexxxx.meetingroombookingsystem.utils.UserSession;
 import com.github.chamexxxx.meetingroombookingsystem.utils.UsernameValidator;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -62,6 +63,7 @@ public class RegisterController implements Initializable {
 
         try {
             Database.getAccountDao().create(user);
+            UserSession.putAccount(username);
             Router.switchScene("home");
             registerForm.reset();
         } catch (SQLException e) {
