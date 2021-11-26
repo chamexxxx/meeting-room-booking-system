@@ -7,7 +7,8 @@ public class FontIconFactory {
         DELETE,
         USER,
         USER_BOARD,
-        LOCK
+        LOCK,
+        POWER
     }
 
     public static FontIcon createFontIcon(ICON icon, int size) {
@@ -34,6 +35,9 @@ public class FontIconFactory {
                 break;
             case LOCK:
                 iconCode = "fltfal-lock-24";
+                break;
+            case POWER:
+                iconCode = "fltfmz-power-24";
                 break;
         }
 
