@@ -63,7 +63,7 @@ public class RegisterController implements Initializable {
 
         try {
             Database.getAccountDao().create(user);
-            UserSession.putUsername(username);
+            UserSession.setAccount(user);
             Router.switchScene("home");
             registerForm.reset();
         } catch (SQLException e) {

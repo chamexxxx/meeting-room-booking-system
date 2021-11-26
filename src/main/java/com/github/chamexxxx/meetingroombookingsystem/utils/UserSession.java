@@ -4,26 +4,19 @@ import com.github.chamexxxx.meetingroombookingsystem.Database;
 import com.github.chamexxxx.meetingroombookingsystem.models.Account;
 
 import java.sql.SQLException;
-import java.util.HashMap;
 
 public class UserSession {
-    private static final HashMap<String, String> userData = new HashMap<>();
     private static Account account = null;
 
     public static Account getAccount() {
         try {
-            var username = userData.get("username");
+            if (account == null) {
+                var usernameFromStore = UserPreferences.getUsername();
 
-            if (username != null) {
-                account = Database.getAccountDao().queryForUsername(username);
-            }
-
-            var usernameFromStore = UserPreferences.getUsername();
-
-            if (usernameFromStore != null) {
-                userData.put("username", usernameFromStore);
-
-                account = Database.getAccountDao().queryForUsername(usernameFromStore);
+                if (usernameFromStore != null) {
+                    account = Database.getAccountDao().queryForUsername(usernameFromStore);
+                    UserPreferences.putUsername(account.getUsername());
+                }
             }
 
             return account;
@@ -37,13 +30,13 @@ public class UserSession {
         return getAccount() != null;
     }
 
-    public static void putUsername(String username) {
-        userData.put("username", username);
-        UserPreferences.putUsername(username);
+    public static void setAccount(Account account) {
+        UserPreferences.putUsername(account.getUsername());
+        UserSession.account = account;
     }
 
-    public static void removeUsername() {
-        userData.remove("username");
+    public static void removeAccount() {
         UserPreferences.removeUsername();
+        UserSession.account = null;
     }
 }

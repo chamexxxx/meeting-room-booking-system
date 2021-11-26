@@ -40,7 +40,9 @@ public class LoginController implements Initializable {
                 return;
             }
 
-            UserSession.putUsername(username);
+            var account = Database.getAccountDao().queryForUsername(username);
+
+            UserSession.setAccount(account);
             Router.switchScene("home");
             loginForm.reset();
         } catch (SQLException e) {
