@@ -7,7 +7,19 @@ public class UserSession {
 
     public static String getAccount() {
         var account = userData.get("username");
-        return account != null ? account : UserPreferences.getAccount();
+
+        if (account != null) {
+            return account;
+        }
+
+        var accountFromStore = UserPreferences.getAccount();
+
+        if (accountFromStore != null) {
+            userData.put("username", accountFromStore);
+            return accountFromStore;
+        }
+
+        return null;
     }
 
     public static boolean accountExists() {
