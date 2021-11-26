@@ -45,9 +45,9 @@
 
     <VBox maxWidth="300" spacing="15">
         <LoginForm fx:id="loginForm"/>
-        
+
         <HBox alignment="CENTER">
-            <RouterLink text="Register now" focusTraversable="false" to="register"/>
+            <RouterLink fx:id="registrationLink" text="Register now" focusTraversable="false" to="register"/>
         </HBox>
     </VBox>
 </VBox>

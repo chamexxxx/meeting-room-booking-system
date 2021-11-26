@@ -19,6 +19,12 @@ public class RegisterForm extends LoginForm {
     }
 
     @Override
+    public void reset() {
+        super.reset();
+        confirmPasswordField.clear();
+    }
+
+    @Override
     protected final void setDefaultButtonText() {
         button.setText("Sign up".toUpperCase());
     }

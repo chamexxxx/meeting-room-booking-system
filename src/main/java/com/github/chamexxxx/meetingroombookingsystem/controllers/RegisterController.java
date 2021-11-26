@@ -3,6 +3,7 @@ package com.github.chamexxxx.meetingroombookingsystem.controllers;
 import com.github.chamexxxx.meetingroombookingsystem.Database;
 import com.github.chamexxxx.meetingroombookingsystem.Router;
 import com.github.chamexxxx.meetingroombookingsystem.control.RegisterForm;
+import com.github.chamexxxx.meetingroombookingsystem.control.RouterLink;
 import com.github.chamexxxx.meetingroombookingsystem.models.Account;
 import com.github.chamexxxx.meetingroombookingsystem.utils.PasswordHashing;
 import com.github.chamexxxx.meetingroombookingsystem.utils.PasswordValidator;
@@ -20,9 +21,13 @@ public class RegisterController implements Initializable {
     @FXML
     private RegisterForm registerForm;
 
+    @FXML
+    private RouterLink loginLink;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         registerForm.setOnAction(this::onRegisterButtonClick);
+        loginLink.setOnAfterAction(event -> registerForm.reset());
     }
 
     private void onRegisterButtonClick(HashMap<String, String> formData) {

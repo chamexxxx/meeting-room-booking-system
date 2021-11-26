@@ -46,7 +46,7 @@
         <RegisterForm fx:id="registerForm"/>
 
         <HBox alignment="CENTER">
-            <RouterLink text="Sign in to your account" focusTraversable="false" to="login"/>
+            <RouterLink fx:id="loginLink" text="Sign in to your account" focusTraversable="false" to="login"/>
         </HBox>
     </VBox>
 </VBox>

@@ -3,6 +3,7 @@ package com.github.chamexxxx.meetingroombookingsystem.controllers;
 import com.github.chamexxxx.meetingroombookingsystem.Database;
 import com.github.chamexxxx.meetingroombookingsystem.Router;
 import com.github.chamexxxx.meetingroombookingsystem.control.LoginForm;
+import com.github.chamexxxx.meetingroombookingsystem.control.RouterLink;
 import com.github.chamexxxx.meetingroombookingsystem.utils.UserPreferences;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -17,9 +18,13 @@ public class LoginController implements Initializable {
     @FXML
     private LoginForm loginForm;
 
+    @FXML
+    private RouterLink registrationLink;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         loginForm.setOnAction(this::onLoginButtonClick);
+        registrationLink.setOnAfterAction(event -> loginForm.reset());
     }
 
     @FXML

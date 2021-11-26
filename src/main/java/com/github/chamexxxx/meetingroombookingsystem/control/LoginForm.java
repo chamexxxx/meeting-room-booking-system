@@ -36,6 +36,11 @@ public class LoginForm extends VBox {
         this.onAction = onAction;
     }
 
+    public void reset() {
+        usernameField.clear();
+        passwordField.clear();
+    }
+
     protected HBox createUsernameIconContainer() {
         return createIconContainer(FontIconFactory.createFontIcon(FontIconFactory.ICON.USER, 20));
     }
