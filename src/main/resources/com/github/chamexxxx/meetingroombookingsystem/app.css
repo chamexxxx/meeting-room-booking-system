@@ -23,10 +23,7 @@
     -fx-text-fill: white;
 }
 
-.context-menu .menu-item .label {
-    -fx-text-fill: white;
-}
-
+.context-menu .menu-item .label,
 .context-menu .menu-item:focused .label {
     -fx-text-fill: white;
 }
