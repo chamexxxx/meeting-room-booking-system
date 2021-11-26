@@ -21,7 +21,7 @@ public class AccountMenu extends AccountMenuButton {
         super(Objects.requireNonNull(UserSession.getAccount()).getUsername());
 
         logoutItem.setOnAction(event -> {
-            UserSession.removeAccount();
+            UserSession.removeUsername();
             hide();
             Router.switchScene("login");
         });

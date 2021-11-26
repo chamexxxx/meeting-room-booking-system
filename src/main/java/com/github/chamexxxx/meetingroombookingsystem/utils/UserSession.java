@@ -18,7 +18,7 @@ public class UserSession {
                 account = Database.getAccountDao().queryForUsername(username);
             }
 
-            var usernameFromStore = UserPreferences.getAccount();
+            var usernameFromStore = UserPreferences.getUsername();
 
             if (usernameFromStore != null) {
                 userData.put("username", usernameFromStore);
@@ -37,13 +37,13 @@ public class UserSession {
         return getAccount() != null;
     }
 
-    public static void putAccount(String username) {
+    public static void putUsername(String username) {
         userData.put("username", username);
-        UserPreferences.putAccount(username);
+        UserPreferences.putUsername(username);
     }
 
-    public static void removeAccount() {
+    public static void removeUsername() {
         userData.remove("username");
-        UserPreferences.removeAccount();
+        UserPreferences.removeUsername();
     }
 }
