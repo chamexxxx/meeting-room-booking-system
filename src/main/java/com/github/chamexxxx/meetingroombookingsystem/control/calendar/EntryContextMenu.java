@@ -31,25 +31,21 @@ public class EntryContextMenu extends ContextMenu {
 
         getItems().add(editItem);
 
-        if (control.getEntryEditPolicy().call(new DateControl.EntryEditParameter(control, entry, DateControl.EditOperation.DELETE))) {
-            /*
-             * Delete calendar entry.
-             */
-            MenuItem delete = new MenuItem("Delete");
+        /*
+         * Delete calendar entry.
+         */
+        MenuItem delete = new MenuItem("Delete");
+        delete.setOnAction(evt -> {
+            Calendar calendar = entry.getCalendar();
 
-            delete.setDisable(param.getCalendar().isReadOnly());
-            delete.setOnAction(evt -> {
-                Calendar calendar = entry.getCalendar();
+            if (!calendar.isReadOnly()) {
+                var selections = control.getSelections();
+                removeEntryFromCalendar(entry);
+                selections.forEach(this::removeEntryFromCalendar);
+            }
+        });
 
-                if (!calendar.isReadOnly()) {
-                    var selections = control.getSelections();
-                    removeEntryFromCalendar(entry);
-                    selections.forEach(this::removeEntryFromCalendar);
-                }
-            });
-
-            getItems().add(delete);
-        }
+        getItems().add(deleteItem);
     }
 
     private void removeEntryFromCalendar(Entry<?> entry) {
