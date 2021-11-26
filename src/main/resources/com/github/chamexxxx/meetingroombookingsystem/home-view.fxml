@@ -2,18 +2,11 @@
 
 <?import javafx.scene.layout.*?>
 <?import com.github.chamexxxx.meetingroombookingsystem.control.TopBar?>
-<GridPane xmlns="http://javafx.com/javafx"
-          xmlns:fx="http://javafx.com/fxml"
-          fx:id="gridPane"
-          fx:controller="com.github.chamexxxx.meetingroombookingsystem.controllers.HomeController">
-    <TopBar GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-
-    <columnConstraints>
-        <ColumnConstraints percentWidth="100.0"/>
-    </columnConstraints>
-
-    <rowConstraints>
-        <RowConstraints percentHeight="10"/>
-        <RowConstraints percentHeight="80"/>
-    </rowConstraints>
-</GridPane>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:id="borderPane"
+            fx:controller="com.github.chamexxxx.meetingroombookingsystem.controllers.HomeController">
+    <top>
+        <TopBar GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+    </top>
+</BorderPane>

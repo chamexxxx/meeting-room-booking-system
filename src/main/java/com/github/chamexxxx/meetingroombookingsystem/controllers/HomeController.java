@@ -7,7 +7,7 @@ import com.github.chamexxxx.meetingroombookingsystem.models.Meet;
 import com.github.chamexxxx.meetingroombookingsystem.utils.UserSession;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.BorderPane;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -19,7 +19,7 @@ import java.util.ResourceBundle;
 
 public class HomeController implements Initializable {
     @FXML
-    private GridPane gridPane;
+    private BorderPane borderPane;
 
     private WeeklyCalendar weeklyCalendar;
 
@@ -32,7 +32,7 @@ public class HomeController implements Initializable {
             e.printStackTrace();
         }
 
-        gridPane.add(weeklyCalendar.getWeekPage(), 0, 1);
+        borderPane.setCenter(weeklyCalendar.getWeekPage());
 
         weeklyCalendar.setOnCreateEntryAction(entry -> {
             try {
