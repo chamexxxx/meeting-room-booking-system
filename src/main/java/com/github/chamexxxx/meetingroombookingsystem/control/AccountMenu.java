@@ -25,7 +25,7 @@ public class AccountMenu extends AccountMenuButton {
 
 class AccountMenuButton extends MenuButton {
     private final String username;
-    protected MenuItem logoutItem = new MenuItem("Logout");
+    protected MenuItem logoutItem = createMenuItem("Logout");
 
     public AccountMenuButton(String username) {
         this.username = username;
@@ -49,6 +49,16 @@ class AccountMenuButton extends MenuButton {
         container.setAlignment(Pos.CENTER_RIGHT);
 
         return container;
+    }
+
+    private MenuItem createMenuItem(String text) {
+        var menuItem = new MenuItem();
+        var label = new Label(text);
+
+        label.setMinWidth(110);
+        menuItem.setGraphic(label);
+
+        return menuItem;
     }
 
     private Label createLabel(String text) {
