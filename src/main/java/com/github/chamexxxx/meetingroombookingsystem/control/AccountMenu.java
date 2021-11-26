@@ -2,7 +2,7 @@ package com.github.chamexxxx.meetingroombookingsystem.control;
 
 import com.github.chamexxxx.meetingroombookingsystem.Router;
 import com.github.chamexxxx.meetingroombookingsystem.utils.FontIconFactory;
-import com.github.chamexxxx.meetingroombookingsystem.utils.UserPreferences;
+import com.github.chamexxxx.meetingroombookingsystem.utils.UserSession;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -15,10 +15,10 @@ import org.kordamp.ikonli.javafx.FontIcon;
 
 public class AccountMenu extends AccountMenuButton {
     public AccountMenu() {
-        super(UserPreferences.getAccount());
+        super(UserSession.getAccount());
 
         logoutItem.setOnAction(event -> {
-            UserPreferences.removeAccount();
+            UserSession.removeAccount();
             Router.switchScene("login");
         });
     }

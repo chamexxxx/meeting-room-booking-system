@@ -63,6 +63,7 @@ public class RegisterController implements Initializable {
         try {
             Database.getAccountDao().create(user);
             Router.switchScene("home");
+            registerForm.reset();
         } catch (SQLException e) {
             var errorCode = e.getErrorCode();
 

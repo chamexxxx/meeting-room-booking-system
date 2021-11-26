@@ -4,7 +4,7 @@ import com.github.chamexxxx.meetingroombookingsystem.Database;
 import com.github.chamexxxx.meetingroombookingsystem.Router;
 import com.github.chamexxxx.meetingroombookingsystem.control.LoginForm;
 import com.github.chamexxxx.meetingroombookingsystem.control.RouterLink;
-import com.github.chamexxxx.meetingroombookingsystem.utils.UserPreferences;
+import com.github.chamexxxx.meetingroombookingsystem.utils.UserSession;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -40,9 +40,9 @@ public class LoginController implements Initializable {
                 return;
             }
 
-            UserPreferences.putAccount(username);
-
+            UserSession.putAccount(username);
             Router.switchScene("home");
+            loginForm.reset();
         } catch (SQLException e) {
             e.printStackTrace();
             showLoginError();

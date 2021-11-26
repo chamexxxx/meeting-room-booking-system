@@ -1,6 +1,6 @@
 package com.github.chamexxxx.meetingroombookingsystem;
 
-import com.github.chamexxxx.meetingroombookingsystem.utils.UserPreferences;
+import com.github.chamexxxx.meetingroombookingsystem.utils.UserSession;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -54,7 +54,7 @@ public class Application extends javafx.application.Application {
     }
 
     private Scene createInitialScene() throws IOException {
-        var resourceName = UserPreferences.accountExists() ? "home-view.fxml" : "login-view.fxml";
+        var resourceName = UserSession.accountExists() ? "home-view.fxml" : "login-view.fxml";
         FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource(resourceName));
 
         return new Scene(fxmlLoader.load(), 800, 600);
