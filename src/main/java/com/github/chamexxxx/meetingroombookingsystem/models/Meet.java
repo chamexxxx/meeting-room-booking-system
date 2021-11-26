@@ -32,6 +32,14 @@ public class Meet {
         return id;
     }
 
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+
     public String getRoom() {
         return room;
     }
@@ -64,6 +72,11 @@ public class Meet {
         this.room = room;
         this.startDate = startDate;
         this.endDate = endDate;
+    }
+
+    public Meet(String room, Timestamp startDate, Timestamp endDate, Account account) {
+        this(room, startDate, endDate);
+        this.account = account;
     }
 
     public Meet() {

@@ -4,6 +4,7 @@ import com.calendarfx.model.*;
 import com.github.chamexxxx.meetingroombookingsystem.Database;
 import com.github.chamexxxx.meetingroombookingsystem.control.calendar.WeeklyCalendar;
 import com.github.chamexxxx.meetingroombookingsystem.models.Meet;
+import com.github.chamexxxx.meetingroombookingsystem.utils.UserSession;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
@@ -99,7 +100,7 @@ public class HomeController implements Initializable {
         var startTimestamp = getEntryStartTimestamp(entry);
         var endTimestamp = getEntryEndTimestamp(entry);
 
-        var meet = new Meet(entry.getTitle(), startTimestamp, endTimestamp);
+        var meet = new Meet(entry.getTitle(), startTimestamp, endTimestamp, UserSession.getAccount());
 
         Database.getMeetDao().create(meet);
 
