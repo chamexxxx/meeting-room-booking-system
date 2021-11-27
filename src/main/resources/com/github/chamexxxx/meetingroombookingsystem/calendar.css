@@ -74,3 +74,15 @@
     -fx-background-color: #ebebeb;
 }
 
+/*
+ * --------------------------------------------------------------------------------------------------------------
+ * Default styles for calendar entries.
+ */
+
+.default-style-entry {
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+    -fx-border-width: 1.0;
+    -fx-padding: 5 0 0 0;
+}
+
