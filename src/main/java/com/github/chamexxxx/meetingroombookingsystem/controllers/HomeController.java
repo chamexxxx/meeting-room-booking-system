@@ -32,8 +32,11 @@ public class HomeController implements Initializable {
             e.printStackTrace();
         }
 
+        handleCalendarActions();
         borderPane.setCenter(weeklyCalendar.getWeekPage());
+    }
 
+    private void handleCalendarActions() {
         weeklyCalendar.setOnCreateEntryAction(entry -> {
             try {
                 createMeet(entry);
