@@ -88,6 +88,43 @@
     -fx-padding: 5 0 0 0;
 }
 
+.default-style-entry:selected .label {
+    -fx-text-fill: white;
+}
+
+/*
+ * --------------------------------------------------------------------------------------------------------------
+ * Styles needed for calendar types.
+ */
+
+.style1-entry .label {
+    -fx-text-fill: derive(-style1-color, -50.0%);
+}
+
+.style2-entry .label {
+    -fx-text-fill: derive(-style2-color, -50.0%);
+}
+
+.style3-entry .label {
+    -fx-text-fill: derive(-style3-color, -50.0%);
+}
+
+.style4-entry .label {
+    -fx-text-fill: derive(-style4-color, -50.0%);
+}
+
+.style5-entry .label {
+    -fx-text-fill: derive(-style5-color, -50.0%);
+}
+
+.style6-entry .label {
+    -fx-text-fill: derive(-style6-color, -50.0%);
+}
+
+.style7-entry .label {
+    -fx-text-fill: derive(-style7-color, -50.0%);
+}
+
 /*.default-style-entry:dragged {*/
 /*    -fx-background-color: lightgrey;*/
 /*    -fx-border-color: lightgrey;*/
