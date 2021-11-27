@@ -9,19 +9,27 @@ import java.util.HashMap;
 
 public class Router {
     private static Scene initialScene = null;
-    private final static HashMap<String, Parent> resourceMap = new HashMap<>();
+    private final static HashMap<String, String> resourceMap = new HashMap<>();
 
     public static void setInitialScene(Scene initialScene) {
         Router.initialScene = initialScene;
     }
 
-    public static void addScene(String sceneName, String resourceName) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource(resourceName));
-        resourceMap.put(sceneName, fxmlLoader.load());
+    public static void addScene(String sceneName, String resourceName) {
+        resourceMap.put(sceneName, resourceName);
+    }
+
+    private static Parent load(String resourceName) throws IOException {
+        var fxmlLoader = new FXMLLoader(Application.class.getResource(resourceName));
+        return fxmlLoader.load();
     }
 
     public static void switchScene(String sceneName) {
-        var root = resourceMap.get(sceneName);
-        initialScene.setRoot(root);
+        try {
+            var root = load(resourceMap.get(sceneName));
+            initialScene.setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
