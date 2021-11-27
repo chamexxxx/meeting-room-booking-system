@@ -63,7 +63,7 @@ public class DayEntryViewSkin extends impl.com.calendarfx.view.DayEntryViewSkin 
     }
 
     protected Label createParticipantLabel(String text) {
-        var label = new Label(text);
+        var label = new Label("• " + text);
 
         label.setMouseTransparent(true);
 
