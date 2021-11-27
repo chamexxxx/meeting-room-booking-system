@@ -27,13 +27,13 @@ public class HomeController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         try {
             var meetEntries = getMeetEntries();
+
             weeklyCalendar = new WeeklyCalendar(meetEntries);
+            handleCalendarActions();
+            borderPane.setCenter(weeklyCalendar.getWeekPage());
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-        handleCalendarActions();
-        borderPane.setCenter(weeklyCalendar.getWeekPage());
     }
 
     private void handleCalendarActions() {
