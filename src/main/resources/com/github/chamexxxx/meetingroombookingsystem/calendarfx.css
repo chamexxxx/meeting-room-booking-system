@@ -1,3 +1,5 @@
+/* Overriding default CalendarFX styles */
+
 /*
  * --------------------------------------------------------------------------------------------------------------
  * Overriding styles needed by the time scale (01:00, 02:00, .... 24:00).
@@ -85,4 +87,18 @@
     -fx-border-width: 1.0;
     -fx-padding: 5 0 0 0;
 }
+
+/*.default-style-entry:dragged {*/
+/*    -fx-background-color: lightgrey;*/
+/*    -fx-border-color: lightgrey;*/
+/*}*/
+
+/*.default-style-entry:dragged .label {*/
+/*    -fx-text-fill: black;*/
+/*}*/
+
+/*.default-style-entry:dragged-start,*/
+/*.default-style-entry:dragged-end {*/
+/*    -fx-opacity: 0.5;*/
+/*}*/
 
