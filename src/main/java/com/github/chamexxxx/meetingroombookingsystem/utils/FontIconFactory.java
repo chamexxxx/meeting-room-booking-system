@@ -8,7 +8,10 @@ public class FontIconFactory {
         USER,
         USER_BOARD,
         LOCK,
-        POWER
+        POWER,
+        EDIT,
+        ADD,
+        ZOOM
     }
 
     public static FontIcon createFontIcon(ICON icon, int size) {
@@ -38,6 +41,15 @@ public class FontIconFactory {
                 break;
             case POWER:
                 iconCode = "fltfmz-power-24";
+                break;
+            case EDIT:
+                iconCode = "fltfal-edit-16";
+                break;
+            case ADD:
+                iconCode = "fltfal-add-24";
+                break;
+            case ZOOM:
+                iconCode = "fltrmz-zoom-in-24";
                 break;
         }
 

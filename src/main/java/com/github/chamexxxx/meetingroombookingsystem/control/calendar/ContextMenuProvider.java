@@ -1,6 +1,7 @@
 package com.github.chamexxxx.meetingroombookingsystem.control.calendar;
 
 import com.calendarfx.view.*;
+import com.github.chamexxxx.meetingroombookingsystem.utils.FontIconFactory;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
@@ -19,10 +20,15 @@ public class ContextMenuProvider extends com.calendarfx.view.ContextMenuProvider
         var menu = super.getWeekDayViewMenu(param);
 
         configureHoursMenuItem(menu.getItems().get(3));
-
         removeUnnecessaryMenuItems(menu);
+        configureMenuItems(menu);
 
         return menu;
+    }
+
+    private void configureHoursMenuItem(MenuItem hoursItem) {
+        hoursItem.setText("Scaling");
+        removeHoursMenuItems((Menu) hoursItem);
     }
 
     private void removeUnnecessaryMenuItems(ContextMenu menu) {
@@ -32,9 +38,9 @@ public class ContextMenuProvider extends com.calendarfx.view.ContextMenuProvider
         menu.getItems().remove(2);
     }
 
-    private void configureHoursMenuItem(MenuItem hoursItem) {
-        hoursItem.setText("Scaling");
-        removeHoursMenuItems((Menu) hoursItem);
+    private void configureMenuItems(ContextMenu menu) {
+        menu.getItems().get(0).setGraphic(FontIconFactory.createFontIcon(FontIconFactory.ICON.ADD, 15));
+        menu.getItems().get(1).setGraphic(FontIconFactory.createFontIcon(FontIconFactory.ICON.ZOOM, 15));
     }
 
     private void removeHoursMenuItems(Menu hoursMenu) {

@@ -2,6 +2,7 @@ package com.github.chamexxxx.meetingroombookingsystem.control.calendar;
 
 import com.calendarfx.model.Entry;
 import com.calendarfx.view.DateControl;
+import com.github.chamexxxx.meetingroombookingsystem.utils.FontIconFactory;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.util.Callback;
@@ -17,7 +18,7 @@ public class EntryContextMenu extends ContextMenu {
         /*
          * Show dialog for edit entry.
          */
-        var editItem = new MenuItem("Edit");
+        var editItem = createEditMenuItem();
 
         editItem.setOnAction(evt -> {
             Callback<DateControl.EntryDetailsParameter, Boolean> detailsCallback = control.getEntryDetailsCallback();
@@ -33,7 +34,7 @@ public class EntryContextMenu extends ContextMenu {
         /*
          * Delete calendar entry.
          */
-        var deleteItem = new MenuItem("Delete");
+        var deleteItem = createDeleteMenuItem();
         
         deleteItem.setOnAction(evt -> {
             var calendar = entry.getCalendar();
@@ -46,6 +47,18 @@ public class EntryContextMenu extends ContextMenu {
         });
 
         getItems().add(deleteItem);
+    }
+
+    private MenuItem createEditMenuItem() {
+        var fontIcon = FontIconFactory.createFontIcon(FontIconFactory.ICON.EDIT, 15);
+
+        return new MenuItem("Edit", fontIcon);
+    }
+
+    private MenuItem createDeleteMenuItem() {
+        var fontIcon = FontIconFactory.createFontIcon(FontIconFactory.ICON.DELETE, 15);
+
+        return new MenuItem("Delete", fontIcon);
     }
 
     private void removeEntryFromCalendar(Entry<?> entry) {
