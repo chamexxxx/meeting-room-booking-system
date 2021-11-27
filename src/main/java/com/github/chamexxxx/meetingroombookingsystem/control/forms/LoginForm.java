@@ -6,14 +6,13 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import org.controlsfx.control.textfield.CustomPasswordField;
 import org.controlsfx.control.textfield.CustomTextField;
 
 import java.util.HashMap;
 import java.util.function.Consumer;
 
-public class LoginForm extends VBox {
+public class LoginForm extends Form {
     public CustomTextField usernameField = new CustomTextField();
     public CustomPasswordField passwordField = new CustomPasswordField();
     public Button button = new Button();
@@ -26,9 +25,7 @@ public class LoginForm extends VBox {
         configureControls(usernameField, passwordField, button);
         configureButton();
 
-        usernameField.getStyleClass().add("field");
         usernameField.setLeft(createUsernameIconContainer());
-        passwordField.getStyleClass().add("field");
         passwordField.setLeft(createPasswordIconContainer());
 
         getChildren().setAll(usernameField, passwordField, button);
@@ -58,17 +55,6 @@ public class LoginForm extends VBox {
         container.setPadding(new Insets(0, 0, 0, 5));
 
         return container;
-    }
-
-    protected final void configureControls(Control... fields) {
-        for (var field : fields) {
-            configureControl(field);
-        }
-    }
-
-    protected final void configureControl(Control field) {
-        field.setFocusTraversable(false);
-        field.setPrefHeight(30);
     }
 
     protected void setDefaultButtonText() {
