@@ -12,6 +12,7 @@ public class RegisterForm extends LoginForm {
 
         configureControl(confirmPasswordField);
 
+        confirmPasswordField.getStyleClass().add("field");
         confirmPasswordField.setPromptText("Confirm password");
         confirmPasswordField.setLeft(createPasswordIconContainer());
 

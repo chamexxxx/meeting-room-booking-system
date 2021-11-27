@@ -6,7 +6,7 @@
 /*    -fx-font-weight: bold;*/
 /*}*/
 
-.text-field {
+.field {
     -fx-background-color: lightgray;
     -fx-prompt-text-fill: #6f777d;
     -fx-text-inner-color: -fx-primary-color;

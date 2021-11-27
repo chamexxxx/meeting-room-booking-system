@@ -26,7 +26,9 @@ public class LoginForm extends VBox {
         configureControls(usernameField, passwordField, button);
         configureButton();
 
+        usernameField.getStyleClass().add("field");
         usernameField.setLeft(createUsernameIconContainer());
+        passwordField.getStyleClass().add("field");
         passwordField.setLeft(createPasswordIconContainer());
 
         getChildren().setAll(usernameField, passwordField, button);
