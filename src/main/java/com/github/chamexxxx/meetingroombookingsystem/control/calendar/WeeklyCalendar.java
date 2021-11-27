@@ -100,14 +100,14 @@ public class WeeklyCalendar {
         var eventType = event.getEventType();
         var entry = (Entry<Meet>) event.getEntry();
 
-        if (eventType.toString().equals("ENTRY_CALENDAR_CHANGED")) {
+        if (eventType.equals(CalendarEvent.ENTRY_CALENDAR_CHANGED)) {
             var calendar = event.getCalendar();
             if (calendar != null) {
                 onCreateEntryAction.accept(entry);
             } else {
                 onDeleteEntryAction.accept(entry);
             }
-        } else if (eventType.toString().equals("ENTRY_INTERVAL_CHANGED")) {
+        } else if (eventType.equals(CalendarEvent.ENTRY_INTERVAL_CHANGED)) {
             var oldInterval = event.getOldInterval();
 
             onUpdateEntryAction.accept(entry, oldInterval);
