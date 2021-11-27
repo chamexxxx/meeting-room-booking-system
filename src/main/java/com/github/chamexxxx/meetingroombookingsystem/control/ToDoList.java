@@ -16,6 +16,10 @@ import org.controlsfx.control.textfield.CustomTextField;
 import java.util.ArrayList;
 import java.util.function.Supplier;
 
+/**
+ * Implementation of a to-do list, including creating, editing and deleting tasks
+ * @param <M> the type of the model
+ */
 public class ToDoList<M extends ToDoList.Model> extends VBox {
     public interface Model {
         String getName();
@@ -27,12 +31,12 @@ public class ToDoList<M extends ToDoList.Model> extends VBox {
     private final ObservableList<M> models = FXCollections.observableArrayList();
     private final ScrollPane scrollPane;
 
-    public ToDoList(Supplier<M> supplier, ArrayList<M> tasks) {
+    public ToDoList(Supplier<M> supplier, ArrayList<M> initialTasks) {
         this.supplier = supplier;
 
         initializeModelsListener();
 
-        models.addAll(tasks);
+        models.addAll(initialTasks);
 
         if (fields.getChildren().size() == 0) {
             fields.setVisible(false);

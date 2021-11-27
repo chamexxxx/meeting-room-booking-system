@@ -5,9 +5,12 @@ import javafx.scene.control.*;
 
 import java.util.ArrayList;
 
+/**
+ * A container with a list of participants with the ability to create, edit and delete
+ */
 public class ParticipantsBox extends ToDoList<Participant> {
-    public ParticipantsBox(ArrayList<Participant> tasks) {
-        super(Participant::new, tasks);
+    public ParticipantsBox(ArrayList<Participant> initialParticipants) {
+        super(Participant::new, initialParticipants);
 
         var label = new Label("Participants");
 
