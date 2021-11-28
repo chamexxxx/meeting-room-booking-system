@@ -2,9 +2,9 @@ package com.github.chamexxxx.meetingroombookingsystem;
 
 import com.github.chamexxxx.meetingroombookingsystem.dao.AccountDao;
 import com.github.chamexxxx.meetingroombookingsystem.dao.MeetDao;
-import com.github.chamexxxx.meetingroombookingsystem.models.Account;
-import com.github.chamexxxx.meetingroombookingsystem.models.Meet;
-import com.github.chamexxxx.meetingroombookingsystem.models.Participant;
+import com.github.chamexxxx.meetingroombookingsystem.dto.Account;
+import com.github.chamexxxx.meetingroombookingsystem.dto.Meet;
+import com.github.chamexxxx.meetingroombookingsystem.dto.Participant;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
 import com.j256.ormlite.support.ConnectionSource;

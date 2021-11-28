@@ -4,7 +4,7 @@ import com.github.chamexxxx.meetingroombookingsystem.Database;
 import com.github.chamexxxx.meetingroombookingsystem.Router;
 import com.github.chamexxxx.meetingroombookingsystem.control.forms.RegisterForm;
 import com.github.chamexxxx.meetingroombookingsystem.control.RouterLink;
-import com.github.chamexxxx.meetingroombookingsystem.models.Account;
+import com.github.chamexxxx.meetingroombookingsystem.dto.Account;
 import com.github.chamexxxx.meetingroombookingsystem.utils.PasswordHashing;
 import com.github.chamexxxx.meetingroombookingsystem.utils.PasswordValidator;
 import com.github.chamexxxx.meetingroombookingsystem.utils.UserSession;

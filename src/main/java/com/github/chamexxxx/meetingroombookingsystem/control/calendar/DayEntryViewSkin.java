@@ -1,8 +1,8 @@
 package com.github.chamexxxx.meetingroombookingsystem.control.calendar;
 
 import com.calendarfx.view.DayEntryView;
-import com.github.chamexxxx.meetingroombookingsystem.models.Meet;
-import com.github.chamexxxx.meetingroombookingsystem.models.Participant;
+import com.github.chamexxxx.meetingroombookingsystem.dto.Meet;
+import com.github.chamexxxx.meetingroombookingsystem.dto.Participant;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;

@@ -4,7 +4,7 @@ import com.calendarfx.model.Entry;
 import com.calendarfx.view.Messages;
 import com.calendarfx.view.TimeField;
 import com.github.chamexxxx.meetingroombookingsystem.control.ParticipantsBox;
-import com.github.chamexxxx.meetingroombookingsystem.models.Meet;
+import com.github.chamexxxx.meetingroombookingsystem.dto.Meet;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;

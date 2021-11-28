@@ -1,4 +1,4 @@
-package com.github.chamexxxx.meetingroombookingsystem.models;
+package com.github.chamexxxx.meetingroombookingsystem.dto;
 
 import com.github.chamexxxx.meetingroombookingsystem.control.ToDoList;
 import com.j256.ormlite.field.DatabaseField;

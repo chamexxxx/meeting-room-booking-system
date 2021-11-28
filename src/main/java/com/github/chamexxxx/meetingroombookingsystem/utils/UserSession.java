@@ -1,7 +1,7 @@
 package com.github.chamexxxx.meetingroombookingsystem.utils;
 
 import com.github.chamexxxx.meetingroombookingsystem.Database;
-import com.github.chamexxxx.meetingroombookingsystem.models.Account;
+import com.github.chamexxxx.meetingroombookingsystem.dto.Account;
 
 import java.sql.SQLException;
 

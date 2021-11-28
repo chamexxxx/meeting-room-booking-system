@@ -1,6 +1,6 @@
 package com.github.chamexxxx.meetingroombookingsystem.control;
 
-import com.github.chamexxxx.meetingroombookingsystem.models.Participant;
+import com.github.chamexxxx.meetingroombookingsystem.dto.Participant;
 import javafx.scene.control.*;
 
 import java.util.ArrayList;

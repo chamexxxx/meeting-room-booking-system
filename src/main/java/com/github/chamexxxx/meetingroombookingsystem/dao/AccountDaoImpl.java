@@ -1,6 +1,6 @@
 package com.github.chamexxxx.meetingroombookingsystem.dao;
 
-import com.github.chamexxxx.meetingroombookingsystem.models.Account;
+import com.github.chamexxxx.meetingroombookingsystem.dto.Account;
 import com.github.chamexxxx.meetingroombookingsystem.utils.PasswordHashing;
 import com.j256.ormlite.dao.BaseDaoImpl;
 import com.j256.ormlite.support.ConnectionSource;

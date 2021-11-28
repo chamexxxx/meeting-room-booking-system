@@ -1,7 +1,7 @@
 package com.github.chamexxxx.meetingroombookingsystem.control.calendar;
 
 import com.calendarfx.model.*;
-import com.github.chamexxxx.meetingroombookingsystem.models.Meet;
+import com.github.chamexxxx.meetingroombookingsystem.dto.Meet;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;

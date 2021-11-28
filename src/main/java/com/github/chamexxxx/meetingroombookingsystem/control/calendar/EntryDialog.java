@@ -2,7 +2,7 @@ package com.github.chamexxxx.meetingroombookingsystem.control.calendar;
 
 import com.calendarfx.model.Entry;
 import com.github.chamexxxx.meetingroombookingsystem.Application;
-import com.github.chamexxxx.meetingroombookingsystem.models.Meet;
+import com.github.chamexxxx.meetingroombookingsystem.dto.Meet;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
