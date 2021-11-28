@@ -75,6 +75,8 @@ public class ToDoList<M extends ToDoList.Model> extends VBox {
 
                         var fontIcon = FontIconFactory.createFontIcon(FontIconFactory.ICON.DELETE, 20);
 
+                        fontIcon.getStyleClass().add("cursor-hand");
+
                         customTextField.setRight(fontIcon);
 
                         customTextField.getRight().setOnMouseClicked(event -> {
