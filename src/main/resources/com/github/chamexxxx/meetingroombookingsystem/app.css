@@ -27,8 +27,18 @@
 }
 
 .action-button {
+    -fx-font-size: 15px;
     -fx-text-fill: #559aed;
+    -fx-font-weight: bold;
     -fx-background-color: transparent;
+    -fx-border-color: #559aed;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+}
+
+.action-button:hover {
+    -fx-text-fill: #ffffff;
+    -fx-background-color: #559aed;
 }
 
 .background-transparent {
