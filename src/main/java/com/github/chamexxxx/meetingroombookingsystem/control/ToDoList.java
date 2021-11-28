@@ -98,8 +98,8 @@ public class ToDoList<M extends ToDoList.Model> extends VBox {
         var addButton = createAddButton();
         var buttonBox = new HBox(addButton);
 
-        buttonBox.setPadding(new Insets(10));
-        buttonBox.setAlignment(Pos.CENTER);
+        buttonBox.setPadding(new Insets(10, 0, 10 , 0));
+        buttonBox.setAlignment(Pos.CENTER_RIGHT);
 
         return buttonBox;
     }
