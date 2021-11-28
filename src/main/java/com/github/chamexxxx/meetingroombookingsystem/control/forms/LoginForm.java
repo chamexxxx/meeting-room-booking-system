@@ -15,8 +15,6 @@ import java.util.function.Consumer;
 public class LoginForm extends Form {
     protected CustomTextField usernameField = new CustomTextField();
     protected CustomPasswordField passwordField = new CustomPasswordField();
-    protected Button button = new Button();
-    private Consumer<HashMap<String, String>> onAction;
 
     public LoginForm() {
         setDefaultSpacing();
@@ -29,10 +27,6 @@ public class LoginForm extends Form {
         passwordField.setLeft(createPasswordIconContainer());
 
         getChildren().setAll(usernameField, passwordField, button);
-    }
-
-    public final void setOnAction(Consumer<HashMap<String, String>> onAction) {
-        this.onAction = onAction;
     }
 
     public void reset() {
@@ -71,10 +65,7 @@ public class LoginForm extends Form {
     }
 
     private void configureButton() {
-        button.setMaxWidth(Double.MAX_VALUE);
-        button.getStyleClass().add("primary-button");
         setDefaultButtonText();
-        setOnDefaultButtonAction();
     }
 
     private void setDefaultSpacing() {
@@ -84,13 +75,5 @@ public class LoginForm extends Form {
     private void setDefaultFieldPromptTexts() {
         usernameField.setPromptText("Username");
         passwordField.setPromptText("Password");
-    }
-
-    private void setOnDefaultButtonAction() {
-        button.setOnAction(event -> {
-            if (onAction != null) {
-                onAction.accept(getFormData());
-            }
-        });
     }
 }
