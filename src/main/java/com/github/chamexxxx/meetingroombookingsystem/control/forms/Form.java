@@ -25,7 +25,6 @@ public abstract class Form extends VBox {
             field.getStyleClass().add("field");
         }
 
-        field.setFocusTraversable(false);
         field.setPrefHeight(30);
     }
 
