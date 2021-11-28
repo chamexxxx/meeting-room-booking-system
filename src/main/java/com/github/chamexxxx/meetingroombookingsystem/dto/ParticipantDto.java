@@ -5,7 +5,7 @@ import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable(tableName = "participants")
-public class ParticipantDto implements ToDoList.Model {
+public class ParticipantDto {
     @DatabaseField(generatedId = true)
     private int id;
 
@@ -14,6 +14,14 @@ public class ParticipantDto implements ToDoList.Model {
 
     @DatabaseField(canBeNull = false)
     private String name;
+
+    public int getId() {
+        return id;
+    }
+
+    public MeetDto getMeet() {
+        return meet;
+    }
 
     public String getName() {
         return name;

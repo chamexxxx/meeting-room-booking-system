@@ -20,6 +20,10 @@ public class AccountDto {
     @ForeignCollectionField()
     private ForeignCollection<MeetDto> meets;
 
+    public int getId() {
+        return id;
+    }
+
     public String getUsername() {
         return username;
     }

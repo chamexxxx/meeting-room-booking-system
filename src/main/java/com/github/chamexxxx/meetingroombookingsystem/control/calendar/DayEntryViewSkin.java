@@ -1,8 +1,8 @@
 package com.github.chamexxxx.meetingroombookingsystem.control.calendar;
 
 import com.calendarfx.view.DayEntryView;
-import com.github.chamexxxx.meetingroombookingsystem.dto.MeetDto;
-import com.github.chamexxxx.meetingroombookingsystem.dto.ParticipantDto;
+import com.github.chamexxxx.meetingroombookingsystem.models.Meet;
+import com.github.chamexxxx.meetingroombookingsystem.models.Participant;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -30,7 +30,7 @@ public class DayEntryViewSkin extends impl.com.calendarfx.view.DayEntryViewSkin 
 
         participantsContainer.getChildren().addAll(participantLabels);
 
-        participants.addListener((ListChangeListener<ParticipantDto>) c -> {
+        participants.addListener((ListChangeListener<? super Participant>) c -> {
             participantsContainer.getChildren().clear();
             participantsContainer.getChildren().addAll(createParticipantLabels(participants));
         });
@@ -38,8 +38,8 @@ public class DayEntryViewSkin extends impl.com.calendarfx.view.DayEntryViewSkin 
         getChildren().add(participantsContainer);
     }
 
-    private MeetDto getMeet() {
-        return (MeetDto) getEntry().getUserObject();
+    private Meet getMeet() {
+        return (Meet) getEntry().getUserObject();
     }
 
     private VBox createParticipantsContainer() {
@@ -53,7 +53,7 @@ public class DayEntryViewSkin extends impl.com.calendarfx.view.DayEntryViewSkin 
         return container;
     }
 
-    private ArrayList<Label> createParticipantLabels(ObservableList<ParticipantDto> participants) {
+    private ArrayList<Label> createParticipantLabels(ObservableList<Participant> participants) {
         var labels = new ArrayList<Label>();
 
         if (participants != null) {
@@ -65,7 +65,7 @@ public class DayEntryViewSkin extends impl.com.calendarfx.view.DayEntryViewSkin 
         return labels;
     }
 
-    protected Label createParticipantLabel(ParticipantDto participant) {
+    protected Label createParticipantLabel(Participant participant) {
         var label = new Label("• " + participant.getName());
 
         label.setMouseTransparent(true);

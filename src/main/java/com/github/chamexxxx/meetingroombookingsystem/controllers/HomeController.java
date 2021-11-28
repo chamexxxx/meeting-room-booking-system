@@ -4,6 +4,7 @@ import com.calendarfx.model.*;
 import com.github.chamexxxx.meetingroombookingsystem.Database;
 import com.github.chamexxxx.meetingroombookingsystem.control.calendar.WeeklyCalendar;
 import com.github.chamexxxx.meetingroombookingsystem.dto.MeetDto;
+import com.github.chamexxxx.meetingroombookingsystem.models.Meet;
 import com.github.chamexxxx.meetingroombookingsystem.utils.UserSession;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -62,20 +63,26 @@ public class HomeController implements Initializable {
         });
     }
 
-    private ArrayList<Entry<MeetDto>> getMeetEntries() throws SQLException {
+    private ArrayList<Entry<Meet>> getMeetEntries() throws SQLException {
         return convertMeetsToEntries(getMeets());
     }
 
-    private ArrayList<Entry<MeetDto>> convertMeetsToEntries(List<MeetDto> meets) {
-        var entries = new ArrayList<Entry<MeetDto>>();
+    private List<MeetDto> getMeets() throws SQLException {
+        return Database.getMeetDao().queryForAll();
+    }
+
+    private ArrayList<Entry<Meet>> convertMeetsToEntries(List<MeetDto> meets) {
+        var entries = new ArrayList<Entry<Meet>>();
 
         for (MeetDto meetDto : meets) {
             var startDate = meetDto.getStartDate();
             var endDate = meetDto.getEndDate();
 
-            var entry = new Entry<MeetDto>(meetDto.getRoom());
+            var entry = new Entry<Meet>(meetDto.getRoom());
 
-            entry.setUserObject(meetDto);
+            var meet = new Meet(meetDto);
+
+            entry.setUserObject(meet);
             entry.setInterval(startDate.toLocalDateTime(), endDate.toLocalDateTime());
 
             entries.add(entry);
@@ -84,11 +91,11 @@ public class HomeController implements Initializable {
         return entries;
     }
 
-    private Timestamp getEntryStartTimestamp(Entry<MeetDto> entry) {
+    private Timestamp getEntryStartTimestamp(Entry<Meet> entry) {
         return localDateTimeToTimestamp(entry.getStartAsLocalDateTime());
     }
 
-    private Timestamp getEntryEndTimestamp(Entry<MeetDto> entry) {
+    private Timestamp getEntryEndTimestamp(Entry<Meet> entry) {
         return localDateTimeToTimestamp(entry.getEndAsLocalDateTime());
     }
 
@@ -96,7 +103,7 @@ public class HomeController implements Initializable {
         return Timestamp.valueOf(localDateTime);
     }
 
-    private void createMeet(Entry<MeetDto> entry) throws SQLException {
+    private void createMeet(Entry<Meet> entry) throws SQLException {
         var startTimestamp = getEntryStartTimestamp(entry);
         var endTimestamp = getEntryEndTimestamp(entry);
 
@@ -104,10 +111,12 @@ public class HomeController implements Initializable {
 
         Database.getMeetDao().create(meetDto);
 
-        entry.setUserObject(meetDto);
+        var meet = new Meet(meetDto);
+
+        entry.setUserObject(meet);
     }
 
-    private void deleteMeet(Entry<MeetDto> entry) throws SQLException {
+    private void deleteMeet(Entry<Meet> entry) throws SQLException {
         var deleteBuilder = Database.getMeetDao().deleteBuilder();
 
         var meet = entry.getUserObject();
@@ -117,7 +126,7 @@ public class HomeController implements Initializable {
         deleteBuilder.delete();
     }
 
-    private void changeMeetDates(Entry<MeetDto> entry) throws SQLException {
+    private void changeMeetDates(Entry<Meet> entry) throws SQLException {
         var updateBuilder = Database.getMeetDao().updateBuilder();
 
         var meet = entry.getUserObject();
@@ -128,9 +137,5 @@ public class HomeController implements Initializable {
         updateBuilder.updateColumnValue("endDate", localDateTimeToTimestamp(entry.getEndAsLocalDateTime()));
 
         updateBuilder.update();
-    }
-
-    private List<MeetDto> getMeets() throws SQLException {
-        return Database.getMeetDao().queryForAll();
     }
 }

@@ -31,7 +31,6 @@ public class MeetDto {
     @ForeignCollectionField()
     private ForeignCollection<ParticipantDto> participants;
 
-    private final ObservableList<ParticipantDto> participantsList = FXCollections.observableArrayList();
     public int getId() {
         return id;
     }
@@ -68,8 +67,8 @@ public class MeetDto {
         this.endDate = endDate;
     }
 
-    public ObservableList<ParticipantDto> getParticipants() {
-        return participantsList;
+    public ForeignCollection<ParticipantDto> getParticipants() {
+        return participants;
     }
 
     public MeetDto(String room, Timestamp startDate, Timestamp endDate) {
@@ -85,18 +84,5 @@ public class MeetDto {
     }
 
     public MeetDto() {
-        if (participants != null) {
-            participantsList.addAll(participants);
-        }
-
-        participantsList.addListener((ListChangeListener<ParticipantDto>) c -> {
-            while (c.next()) {
-                if (c.wasAdded()) {
-                    participants.addAll(c.getAddedSubList());
-                } else if (c.wasRemoved()) {
-                    participants.removeAll(c.getRemoved());
-                }
-            }
-        });
     }
 }
