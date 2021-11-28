@@ -26,9 +26,9 @@ public class Application extends javafx.application.Application {
 
         addStylesheetsToScene(initialScene, getAllStylesheets());
 
-        Router.setInitialScene(initialScene);
-        Router.addScene("login", "login-view.fxml");
-        Router.addScene("register", "register-view.fxml");
+        Router.bind(stage, initialScene);
+        Router.addScene("login", "login-view.fxml", new Router.StageOptions(800, 600, false));
+        Router.addScene("register", "register-view.fxml", new Router.StageOptions(800, 600, false));
         Router.addScene("home", "home-view.fxml");
 
         stage.setScene(initialScene);
