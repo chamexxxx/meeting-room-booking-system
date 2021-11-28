@@ -13,10 +13,10 @@ import java.util.HashMap;
 import java.util.function.Consumer;
 
 public class LoginForm extends Form {
-    public CustomTextField usernameField = new CustomTextField();
-    public CustomPasswordField passwordField = new CustomPasswordField();
-    public Button button = new Button();
-    public Consumer<HashMap<String, String>> onAction;
+    protected CustomTextField usernameField = new CustomTextField();
+    protected CustomPasswordField passwordField = new CustomPasswordField();
+    protected Button button = new Button();
+    private Consumer<HashMap<String, String>> onAction;
 
     public LoginForm() {
         setDefaultSpacing();
