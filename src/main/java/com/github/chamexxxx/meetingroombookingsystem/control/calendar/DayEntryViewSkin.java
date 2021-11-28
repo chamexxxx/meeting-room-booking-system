@@ -3,7 +3,8 @@ package com.github.chamexxxx.meetingroombookingsystem.control.calendar;
 import com.calendarfx.view.DayEntryView;
 import com.github.chamexxxx.meetingroombookingsystem.models.Meet;
 import com.github.chamexxxx.meetingroombookingsystem.models.Participant;
-import com.j256.ormlite.dao.ForeignCollection;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
@@ -47,23 +48,20 @@ public class DayEntryViewSkin extends impl.com.calendarfx.view.DayEntryViewSkin 
         return container;
     }
 
-    private ArrayList<Label> createParticipantLabels(ForeignCollection<Participant> participants) {
+    private ArrayList<Label> createParticipantLabels(ObservableList<Participant> participants) {
         var labels = new ArrayList<Label>();
 
         if (participants != null) {
             participants.forEach(participant -> {
-                var name = participant.getName();
-                var label = createParticipantLabel(name);
-
-                labels.add(label);
+                labels.add(createParticipantLabel(participant));
             });
         }
 
         return labels;
     }
 
-    protected Label createParticipantLabel(String text) {
-        var label = new Label("• " + text);
+    protected Label createParticipantLabel(Participant participant) {
+        var label = new Label("• " + participant.getName());
 
         label.setMouseTransparent(true);
 

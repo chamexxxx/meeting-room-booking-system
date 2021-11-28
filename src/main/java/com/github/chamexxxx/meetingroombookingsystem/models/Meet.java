@@ -5,6 +5,9 @@ import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 
 import java.sql.Timestamp;
 
@@ -28,6 +31,7 @@ public class Meet {
     @ForeignCollectionField()
     private ForeignCollection<Participant> participants;
 
+    private final ObservableList<Participant> participantsList = FXCollections.observableArrayList();
     public int getId() {
         return id;
     }
@@ -64,11 +68,12 @@ public class Meet {
         this.endDate = endDate;
     }
 
-    public ForeignCollection<Participant> getParticipants() {
-        return participants;
+    public ObservableList<Participant> getParticipants() {
+        return participantsList;
     }
 
     public Meet(String room, Timestamp startDate, Timestamp endDate) {
+        this();
         this.room = room;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -80,6 +85,18 @@ public class Meet {
     }
 
     public Meet() {
+        if (participants != null) {
+            participantsList.addAll(participants);
+        }
 
+        participantsList.addListener((ListChangeListener<Participant>) c -> {
+            while (c.next()) {
+                if (c.wasAdded()) {
+                    participants.addAll(c.getAddedSubList());
+                } else if (c.wasRemoved()) {
+                    participants.removeAll(c.getRemoved());
+                }
+            }
+        });
     }
 }
