@@ -9,11 +9,16 @@
 .field {
     -fx-background-color: lightgray;
     -fx-prompt-text-fill: #6f777d;
+    -fx-font-size: 13px;
     -fx-text-inner-color: -fx-primary-color;
     -fx-label-padding: 10px;
-    -fx-font-size: 15px;
     -fx-border-radius: 4px;
+    -fx-padding: 7px;
+}
+
+.field-md {
     -fx-padding: 10px;
+    -fx-font-size: 15px;
 }
 
 .primary-button {
