@@ -17,6 +17,12 @@
     -fx-label-padding: 10px;
     -fx-border-radius: 4px;
     -fx-padding: 7px;
+    -fx-border-width: 1;
+    -fx-border-color: #c2c2c2;
+}
+
+.text-field:focused {
+    -fx-border-color: #559aed;
 }
 
 .context-menu {
