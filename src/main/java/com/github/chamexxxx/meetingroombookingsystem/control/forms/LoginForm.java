@@ -26,8 +26,8 @@ public class LoginForm extends Form {
         usernameField.setLeft(createUsernameIconContainer());
         passwordField.setLeft(createPasswordIconContainer());
 
-        usernameField.getStyleClass().add("field-md");
-        passwordField.getStyleClass().add("field-md");
+        usernameField.getStyleClass().add("text-field-md");
+        passwordField.getStyleClass().add("text-field-md");
 
         getChildren().setAll(usernameField, passwordField, button);
     }
