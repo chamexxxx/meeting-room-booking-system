@@ -30,6 +30,11 @@ public class DayEntryViewSkin extends impl.com.calendarfx.view.DayEntryViewSkin 
 
         participantsContainer.getChildren().addAll(participantLabels);
 
+        participants.addListener((ListChangeListener<Participant>) c -> {
+            participantsContainer.getChildren().clear();
+            participantsContainer.getChildren().addAll(createParticipantLabels(participants));
+        });
+
         getChildren().add(participantsContainer);
     }
 
