@@ -38,6 +38,7 @@ public class EntryDetailsView extends VBox {
         configureRegion();
 
         titleField.setText(entry.getTitle());
+        titleField.getStyleClass().add("entry-details__title");
         bindDisableProperty(titleField);
 
         startTimeField = createTimeField(entry.getStartTime());
