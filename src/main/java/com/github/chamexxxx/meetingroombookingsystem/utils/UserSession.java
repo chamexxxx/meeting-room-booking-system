@@ -15,6 +15,11 @@ public class UserSession {
 
                 if (usernameFromStore != null) {
                     account = Database.getAccountDao().queryForUsername(usernameFromStore);
+
+                    if (account == null) {
+                        return null;
+                    }
+
                     UserPreferences.putUsername(account.getUsername());
                 }
             }
