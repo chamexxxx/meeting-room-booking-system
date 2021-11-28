@@ -77,8 +77,8 @@ public class EntryDetailsView extends VBox {
     }
 
     private void configureRegion() {
-        setMinWidth(500);
-        setMinHeight(150);
+        setPrefWidth(600);
+        setPrefHeight(400);
     }
 
     private TimeField createTimeField(LocalTime localTime) {
