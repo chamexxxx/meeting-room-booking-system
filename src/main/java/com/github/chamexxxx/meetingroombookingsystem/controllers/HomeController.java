@@ -46,7 +46,7 @@ public class HomeController implements Initializable {
             }
         });
 
-        weeklyCalendar.setOnUpdateEntryAction((entry, interval) -> {
+        weeklyCalendar.setOnUpdateEntryDatesAction((entry, interval) -> {
             try {
                 changeMeetDates(entry);
             } catch (SQLException e) {

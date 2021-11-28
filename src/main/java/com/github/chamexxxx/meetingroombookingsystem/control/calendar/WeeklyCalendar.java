@@ -22,7 +22,7 @@ public class WeeklyCalendar {
     private final CalendarSource calendarSource = new CalendarSource("Meets");
     private final ObservableList<CalendarSource> calendarSources = FXCollections.observableArrayList();
     private Consumer<Entry<Meet>> onCreateEntryAction;
-    private BiConsumer<Entry<Meet>, Interval> onUpdateEntryAction;
+    private BiConsumer<Entry<Meet>, Interval> onUpdateEntryDatesAction;
     private Consumer<Entry<Meet>> onDeleteEntryAction;
 
     public WeeklyCalendar(ArrayList<Entry<Meet>> entries) {
@@ -39,8 +39,8 @@ public class WeeklyCalendar {
         this.onCreateEntryAction = action;
     }
 
-    public void setOnUpdateEntryAction(BiConsumer<Entry<Meet>, Interval> onUpdateEntryAction) {
-        this.onUpdateEntryAction = onUpdateEntryAction;
+    public void setOnUpdateEntryDatesAction(BiConsumer<Entry<Meet>, Interval> onUpdateEntryDatesAction) {
+        this.onUpdateEntryDatesAction = onUpdateEntryDatesAction;
     }
 
     public void setOnDeleteEntryAction(Consumer<Entry<Meet>> onDeleteEntryAction) {
