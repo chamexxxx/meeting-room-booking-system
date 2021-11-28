@@ -1,6 +1,7 @@
 package com.github.chamexxxx.meetingroombookingsystem.control;
 
 import com.github.chamexxxx.meetingroombookingsystem.models.Participant;
+import javafx.geometry.Insets;
 import javafx.scene.control.*;
 
 import java.util.ArrayList;
@@ -13,6 +14,8 @@ public class ParticipantsBox extends ToDoList<Participant> {
         super(Participant::new, initialParticipants);
 
         var label = new Label("Participants");
+
+        label.setPadding(new Insets(0, 0, 10, 0));
 
         getChildren().add(0, label);
     }
