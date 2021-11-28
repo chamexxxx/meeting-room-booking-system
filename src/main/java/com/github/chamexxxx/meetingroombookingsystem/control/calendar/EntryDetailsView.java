@@ -18,20 +18,18 @@ import java.util.ArrayList;
  */
 public class EntryDetailsView extends VBox {
     private final Entry<Meet> entry;
-    private Meet meet;
+    private final Meet meet;
     private final TextField titleField = new TextField();
-    private final Label startDateLabel = new Label(Messages.getString("EntryDetailsView.FROM"));
-    private final Label endDateLabel = new Label(Messages.getString("EntryDetailsView.TO"));
     private final TimeField startTimeField;
     private final TimeField endTimeField;
     private final DatePicker startDatePicker;
     private final DatePicker endDatePicker;
-    private ParticipantsBox participantsBox;
+    private final ParticipantsBox participantsBox;
 
     public EntryDetailsView(Entry<Meet> entry) {
         this.entry = entry;
 
-        meet = (Meet) entry.getUserObject();
+        meet = entry.getUserObject();
 
         var participants = meet.getParticipants();
 
@@ -51,6 +49,9 @@ public class EntryDetailsView extends VBox {
 
         startDateBox.setAlignment(Pos.CENTER_LEFT);
         endDateBox.setAlignment(Pos.CENTER_LEFT);
+
+        var startDateLabel = new Label(Messages.getString("EntryDetailsView.FROM"));
+        var endDateLabel = new Label(Messages.getString("EntryDetailsView.TO"));
 
         startDateBox.getChildren().addAll(startDateLabel, startDatePicker, startTimeField);
         endDateBox.getChildren().addAll(endDateLabel, endDatePicker, endTimeField);
