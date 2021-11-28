@@ -1,9 +1,13 @@
 /* Overriding default JavaFX styles */
 
+.button {
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
 .button, .context-menu .menu-item {
     -fx-cursor: hand;
 }
-
 
 .context-menu {
     -fx-background-color: -fx-primary-color;

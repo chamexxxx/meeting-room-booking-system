@@ -17,7 +17,6 @@
 }
 
 .primary-button {
-    -fx-border-radius: 4px;
     -fx-background-color: -fx-primary-color;
     -fx-text-fill: #fbfcfc;
 }
@@ -35,7 +34,6 @@
     -fx-background-color: transparent;
     -fx-border-color: #559aed;
     -fx-border-width: 2px;
-    -fx-border-radius: 5px;
 }
 
 .action-button:hover {
