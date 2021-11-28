@@ -70,6 +70,7 @@ public class ToDoList<M extends ToDoList.Model> extends VBox {
 
                         customTextField.setText(addITem.getName());
                         customTextField.setPromptText(getFieldPromptText());
+                        customTextField.getStyleClass().add("field");
 
                         fields.getChildren().add(customTextField);
 
