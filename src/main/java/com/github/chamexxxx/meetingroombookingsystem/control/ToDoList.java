@@ -107,8 +107,7 @@ public class ToDoList<M extends ToDoList.Model> extends VBox {
     private ScrollPane createScrollPane(Pane pane) {
         var scrollPane = new ScrollPane(pane);
 
-        scrollPane.setMinHeight(150);
-        scrollPane.setMaxHeight(250);
+        scrollPane.setPrefHeight(200);
         scrollPane.setFitToWidth(true);
         scrollPane.setPadding(new Insets(10));
         scrollPane.setFocusTraversable(false);
