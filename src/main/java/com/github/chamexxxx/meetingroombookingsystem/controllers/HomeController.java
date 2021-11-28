@@ -46,6 +46,14 @@ public class HomeController implements Initializable {
             }
         });
 
+        weeklyCalendar.setOnUpdateEntryTitleAction(entry -> {
+            try {
+                changeMeetTitle(entry);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        });
+
         weeklyCalendar.setOnUpdateEntryDatesAction((entry, interval) -> {
             try {
                 changeMeetDates(entry);
@@ -124,6 +132,18 @@ public class HomeController implements Initializable {
         deleteBuilder.where().eq("id", meet.getId());
 
         deleteBuilder.delete();
+    }
+
+    private void changeMeetTitle(Entry<Meet> entry) throws SQLException {
+        var updateBuilder = Database.getMeetDao().updateBuilder();
+
+        var meet = entry.getUserObject();
+
+        updateBuilder.where().eq("id", meet.getId());
+
+        updateBuilder.updateColumnValue("room", entry.getTitle());
+
+        updateBuilder.update();
     }
 
     private void changeMeetDates(Entry<Meet> entry) throws SQLException {
