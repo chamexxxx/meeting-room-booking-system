@@ -39,7 +39,7 @@ public abstract class Form extends VBox {
         var button = new Button();
 
         button.setMaxWidth(Double.MAX_VALUE);
-        button.getStyleClass().add("primary-button");
+        button.getStyleClass().addAll("primary-button", "button-md");
 
         setOnButtonAction(button);
 
