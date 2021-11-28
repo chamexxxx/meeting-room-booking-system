@@ -39,6 +39,10 @@ public class EntryDialog extends Dialog<Meet> {
         getDialogPane().getButtonTypes().addAll(saveButtonType, ButtonType.CANCEL);
 
         var saveButton = (Button) getDialogPane().lookupButton(saveButtonType);
+        var cancelButton = (Button) getDialogPane().lookupButton(ButtonType.CANCEL);
+
+        saveButton.getStyleClass().add("primary-button");
+        cancelButton.getStyleClass().add("secondary-button");
 
         saveButton.setOnAction(e -> {
             entryDetailsView.save();
