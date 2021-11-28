@@ -1,5 +1,6 @@
 package com.github.chamexxxx.meetingroombookingsystem.control.calendar;
 
+import com.calendarfx.model.CalendarEvent;
 import com.calendarfx.model.Entry;
 import com.calendarfx.view.Messages;
 import com.calendarfx.view.TimeField;
@@ -74,8 +75,19 @@ public class EntryDetailsView extends VBox {
         entry.changeEndTime(endTimeField.getValue());
 
         var participantModels = participantsBox.getModels();
+
+        participantModels.forEach(participant -> System.out.println(participant.getName()));
+
+        var participantsIsEquals = meet.getParticipants().equals(participantModels);
+
+        meet.getParticipants().clear();
         meet.getParticipants().addAll(participantModels);
+
         entry.setUserObject(meet);
+
+        if (!participantsIsEquals) {
+            entry.getCalendar().fireEvent(new CalendarEvent(CalendarEvent.ENTRY_USER_OBJECT_CHANGED, entry.getCalendar(), entry));
+        }
     }
 
     private void configureRegion() {

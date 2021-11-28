@@ -118,6 +118,8 @@ public class WeeklyCalendar {
             onUpdateEntryDatesAction.accept(entry, oldInterval);
         } else if (eventType.equals(CalendarEvent.ENTRY_TITLE_CHANGED)) {
             onUpdateEntryTitleAction.accept(entry);
+        } else if (eventType.equals(CalendarEvent.ENTRY_USER_OBJECT_CHANGED)) {
+            var meet = entry.getUserObject();
         }
     }
 }
