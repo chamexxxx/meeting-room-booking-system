@@ -3,6 +3,7 @@ package com.github.chamexxxx.meetingroombookingsystem.control.calendar;
 import com.calendarfx.model.Entry;
 import com.calendarfx.view.Messages;
 import com.calendarfx.view.TimeField;
+import com.github.chamexxxx.meetingroombookingsystem.control.ParticipantsBox;
 import com.github.chamexxxx.meetingroombookingsystem.models.Meet;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
@@ -10,6 +11,7 @@ import javafx.scene.layout.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 
 /**
  * Implementing your own {@link com.calendarfx.view.popover.EntryDetailsView} and {@link com.calendarfx.view.popover.EntryHeaderView} for use in a dialog
@@ -24,9 +26,14 @@ public class EntryDetailsView extends VBox {
     private final TimeField endTimeField;
     private final DatePicker startDatePicker;
     private final DatePicker endDatePicker;
+    private ParticipantsBox participantsBox;
 
     public EntryDetailsView(Entry<Meet> entry) {
         this.entry = entry;
+
+        meet = (Meet) entry.getUserObject();
+
+        var participants = meet.getParticipants();
 
         configureRegion();
 
@@ -50,7 +57,9 @@ public class EntryDetailsView extends VBox {
         startDatePicker.setValue(entry.getStartDate());
         endDatePicker.setValue(entry.getEndDate());
 
-        var container = new VBox(10, titleField, startDateBox, endDateBox);
+        participantsBox = new ParticipantsBox(new ArrayList<>(participants));
+
+        var container = new VBox(10, titleField, startDateBox, endDateBox, new Separator(), participantsBox, new Separator());
 
         getChildren().add(container);
     }
@@ -61,7 +70,10 @@ public class EntryDetailsView extends VBox {
         entry.changeStartTime(startTimeField.getValue());
         entry.changeEndDate(endDatePicker.getValue());
         entry.changeEndTime(endTimeField.getValue());
-        var meetDao = Database.getMeetDao();
+
+        var participantModels = participantsBox.getModels();
+        meet.getParticipants().addAll(participantModels);
+        entry.setUserObject(meet);
     }
 
     private void configureRegion() {
