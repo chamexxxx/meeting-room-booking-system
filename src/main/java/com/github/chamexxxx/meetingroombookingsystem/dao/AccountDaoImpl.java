@@ -1,15 +1,15 @@
 package com.github.chamexxxx.meetingroombookingsystem.dao;
 
-import com.github.chamexxxx.meetingroombookingsystem.dto.Account;
+import com.github.chamexxxx.meetingroombookingsystem.dto.AccountDto;
 import com.github.chamexxxx.meetingroombookingsystem.utils.PasswordHashing;
 import com.j256.ormlite.dao.BaseDaoImpl;
 import com.j256.ormlite.support.ConnectionSource;
 
 import java.sql.SQLException;
 
-public class AccountDaoImpl extends BaseDaoImpl<Account, String> implements AccountDao {
+public class AccountDaoImpl extends BaseDaoImpl<AccountDto, String> implements AccountDao {
     public AccountDaoImpl(ConnectionSource connectionSource) throws SQLException {
-        super(connectionSource, Account.class);
+        super(connectionSource, AccountDto.class);
     }
 
     @Override
@@ -28,7 +28,7 @@ public class AccountDaoImpl extends BaseDaoImpl<Account, String> implements Acco
     }
 
     @Override
-    public Account queryForUsername(String username) throws SQLException {
+    public AccountDto queryForUsername(String username) throws SQLException {
         return queryForFirst(queryBuilder().where().eq("username", username).prepare());
     }
 }

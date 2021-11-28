@@ -2,7 +2,7 @@ package com.github.chamexxxx.meetingroombookingsystem.control.calendar;
 
 import com.calendarfx.model.Entry;
 import com.calendarfx.view.DateControl;
-import com.github.chamexxxx.meetingroombookingsystem.dto.Meet;
+import com.github.chamexxxx.meetingroombookingsystem.dto.MeetDto;
 import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.InputEvent;
 import javafx.util.Callback;
@@ -11,7 +11,7 @@ public class EntryDetailsCallback implements Callback<DateControl.EntryDetailsPa
     @Override
     public Boolean call(DateControl.EntryDetailsParameter param) {
         InputEvent evt = param.getInputEvent();
-        var entry = (Entry<Meet>) param.getEntry();
+        var entry = (Entry<MeetDto>) param.getEntry();
 
         if (evt instanceof ContextMenuEvent) {
             var dialog = new EntryDialog(entry);

@@ -1,7 +1,7 @@
 package com.github.chamexxxx.meetingroombookingsystem.control.calendar;
 
 import com.calendarfx.model.*;
-import com.github.chamexxxx.meetingroombookingsystem.dto.Meet;
+import com.github.chamexxxx.meetingroombookingsystem.dto.MeetDto;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
@@ -21,11 +21,11 @@ public class WeeklyCalendar {
     private final Calendar calendar = new Calendar("meets");
     private final CalendarSource calendarSource = new CalendarSource("Meets");
     private final ObservableList<CalendarSource> calendarSources = FXCollections.observableArrayList();
-    private Consumer<Entry<Meet>> onCreateEntryAction;
-    private BiConsumer<Entry<Meet>, Interval> onUpdateEntryAction;
-    private Consumer<Entry<Meet>> onDeleteEntryAction;
+    private Consumer<Entry<MeetDto>> onCreateEntryAction;
+    private BiConsumer<Entry<MeetDto>, Interval> onUpdateEntryAction;
+    private Consumer<Entry<MeetDto>> onDeleteEntryAction;
 
-    public WeeklyCalendar(ArrayList<Entry<Meet>> entries) {
+    public WeeklyCalendar(ArrayList<Entry<MeetDto>> entries) {
         startUpdatingTimeThread();
         initializeEntries(entries);
         configure();
@@ -35,15 +35,15 @@ public class WeeklyCalendar {
         return weekPage;
     }
 
-    public void setOnCreateEntryAction(Consumer<Entry<Meet>> action) {
+    public void setOnCreateEntryAction(Consumer<Entry<MeetDto>> action) {
         this.onCreateEntryAction = action;
     }
 
-    public void setOnUpdateEntryAction(BiConsumer<Entry<Meet>, Interval> onUpdateEntryAction) {
+    public void setOnUpdateEntryAction(BiConsumer<Entry<MeetDto>, Interval> onUpdateEntryAction) {
         this.onUpdateEntryAction = onUpdateEntryAction;
     }
 
-    public void setOnDeleteEntryAction(Consumer<Entry<Meet>> onDeleteEntryAction) {
+    public void setOnDeleteEntryAction(Consumer<Entry<MeetDto>> onDeleteEntryAction) {
         this.onDeleteEntryAction = onDeleteEntryAction;
     }
 
@@ -76,7 +76,7 @@ public class WeeklyCalendar {
         };
     }
 
-    private void initializeEntries(ArrayList<Entry<Meet>> entries) {
+    private void initializeEntries(ArrayList<Entry<MeetDto>> entries) {
         entries.forEach(calendar::addEntry);
     }
 
@@ -98,7 +98,7 @@ public class WeeklyCalendar {
 
     private void calendarHandler(CalendarEvent event) {
         var eventType = event.getEventType();
-        var entry = (Entry<Meet>) event.getEntry();
+        var entry = (Entry<MeetDto>) event.getEntry();
 
         if (eventType.equals(CalendarEvent.ENTRY_CALENDAR_CHANGED)) {
             var calendar = event.getCalendar();

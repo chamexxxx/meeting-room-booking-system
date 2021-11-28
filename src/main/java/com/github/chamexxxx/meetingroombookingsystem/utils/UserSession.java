@@ -1,14 +1,14 @@
 package com.github.chamexxxx.meetingroombookingsystem.utils;
 
 import com.github.chamexxxx.meetingroombookingsystem.Database;
-import com.github.chamexxxx.meetingroombookingsystem.dto.Account;
+import com.github.chamexxxx.meetingroombookingsystem.dto.AccountDto;
 
 import java.sql.SQLException;
 
 public class UserSession {
-    private static Account account = null;
+    private static AccountDto account = null;
 
-    public static Account getAccount() {
+    public static AccountDto getAccount() {
         try {
             if (account == null) {
                 var usernameFromStore = UserPreferences.getUsername();
@@ -30,7 +30,7 @@ public class UserSession {
         return getAccount() != null;
     }
 
-    public static void setAccount(Account account) {
+    public static void setAccount(AccountDto account) {
         UserPreferences.putUsername(account.getUsername());
         UserSession.account = account;
     }

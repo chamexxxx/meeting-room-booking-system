@@ -4,7 +4,7 @@ import com.calendarfx.model.Entry;
 import com.calendarfx.view.Messages;
 import com.calendarfx.view.TimeField;
 import com.github.chamexxxx.meetingroombookingsystem.control.ParticipantsBox;
-import com.github.chamexxxx.meetingroombookingsystem.dto.Meet;
+import com.github.chamexxxx.meetingroombookingsystem.dto.MeetDto;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
@@ -17,8 +17,8 @@ import java.util.ArrayList;
  * Implementing your own {@link com.calendarfx.view.popover.EntryDetailsView} and {@link com.calendarfx.view.popover.EntryHeaderView} for use in a dialog
  */
 public class EntryDetailsView extends VBox {
-    private final Entry<Meet> entry;
-    private Meet meet;
+    private final Entry<MeetDto> entry;
+    private MeetDto meet;
     private final TextField titleField = new TextField();
     private final Label startDateLabel = new Label(Messages.getString("EntryDetailsView.FROM"));
     private final Label endDateLabel = new Label(Messages.getString("EntryDetailsView.TO"));
@@ -28,10 +28,10 @@ public class EntryDetailsView extends VBox {
     private final DatePicker endDatePicker;
     private ParticipantsBox participantsBox;
 
-    public EntryDetailsView(Entry<Meet> entry) {
+    public EntryDetailsView(Entry<MeetDto> entry) {
         this.entry = entry;
 
-        meet = (Meet) entry.getUserObject();
+        meet = (MeetDto) entry.getUserObject();
 
         var participants = meet.getParticipants();
 

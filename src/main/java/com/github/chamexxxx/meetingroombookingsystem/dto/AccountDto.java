@@ -7,7 +7,7 @@ import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable(tableName = "accounts", daoClass = AccountDaoImpl.class)
-public class Account {
+public class AccountDto {
     @DatabaseField(generatedId = true)
     private int id;
 
@@ -18,7 +18,7 @@ public class Account {
     private String password;
 
     @ForeignCollectionField()
-    private ForeignCollection<Meet> meets;
+    private ForeignCollection<MeetDto> meets;
 
     public String getUsername() {
         return username;
@@ -36,7 +36,7 @@ public class Account {
         this.password = password;
     }
 
-    public Account() {
+    public AccountDto() {
 
     }
 }

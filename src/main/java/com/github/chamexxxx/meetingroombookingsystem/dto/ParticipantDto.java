@@ -5,12 +5,12 @@ import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable(tableName = "participants")
-public class Participant implements ToDoList.Model {
+public class ParticipantDto implements ToDoList.Model {
     @DatabaseField(generatedId = true)
     private int id;
 
     @DatabaseField(canBeNull = false, foreign = true)
-    private Meet meet;
+    private MeetDto meet;
 
     @DatabaseField(canBeNull = false)
     private String name;

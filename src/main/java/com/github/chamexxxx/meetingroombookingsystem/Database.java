@@ -2,9 +2,9 @@ package com.github.chamexxxx.meetingroombookingsystem;
 
 import com.github.chamexxxx.meetingroombookingsystem.dao.AccountDao;
 import com.github.chamexxxx.meetingroombookingsystem.dao.MeetDao;
-import com.github.chamexxxx.meetingroombookingsystem.dto.Account;
-import com.github.chamexxxx.meetingroombookingsystem.dto.Meet;
-import com.github.chamexxxx.meetingroombookingsystem.dto.Participant;
+import com.github.chamexxxx.meetingroombookingsystem.dto.AccountDto;
+import com.github.chamexxxx.meetingroombookingsystem.dto.MeetDto;
+import com.github.chamexxxx.meetingroombookingsystem.dto.ParticipantDto;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
 import com.j256.ormlite.support.ConnectionSource;
@@ -21,8 +21,8 @@ public class Database {
         try {
             connectionSource = new JdbcConnectionSource("jdbc:sqlite:database.db");
 
-            meetDao = DaoManager.createDao(connectionSource, Meet.class);
-            accountDao = DaoManager.createDao(connectionSource, Account.class);
+            meetDao = DaoManager.createDao(connectionSource, MeetDto.class);
+            accountDao = DaoManager.createDao(connectionSource, AccountDto.class);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -37,8 +37,8 @@ public class Database {
     }
 
     public static void createTables() throws SQLException {
-        TableUtils.createTableIfNotExists(connectionSource, Account.class);
-        TableUtils.createTableIfNotExists(connectionSource, Meet.class);
-        TableUtils.createTableIfNotExists(connectionSource, Participant.class);
+        TableUtils.createTableIfNotExists(connectionSource, AccountDto.class);
+        TableUtils.createTableIfNotExists(connectionSource, MeetDto.class);
+        TableUtils.createTableIfNotExists(connectionSource, ParticipantDto.class);
     }
 }

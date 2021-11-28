@@ -12,12 +12,12 @@ import javafx.collections.ObservableList;
 import java.sql.Timestamp;
 
 @DatabaseTable(tableName = "meets", daoClass = MeetDaoImpl.class)
-public class Meet {
+public class MeetDto {
     @DatabaseField(generatedId = true)
     private int id;
 
     @DatabaseField(canBeNull = false, foreign = true)
-    private Account account;
+    private AccountDto account;
 
     @DatabaseField(canBeNull = false)
     private String room;
@@ -29,18 +29,18 @@ public class Meet {
     private Timestamp endDate;
 
     @ForeignCollectionField()
-    private ForeignCollection<Participant> participants;
+    private ForeignCollection<ParticipantDto> participants;
 
-    private final ObservableList<Participant> participantsList = FXCollections.observableArrayList();
+    private final ObservableList<ParticipantDto> participantsList = FXCollections.observableArrayList();
     public int getId() {
         return id;
     }
 
-    public Account getAccount() {
+    public AccountDto getAccount() {
         return account;
     }
 
-    public void setAccount(Account account) {
+    public void setAccount(AccountDto account) {
         this.account = account;
     }
 
@@ -68,28 +68,28 @@ public class Meet {
         this.endDate = endDate;
     }
 
-    public ObservableList<Participant> getParticipants() {
+    public ObservableList<ParticipantDto> getParticipants() {
         return participantsList;
     }
 
-    public Meet(String room, Timestamp startDate, Timestamp endDate) {
+    public MeetDto(String room, Timestamp startDate, Timestamp endDate) {
         this();
         this.room = room;
         this.startDate = startDate;
         this.endDate = endDate;
     }
 
-    public Meet(String room, Timestamp startDate, Timestamp endDate, Account account) {
+    public MeetDto(String room, Timestamp startDate, Timestamp endDate, AccountDto account) {
         this(room, startDate, endDate);
         this.account = account;
     }
 
-    public Meet() {
+    public MeetDto() {
         if (participants != null) {
             participantsList.addAll(participants);
         }
 
-        participantsList.addListener((ListChangeListener<Participant>) c -> {
+        participantsList.addListener((ListChangeListener<ParticipantDto>) c -> {
             while (c.next()) {
                 if (c.wasAdded()) {
                     participants.addAll(c.getAddedSubList());
