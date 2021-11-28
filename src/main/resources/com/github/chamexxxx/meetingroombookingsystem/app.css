@@ -16,6 +16,11 @@
     -fx-text-fill: #fbfcfc;
 }
 
+.secondary-button {
+    -fx-background-color: #d5d5d5;
+    -fx-text-fill: #000000;
+}
+
 .button-md {
     -fx-font-size: 15px;
     -fx-font-weight: bold;
