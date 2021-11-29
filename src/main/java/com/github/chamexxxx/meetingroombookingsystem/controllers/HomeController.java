@@ -8,6 +8,7 @@ import com.github.chamexxxx.meetingroombookingsystem.models.Meet;
 import com.github.chamexxxx.meetingroombookingsystem.utils.UserSession;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.layout.BorderPane;
 
 import java.net.URL;
@@ -30,8 +31,13 @@ public class HomeController implements Initializable {
             var meetEntries = getMeetEntries();
 
             weeklyCalendar = new WeeklyCalendar(meetEntries);
-            handleCalendarActions();
+            weeklyCalendar.getWeekPage().setPadding(new Insets(10));
+
             borderPane.setCenter(weeklyCalendar.getWeekPage());
+            borderPane.getCenter().setStyle("-fx-border-color: #d9d9d9; -fx-border-width: 1; -fx-border-radius: 10px; -fx-background-radius: 10px");
+            borderPane.setPadding(new Insets(0, 50, 50, 50));
+
+            handleCalendarActions();
         } catch (SQLException e) {
             e.printStackTrace();
         }
