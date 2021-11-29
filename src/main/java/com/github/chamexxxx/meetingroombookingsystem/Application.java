@@ -17,9 +17,6 @@ public class Application extends javafx.application.Application {
 
     @Override
     public void start(Stage stage) throws IOException, SQLException {
-        Locale.setDefault(Locale.US);
-
-        configureDatabase();
         configureStage(stage);
 
         var initialScene = createInitialScene();
@@ -68,7 +65,7 @@ public class Application extends javafx.application.Application {
         stage.setMaximized(true);
     }
 
-    private void configureDatabase() throws SQLException {
+    private static void configureDatabase() throws SQLException {
         Database.createTables();
     }
 
@@ -78,7 +75,9 @@ public class Application extends javafx.application.Application {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
+        Locale.setDefault(Locale.US);
+        configureDatabase();
         launch();
     }
 }
