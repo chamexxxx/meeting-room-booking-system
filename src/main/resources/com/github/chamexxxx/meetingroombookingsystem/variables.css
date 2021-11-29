@@ -3,6 +3,6 @@
     -fx-primary-text-color: #fbfcfc;
     -fx-secondary-color: #d5d5d5; /* grey */
     -fx-secondary-text-color: #fbfcfc;
-    -fx-base-background-color: #0bab64; /* green */
-    -fx-base-background-gradient-color: linear-gradient(to top, -fx-base-background-color, #3bb78f);
+    -fx-base-background-color: #3bb78f; /* green */
+    -fx-base-background-gradient-color: linear-gradient(to top, #0bab64, -fx-base-background-color);
 }
