@@ -11,6 +11,7 @@ public class WeekPage extends com.calendarfx.view.page.WeekPage {
         configureEntryViewFactory();
         setEntryContextMenuCallback(EntryContextMenu::new);
         setEntryDetailsCallback(param -> new EntryDetailsCallback().call(param));
+        getDetailedWeekView().setShowAllDayView(false);
     }
 
     private void configureEntryViewFactory() {
