@@ -22,6 +22,7 @@ import java.util.function.Supplier;
  */
 public class ToDoList<M extends ToDoList.Model> extends VBox {
     public interface Model {
+        StringProperty nameProperty();
         String getName();
         void setName(String name);
     }

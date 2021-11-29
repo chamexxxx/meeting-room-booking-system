@@ -23,6 +23,10 @@ public class Participant implements ToDoList.Model {
         this.name = new SimpleStringProperty();
     }
 
+    public IntegerProperty idProperty() {
+        return id;
+    }
+
     public int getId() {
         return id.get();
     }
@@ -31,12 +35,20 @@ public class Participant implements ToDoList.Model {
         this.id.set(id);
     }
 
+    public IntegerProperty meetIdProperty() {
+        return meetId;
+    }
+
     public int getMeetId() {
         return meetId.get();
     }
 
     public void setMeetId(int meetId) {
         this.meetId.set(meetId);
+    }
+
+    public StringProperty nameProperty() {
+        return name;
     }
 
     public String getName() {
