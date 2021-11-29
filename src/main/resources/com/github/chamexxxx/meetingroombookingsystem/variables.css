@@ -1,4 +1,8 @@
 * {
     -fx-primary-color: #2A363F; /* black */
-    -fx-secondary-color: #008080; /* teal */
+    -fx-primary-text-color: #fbfcfc;
+    -fx-secondary-color: #d5d5d5; /* grey */
+    -fx-secondary-text-color: #fbfcfc;
+    -fx-base-background-color: #0bab64; /* green */
+    -fx-base-background-gradient-color: linear-gradient(to top, -fx-base-background-color, #3bb78f);
 }
