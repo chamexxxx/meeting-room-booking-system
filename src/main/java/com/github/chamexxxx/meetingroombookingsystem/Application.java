@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Locale;
 import java.util.Objects;
 
@@ -78,6 +79,11 @@ public class Application extends javafx.application.Application {
     public static void main(String[] args) throws SQLException {
         Locale.setDefault(Locale.US);
         configureDatabase();
+
+        if (Arrays.asList(args).contains("--generate-fake-data")) {
+            (new FakeDataGenerator()).generate();
+        }
+
         launch();
     }
 }

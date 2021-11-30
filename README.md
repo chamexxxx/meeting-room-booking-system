@@ -14,7 +14,13 @@ Run in place
 ./gradlew run
 ```
 
-To build the project, type:
+Run in place and generate fake data 
+
+```bash
+./gradlew run --args="--generate-fake-data"
+```
+
+To build the project
 
 ```bash
 ./gradlew build

@@ -8,6 +8,7 @@ module com.github.chamexxxx.meetingroombookingsystem {
     requires bcrypt;
     requires org.jetbrains.annotations;
     requires java.prefs;
+    requires javafaker;
 
     opens com.github.chamexxxx.meetingroombookingsystem to javafx.fxml;
     exports com.github.chamexxxx.meetingroombookingsystem;

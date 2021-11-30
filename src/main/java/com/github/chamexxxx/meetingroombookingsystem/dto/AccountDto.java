@@ -41,6 +41,11 @@ public class AccountDto {
         this.password = PasswordHashing.hash(password);
     }
 
+    public AccountDto(String username, String password) {
+        setUsername(username);
+        setPassword(password);
+    }
+
     public AccountDto() {
 
     }
