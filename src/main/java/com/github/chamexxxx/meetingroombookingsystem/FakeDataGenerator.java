@@ -35,7 +35,7 @@ public class FakeDataGenerator {
     }
 
     private void createMeets(AccountDto accountDto) {
-        IntStream.range(0, 1).forEachOrdered(value -> {
+        IntStream.range(0, 30).forEachOrdered(value -> {
             var room = "Room " + faker.random().nextInt(1, 10);
             var dates = getRandomDates();
             var startDate = new Timestamp(dates[0].getTime());
