@@ -35,9 +35,10 @@ public class ParticipantDto {
         this.name = name;
     }
 
-    public ParticipantDto(String name) {
+    public ParticipantDto(String name, MeetDto meetDto) {
         this();
         this.name = name;
+        this.meet = meetDto;
     }
 
     public ParticipantDto() {
