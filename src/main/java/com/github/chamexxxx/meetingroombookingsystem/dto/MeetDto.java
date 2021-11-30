@@ -5,9 +5,6 @@ import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
-import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableList;
 
 import java.sql.Timestamp;
 
@@ -78,9 +75,9 @@ public class MeetDto {
         this.endDate = endDate;
     }
 
-    public MeetDto(String room, Timestamp startDate, Timestamp endDate, AccountDto account) {
+    public MeetDto(String room, Timestamp startDate, Timestamp endDate, AccountDto accountDto) {
         this(room, startDate, endDate);
-        this.account = account;
+        this.account = accountDto;
     }
 
     public MeetDto() {
