@@ -1,9 +1,10 @@
 package com.github.chamexxxx.meetingroombookingsystem.dto;
 
+import com.github.chamexxxx.meetingroombookingsystem.dao.ParticipantDaoImpl;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
-@DatabaseTable(tableName = "participants")
+@DatabaseTable(tableName = "participants", daoClass = ParticipantDaoImpl.class)
 public class ParticipantDto {
     @DatabaseField(generatedId = true)
     private int id;
