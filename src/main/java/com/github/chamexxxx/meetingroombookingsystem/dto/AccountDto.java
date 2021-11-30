@@ -1,6 +1,7 @@
 package com.github.chamexxxx.meetingroombookingsystem.dto;
 
 import com.github.chamexxxx.meetingroombookingsystem.dao.AccountDaoImpl;
+import com.github.chamexxxx.meetingroombookingsystem.utils.PasswordHashing;
 import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.field.ForeignCollectionField;
@@ -37,7 +38,7 @@ public class AccountDto {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = PasswordHashing.hash(password);
     }
 
     public AccountDto() {
