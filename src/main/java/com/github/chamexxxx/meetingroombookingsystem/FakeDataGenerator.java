@@ -29,7 +29,7 @@ public class FakeDataGenerator {
 
         Database.getAccountDao().create(accountDto);
 
-        System.out.println("Created account with username " + username + " and password " + password);
+        System.out.println("An account has been created with username " + username + " and password " + password);
 
         return accountDto;
     }
