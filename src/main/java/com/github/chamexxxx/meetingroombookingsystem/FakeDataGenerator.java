@@ -53,7 +53,7 @@ public class FakeDataGenerator {
     }
 
     private void createParticipants(MeetDto meetDto) {
-        IntStream.range(1, 5).forEachOrdered(value -> {
+        IntStream.range(1, faker.random().nextInt(2, 5)).forEachOrdered(value -> {
             try {
                 var participant = new ParticipantDto(faker.name().fullName(), meetDto);
                 Database.getParticipantDao().create(participant);
