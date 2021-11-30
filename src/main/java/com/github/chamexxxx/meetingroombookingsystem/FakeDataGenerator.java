@@ -45,20 +45,22 @@ public class FakeDataGenerator {
 
             try {
                 Database.getMeetDao().create(meetDto);
+                createParticipants(meetDto);
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         });
     }
 
-    private ArrayList<ParticipantDto> generateParticipants() {
-        var participants = new ArrayList<ParticipantDto>();
-
-        IntStream.range(0, 5).forEachOrdered(value -> {
-            participants.add(new ParticipantDto(faker.name().fullName()));
+    private void createParticipants(MeetDto meetDto) {
+        IntStream.range(1, 5).forEachOrdered(value -> {
+            try {
+                var participant = new ParticipantDto(faker.name().fullName(), meetDto);
+                Database.getParticipantDao().create(participant);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         });
-
-        return participants;
     }
 
     private Date[] getRandomDates() {
