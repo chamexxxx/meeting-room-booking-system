@@ -6,6 +6,13 @@
     -fx-font-size: 15px;
 }
 
+.background-transparent {
+    -fx-background-color: transparent;
+}
+
+.cursor-hand {
+    -fx-cursor: hand;
+}
 
 .text-field-md {
     -fx-padding: 10px;
@@ -49,12 +56,4 @@
     -fx-text-fill: -fx-base-background-color;
     -fx-background-color: transparent;
     -fx-border-width: 0;
-}
-
-.background-transparent {
-    -fx-background-color: transparent;
-}
-
-.cursor-hand {
-    -fx-cursor: hand;
 }
