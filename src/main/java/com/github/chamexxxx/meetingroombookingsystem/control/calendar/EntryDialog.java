@@ -26,7 +26,7 @@ public class EntryDialog extends Dialog<Meet> {
         entryDetailsView = new EntryDetailsView(entry);
 
         entryDetailsView.setPrefWidth(600);
-        entryDetailsView.setPrefHeight(400);
+        entryDetailsView.setPrefHeight(500);
 
         getDialogPane().setContent(entryDetailsView);
         getDialogPane().getStylesheets().addAll(Application.getAllStylesheets());
