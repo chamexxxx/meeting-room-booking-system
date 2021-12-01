@@ -33,11 +33,6 @@
 }
 
 .day-view > .current-time-circle {
-    -fx-stroke: -fx-primary-color;
-    -fx-fill: -fx-primary-color;
-}
-
-.day-view > .current-time-circle {
     -fx-stroke: none;
     -fx-fill: none;
 }
