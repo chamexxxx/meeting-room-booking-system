@@ -54,6 +54,9 @@ public class EntryDetailsView extends VBox {
         var startDateLabel = new Label(Messages.getString("EntryDetailsView.FROM"));
         var endDateLabel = new Label(Messages.getString("EntryDetailsView.TO"));
 
+        startDateLabel.getStyleClass().add("text-sm");
+        endDateLabel.getStyleClass().add("text-sm");
+
         startDateBox.getChildren().addAll(startDateLabel, startDatePicker, startTimeField);
         endDateBox.getChildren().addAll(endDateLabel, endDatePicker, endTimeField);
 

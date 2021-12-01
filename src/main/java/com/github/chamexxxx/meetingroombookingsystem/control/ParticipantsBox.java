@@ -15,6 +15,7 @@ public class ParticipantsBox extends ToDoList<Participant> {
 
         var label = new Label("Participants");
 
+        label.getStyleClass().add("text-sm");
         label.setPadding(new Insets(0, 0, 10, 0));
 
         getChildren().add(0, label);

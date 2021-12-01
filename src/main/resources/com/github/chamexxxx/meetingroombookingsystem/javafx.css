@@ -4,6 +4,10 @@
     -fx-background-color: -fx-base-background-gradient-color;
 }
 
+.dialog-pane {
+    -fx-background-color: white;
+}
+
 .button {
     -fx-border-radius: 5px;
     -fx-background-radius: 5px;

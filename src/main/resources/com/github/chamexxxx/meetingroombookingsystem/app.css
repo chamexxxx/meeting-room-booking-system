@@ -1,3 +1,7 @@
+.text-sm {
+    -fx-font-size: 13px;
+}
+
 .text-field-md {
     -fx-padding: 10px;
     -fx-font-size: 15px;
