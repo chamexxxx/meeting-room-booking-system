@@ -38,6 +38,8 @@ public class EntryDetailsView extends VBox {
 
         titleField.setText(entry.getTitle());
         titleField.getStyleClass().add("entry-details__title");
+        titleField.setPromptText("Room name");
+
         bindDisableProperty(titleField);
 
         startTimeField = createTimeField(entry.getStartTime());
