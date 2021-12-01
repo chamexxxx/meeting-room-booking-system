@@ -6,6 +6,7 @@
     -fx-font-size: 15px;
 }
 
+
 .text-field-md {
     -fx-padding: 10px;
     -fx-font-size: 15px;
@@ -29,23 +30,23 @@
 
 .action-button {
     -fx-font-size: 12px;
-    -fx-text-fill: #559aed;
+    -fx-text-fill: -fx-base-background-color;
     -fx-font-weight: bold;
     -fx-background-color: transparent;
-    -fx-border-color: #559aed;
+    -fx-border-color: -fx-base-background-color;
     -fx-border-width: 1px;
 }
 
 .action-button:hover {
     -fx-text-fill: #ffffff;
-    -fx-background-color: #559aed;
+    -fx-background-color: -fx-base-background-color;
 }
 
 .entry-details__title {
     -fx-padding: 10px 10px 10px 5px;
     -fx-font-size: 15px;
     -fx-font-weight: bold;
-    -fx-text-fill: #559aed;
+    -fx-text-fill: -fx-base-background-color;
     -fx-background-color: transparent;
     -fx-border-width: 0;
 }
