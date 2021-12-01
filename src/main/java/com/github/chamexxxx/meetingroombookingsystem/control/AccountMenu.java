@@ -64,7 +64,7 @@ class AccountMenuButton extends MenuButton {
         menuItem.setGraphic(container);
         label.setMinWidth(100);
         label.setPadding(new Insets(0, 0, 0, 10));
-        Platform.runLater(() -> label.setMinWidth(getWidth() != 0.0 ? getWidth() - 20 : 100));
+        Platform.runLater(() -> label.setMinWidth(getWidth() != 0.0 ? getWidth() - 35 : 100));
         container.setAlignment(Pos.CENTER);
 
         return menuItem;
