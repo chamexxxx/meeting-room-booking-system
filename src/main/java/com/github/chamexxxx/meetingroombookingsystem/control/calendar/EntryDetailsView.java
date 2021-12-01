@@ -34,8 +34,6 @@ public class EntryDetailsView extends VBox {
 
         var participants = meet.getParticipants();
 
-        configureRegion();
-
         titleField.setText(entry.getTitle());
         titleField.getStyleClass().add("entry-details__title");
         titleField.setPromptText("Room name");
@@ -97,11 +95,6 @@ public class EntryDetailsView extends VBox {
         if (!participantsIsEquals) {
             entry.getCalendar().fireEvent(new CalendarEvent(CalendarEvent.ENTRY_USER_OBJECT_CHANGED, entry.getCalendar(), entry));
         }
-    }
-
-    private void configureRegion() {
-        setPrefWidth(600);
-        setPrefHeight(400);
     }
 
     private TimeField createTimeField(LocalTime localTime) {
