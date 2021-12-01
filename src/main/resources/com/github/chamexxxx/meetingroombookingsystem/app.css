@@ -2,6 +2,10 @@
     -fx-font-size: 13px;
 }
 
+.text-base {
+    -fx-font-size: 15px;
+}
+
 .text-field-md {
     -fx-padding: 10px;
     -fx-font-size: 15px;

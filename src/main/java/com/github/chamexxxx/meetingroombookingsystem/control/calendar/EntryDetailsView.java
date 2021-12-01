@@ -67,7 +67,11 @@ public class EntryDetailsView extends VBox {
 
         participantsBox = new ParticipantsBox(new ArrayList<>(participants));
 
-        var container = new VBox(10, titleField, new Separator(), startDateBox, endDateBox, new Separator(), participantsBox, new Separator());
+        var datesLabel = new Label("Booking time");
+        datesLabel.getStyleClass().add("text-base");
+
+
+        var container = new VBox(10, titleField, new Separator(), datesLabel, startDateBox, endDateBox, new Separator(), participantsBox, new Separator());
 
         getChildren().add(container);
     }
