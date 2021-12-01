@@ -4,8 +4,10 @@ import com.calendarfx.model.CalendarEvent;
 import com.calendarfx.model.Entry;
 import com.calendarfx.view.Messages;
 import com.calendarfx.view.TimeField;
-import com.github.chamexxxx.meetingroombookingsystem.control.ParticipantsBox;
+import com.github.chamexxxx.meetingroombookingsystem.control.ToDoList;
 import com.github.chamexxxx.meetingroombookingsystem.models.Meet;
+import com.github.chamexxxx.meetingroombookingsystem.models.Participant;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
@@ -25,7 +27,7 @@ public class EntryDetailsView extends VBox {
     private final TimeField endTimeField;
     private final DatePicker startDatePicker;
     private final DatePicker endDatePicker;
-    private final ParticipantsBox participantsBox;
+    private final ParticipantsSection participantsSection;
 
     public EntryDetailsView(Entry<Meet> entry) {
         this.entry = entry;
@@ -63,7 +65,7 @@ public class EntryDetailsView extends VBox {
         startDatePicker.setValue(entry.getStartDate());
         endDatePicker.setValue(entry.getEndDate());
 
-        participantsBox = new ParticipantsBox(new ArrayList<>(participants));
+        participantsSection = new ParticipantsSection(new ArrayList<>(participants));
 
         var datesLabel = new Label("Booking time");
         datesLabel.getStyleClass().add("text-base");
@@ -81,7 +83,7 @@ public class EntryDetailsView extends VBox {
         entry.changeEndDate(endDatePicker.getValue());
         entry.changeEndTime(endTimeField.getValue());
 
-        var participantModels = participantsBox.getModels();
+        var participantModels = participantsSection.getModels();
 
         participantModels.forEach(participant -> System.out.println(participant.getName()));
 
@@ -117,5 +119,31 @@ public class EntryDetailsView extends VBox {
 
     private void bindDisableProperty(Control control) {
         control.disableProperty().bind(entry.getCalendar().readOnlyProperty());
+    }
+}
+
+/**
+ * A container with a list of participants with the ability to create, edit and delete
+ */
+class ParticipantsSection extends ToDoList<Participant> {
+    public ParticipantsSection(ArrayList<Participant> initialParticipants) {
+        super(Participant::new, initialParticipants);
+
+        var label = new Label("Participants");
+
+        label.getStyleClass().add("text-base");
+        label.setPadding(new Insets(0, 0, 10, 0));
+
+        getChildren().add(0, label);
+    }
+
+    @Override
+    protected String getAddButtonText() {
+        return "Add participant".toUpperCase();
+    }
+
+    @Override
+    protected String getFieldPromptText() {
+        return "Participant name";
     }
 }
