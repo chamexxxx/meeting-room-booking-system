@@ -15,6 +15,7 @@
 
 .time-scale > .current-time-label {
     -fx-font-size: 1em;
+    -fx-text-fill: -fx-base2-background-color;
 }
 
 /*
@@ -29,7 +30,7 @@
 }
 
 .day-view > .current-time-line {
-    -fx-stroke: -fx-primary-color;
+    -fx-stroke: -fx-base2-background-color;
 }
 
 .day-view > .current-time-circle {
@@ -49,7 +50,7 @@
 }
 
 .weekday-header-view > .container > .today {
-    -fx-text-fill: -fx-primary-color;
+    -fx-text-fill: -fx-base2-background-color;
 }
 
 /*
