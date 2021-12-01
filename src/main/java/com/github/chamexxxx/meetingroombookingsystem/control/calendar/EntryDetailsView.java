@@ -67,11 +67,17 @@ public class EntryDetailsView extends VBox {
 
         participantsSection = new ParticipantsSection(new ArrayList<>(participants));
 
+        participantsSection.getContainer().getStyleClass().add("section__content");
+
         var datesLabel = new Label("Booking time");
-        datesLabel.getStyleClass().add("text-base");
+        datesLabel.getStyleClass().add("section__title");
 
+        var datesContainer = new VBox(10, startDateBox, endDateBox);
+        datesContainer.getStyleClass().add("section__content");
 
-        var container = new VBox(10, titleField, new Separator(), datesLabel, startDateBox, endDateBox, new Separator(), participantsBox, new Separator());
+        var datesSection = new VBox(10, datesLabel, datesContainer);
+
+        var container = new VBox(10, titleField, new Separator(), datesSection, participantsSection, new Separator());
 
         getChildren().add(container);
     }
@@ -131,7 +137,7 @@ class ParticipantsSection extends ToDoList<Participant> {
 
         var label = new Label("Participants");
 
-        label.getStyleClass().add("text-base");
+        label.getStyleClass().add("section__title");
         label.setPadding(new Insets(0, 0, 10, 0));
 
         getChildren().add(0, label);

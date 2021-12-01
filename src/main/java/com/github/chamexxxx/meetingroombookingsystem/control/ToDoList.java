@@ -30,6 +30,7 @@ public class ToDoList<M extends ToDoList.Model> extends VBox {
     private final Supplier<M> supplier;
     private final VBox fields = new VBox(10);
     private final ObservableList<M> models = FXCollections.observableArrayList();
+    private final VBox container = new VBox();
     private final ScrollPane scrollPane;
 
     public ToDoList(Supplier<M> supplier, ArrayList<M> initialTasks) {
@@ -46,12 +47,17 @@ public class ToDoList<M extends ToDoList.Model> extends VBox {
         var buttonBox = createButtonBox();
 
         scrollPane = createScrollPane(fields);
+        container.getChildren().add(scrollPane);
 
-        getChildren().addAll(scrollPane, buttonBox);
+        getChildren().addAll(container, buttonBox);
     }
 
     public ObservableList<M> getModels() {
         return models;
+    }
+
+    public VBox getContainer() {
+        return container;
     }
 
     protected String getAddButtonText() {
