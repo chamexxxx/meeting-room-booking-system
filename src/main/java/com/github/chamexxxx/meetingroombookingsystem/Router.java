@@ -68,6 +68,8 @@ public class Router {
             var route = routes.get(sceneName);
             var root = load(route.resourceName);
 
+            initialScene.setRoot(root);
+
             if (route.stageOptions != null) {
                 stage.setWidth(route.stageOptions.width);
                 stage.setHeight(route.stageOptions.width);
@@ -77,8 +79,6 @@ public class Router {
                 stage.setHeight(defaultStageOptions.height);
                 stage.setMaximized(defaultStageOptions.maximized);
             }
-
-            initialScene.setRoot(root);
         } catch (IOException e) {
             e.printStackTrace();
         }
