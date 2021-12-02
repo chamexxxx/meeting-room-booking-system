@@ -82,7 +82,7 @@ public class HomeController implements Initializable {
     }
 
     private List<MeetDto> getMeets() throws SQLException {
-        return Database.getMeetDao().queryForAll();
+        return Database.getMeetDao().queryForEq("account_id", UserSession.getAccount());
     }
 
     private ArrayList<Entry<Meet>> convertMeetsToEntries(List<MeetDto> meets) {
