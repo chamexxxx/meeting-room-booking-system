@@ -92,7 +92,7 @@ public class DayEntryViewSkin extends impl.com.calendarfx.view.DayEntryViewSkin 
             participantsContainer.setVisible(true);
             participantsContainer.resizeRelocate(
                     snapPositionX(contentX),
-                    snapPositionY(contentY + titleHeight + startTimeHeight),
+                    snapPositionY(contentY + titleHeight + startTimeHeight + 3),
                     snapSizeX(contentWidth),
                     snapSizeY(participantsBoxHeight)
             );
