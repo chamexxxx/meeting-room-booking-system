@@ -2,6 +2,36 @@
 
 /*
  * --------------------------------------------------------------------------------------------------------------
+ * Overriding styles for the PageBase abstract superclass of the day, week, month, and year page.
+ * The page base consists of a big content node in the middle and a header that displays
+ * navigation buttons to go forward, back, to today and the currently shown date (range).
+ */
+
+.calendar-page > .container > .header > .navigation-button-bar .button {
+    -fx-padding: 7px;
+    -fx-font-size: 14px;
+    -fx-text-fill: #2e2e2e;
+    -fx-background-color: -fx-base-background-color;
+    -fx-border-radius: 0;
+    -fx-background-radius: 0;
+}
+
+.calendar-page > .container > .header > .navigation-button-bar .button:pressed {
+    -fx-background-color: -fx-base2-background-color;
+}
+
+.calendar-page > .container > .header > .navigation-button-bar > .container > .previous-date-button {
+    -fx-border-radius: 10px 0 0 10px;
+    -fx-background-radius: 10px 0 0 10px;
+}
+
+.calendar-page > .container > .header > .navigation-button-bar > .container > .next-date-button {
+    -fx-border-radius: 0 10px 10px 0;
+    -fx-background-radius: 0 10px 10px 0;
+}
+
+/*
+ * --------------------------------------------------------------------------------------------------------------
  * Overriding styles needed by the time scale (01:00, 02:00, .... 24:00).
  */
 
