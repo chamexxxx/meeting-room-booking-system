@@ -84,6 +84,15 @@
     -fx-padding: 5 0 0 0;
 }
 
+.default-style-entry-time-label {
+    -fx-font-size: 0.88em;
+    -fx-opacity: 0.8;
+}
+
+.default-style-entry-title-label {
+    -fx-font-size: 1.03em;
+}
+
 .default-style-entry:selected .label {
     -fx-text-fill: white;
 }
