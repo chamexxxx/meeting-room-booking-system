@@ -75,17 +75,24 @@ public class DayEntryViewSkin extends impl.com.calendarfx.view.DayEntryViewSkin 
 
     @Override
     protected void layoutChildren(double contentX, double contentY, double contentWidth, double contentHeight) {
-        super.layoutChildren(contentX, contentY, contentWidth, contentHeight);
-
+        var startTimeHeight = startTimeLabel.prefHeight(contentWidth);
         var titleHeight = titleLabel.prefHeight(contentWidth);
-        var timeLabelHeight = startTimeLabel.prefHeight(contentWidth);
         var participantsBoxHeight = participantsContainer.prefHeight(contentWidth);
 
-        if (contentHeight - titleHeight > timeLabelHeight) {
+        startTimeLabel.resizeRelocate(snapPosition(contentX), snapPosition(contentY), snapSize(contentWidth), snapSize(startTimeHeight));
+
+        if (contentHeight - startTimeHeight > titleHeight) {
+            titleLabel.setVisible(true);
+            titleLabel.resizeRelocate(snapPosition(contentX), snapPosition(contentY + startTimeHeight), snapSize(contentWidth), snapSize(titleHeight));
+        } else {
+            titleLabel.setVisible(false);
+        }
+
+        if (contentHeight - titleHeight > startTimeHeight) {
             participantsContainer.setVisible(true);
             participantsContainer.resizeRelocate(
                     snapPositionX(contentX),
-                    snapPositionY(contentY + titleHeight + timeLabelHeight),
+                    snapPositionY(contentY + titleHeight + startTimeHeight),
                     snapSizeX(contentWidth),
                     snapSizeY(participantsBoxHeight)
             );
