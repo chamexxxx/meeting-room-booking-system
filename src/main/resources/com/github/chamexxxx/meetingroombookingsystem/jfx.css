@@ -13,6 +13,10 @@
     -fx-background-radius: 5px;
 }
 
+.button:pressed, .button:selected, .button:focused {
+    -fx-background-insets: 0 0 -1 0, 0, 1, 2;
+}
+
 .button, .context-menu .menu-item {
     -fx-cursor: hand;
 }
