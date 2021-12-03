@@ -41,3 +41,7 @@ Build a distribution zip in `build/distributions`
 ## License
 
 The code is available under the [MIT](LICENSE) license.
+
+The logo icon is made by <a href="https://www.freepik.com" title="Freepik">Freepik</a>
+from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
+
