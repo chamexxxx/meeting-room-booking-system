@@ -8,16 +8,16 @@
  */
 
 .calendar-page > .container > .header > .navigation-button-bar .button {
-    -fx-padding: 7px;
+    -fx-padding: 7px 8px;
     -fx-font-size: 14px;
     -fx-text-fill: #2e2e2e;
-    -fx-background-color: -fx-base-background-color;
+    -fx-background-color: rgba(0, 0, 0, 0.1);
     -fx-border-radius: 0;
     -fx-background-radius: 0;
 }
 
 .calendar-page > .container > .header > .navigation-button-bar .button:pressed {
-    -fx-background-color: -fx-base2-background-color;
+    -fx-background-color: rgba(0, 0, 0, 0.2);
 }
 
 .calendar-page > .container > .header > .navigation-button-bar > .container > .previous-date-button {
