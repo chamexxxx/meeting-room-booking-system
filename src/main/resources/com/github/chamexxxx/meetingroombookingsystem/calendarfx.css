@@ -16,6 +16,10 @@
     -fx-background-radius: 0;
 }
 
+.calendar-page > .container > .header > .navigation-button-bar .button:hover {
+    -fx-background-color: rgba(0, 0, 0, 0.15);
+}
+
 .calendar-page > .container > .header > .navigation-button-bar .button:pressed {
     -fx-background-color: rgba(0, 0, 0, 0.2);
 }

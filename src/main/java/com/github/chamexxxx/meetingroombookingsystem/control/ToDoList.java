@@ -22,7 +22,6 @@ import java.util.function.Supplier;
  */
 public class ToDoList<M extends ToDoList.Model> extends VBox {
     public interface Model {
-        StringProperty nameProperty();
         String getName();
         void setName(String name);
     }
@@ -105,7 +104,7 @@ public class ToDoList<M extends ToDoList.Model> extends VBox {
         var addButton = createAddButton();
         var buttonBox = new HBox(addButton);
 
-        buttonBox.setPadding(new Insets(10, 0, 10 , 0));
+        buttonBox.setPadding(new Insets(10, 0, 10, 0));
         buttonBox.setAlignment(Pos.CENTER_RIGHT);
 
         return buttonBox;
