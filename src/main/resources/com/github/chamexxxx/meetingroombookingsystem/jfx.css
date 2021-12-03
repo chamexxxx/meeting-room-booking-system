@@ -17,7 +17,7 @@
     -fx-background-insets: 0 0 -1 0, 0, 1, 2;
 }
 
-.button, .context-menu .menu-item {
+.button, .menu-button, .context-menu .menu-item {
     -fx-cursor: hand;
 }
 

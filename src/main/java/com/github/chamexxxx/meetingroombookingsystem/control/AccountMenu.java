@@ -36,7 +36,7 @@ class AccountMenuButton extends MenuButton {
         this.username = username;
 
         getItems().add(logoutItem);
-        getStyleClass().addAll("cursor-hand", "background-transparent");
+        getStyleClass().add("background-transparent");
         setFocusTraversable(false);
         setGraphic(createGraphic());
     }
