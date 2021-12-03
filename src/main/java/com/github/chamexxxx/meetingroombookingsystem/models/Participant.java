@@ -47,10 +47,6 @@ public class Participant implements ToDoList.Model {
         this.meetId.set(meetId);
     }
 
-    public StringProperty nameProperty() {
-        return name;
-    }
-
     public String getName() {
         return name.get();
     }
