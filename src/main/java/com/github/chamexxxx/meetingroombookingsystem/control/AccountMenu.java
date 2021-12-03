@@ -20,6 +20,8 @@ public class AccountMenu extends AccountMenuButton {
     public AccountMenu() {
         super(Objects.requireNonNull(UserSession.getAccount()).getUsername());
 
+        getStyleClass().add("account-menu");
+
         logoutItem.setOnAction(event -> {
             UserSession.removeAccount();
             hide();
@@ -36,7 +38,6 @@ class AccountMenuButton extends MenuButton {
         this.username = username;
 
         getItems().add(logoutItem);
-        getStyleClass().add("background-transparent");
         setFocusTraversable(false);
         setGraphic(createGraphic());
     }
