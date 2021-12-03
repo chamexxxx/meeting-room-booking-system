@@ -2,9 +2,9 @@ package com.github.chamexxxx.meetingroombookingsystem.control;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.HBox;
 
-public class TopBar extends VBox {
+public class TopBar extends HBox {
     public TopBar() {
         var accountMenu = new AccountMenu();
 
