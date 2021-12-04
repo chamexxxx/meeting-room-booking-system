@@ -46,6 +46,10 @@ public class Participant {
         this.meetId.set(meetId);
     }
 
+    public StringProperty nameProperty() {
+        return name;
+    }
+
     public String getName() {
         return name.get();
     }

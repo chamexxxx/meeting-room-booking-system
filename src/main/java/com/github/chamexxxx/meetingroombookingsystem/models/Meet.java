@@ -1,9 +1,11 @@
 package com.github.chamexxxx.meetingroombookingsystem.models;
 
 import com.github.chamexxxx.meetingroombookingsystem.dto.MeetDto;
+import javafx.beans.Observable;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.util.Callback;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -16,7 +18,7 @@ public class Meet {
     private final StringProperty room;
     private final ObjectProperty<Timestamp> startDate;
     private final ObjectProperty<Timestamp> endDate;
-    private final ObservableList<Participant> participants;
+    private ObservableList<Participant> participants;
 
     public Meet(MeetDto meetDto) {
         this(
@@ -40,12 +42,19 @@ public class Meet {
     }
 
     private Meet(Integer id, Integer accountId, String room, Timestamp startDate, Timestamp endDate, List<Participant> participants) {
+        Callback<Participant, Observable[]> extractor = participant -> new Observable[]{participant.nameProperty()};
+
         this.id = new SimpleIntegerProperty(id);
         this.accountId = new SimpleIntegerProperty(accountId);
         this.room = new SimpleStringProperty(room);
         this.startDate = new SimpleObjectProperty<>(startDate);
         this.endDate = new SimpleObjectProperty<>(endDate);
-        this.participants = participants != null ? FXCollections.observableArrayList(participants) : FXCollections.observableArrayList();
+
+        this.participants = FXCollections.observableArrayList(extractor);
+
+        if (participants != null) {
+            this.participants.addAll(participants);
+        }
     }
 
     public int getId() {
