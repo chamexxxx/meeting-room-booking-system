@@ -22,7 +22,7 @@
 }
 
 .text-field {
-    -fx-background-color: lightgray;
+    -fx-background-color: #e0e0e0;
     -fx-prompt-text-fill: #6f777d;
     -fx-font-size: 13px;
     -fx-text-inner-color: -fx-primary-color;
