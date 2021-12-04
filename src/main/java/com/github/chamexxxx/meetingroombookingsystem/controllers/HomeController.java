@@ -4,8 +4,11 @@ import com.calendarfx.model.*;
 import com.github.chamexxxx.meetingroombookingsystem.Database;
 import com.github.chamexxxx.meetingroombookingsystem.control.calendar.WeeklyCalendar;
 import com.github.chamexxxx.meetingroombookingsystem.dto.MeetDto;
+import com.github.chamexxxx.meetingroombookingsystem.dto.ParticipantDto;
 import com.github.chamexxxx.meetingroombookingsystem.models.Meet;
+import com.github.chamexxxx.meetingroombookingsystem.models.Participant;
 import com.github.chamexxxx.meetingroombookingsystem.utils.UserSession;
+import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
@@ -96,6 +99,8 @@ public class HomeController implements Initializable {
 
             var meet = new Meet(meetDto);
 
+            addMeetListener(meet);
+
             entry.setUserObject(meet);
             entry.setInterval(startDate.toLocalDateTime(), endDate.toLocalDateTime());
 
@@ -103,6 +108,57 @@ public class HomeController implements Initializable {
         }
 
         return entries;
+    }
+
+    private void addMeetListener(Meet meet) {
+        meet.getParticipants().addListener((ListChangeListener<? super Participant>) c -> {
+            try {
+                while (c.next()) {
+                    if (c.wasAdded()) {
+                        var addedList = c.getAddedSubList();
+                        createParticipants(addedList);
+                    } else if (c.wasRemoved()) {
+                        var removedList = c.getRemoved();
+                        removeParticipants(removedList);
+                    } else if (c.wasUpdated()) {
+                        var participant = meet.getParticipants().get(c.getFrom());
+                        updateParticipant(participant);
+                    }
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
+    private void updateParticipant(Participant participant) throws SQLException {
+        var updateBuilder = Database.getParticipantDao().updateBuilder();
+
+        updateBuilder.where().eq("id", String.valueOf(participant.getId()));
+        updateBuilder.updateColumnValue("name", participant.getName());
+
+        updateBuilder.update();
+    }
+
+    private void createParticipants(List<? extends Participant> participants) throws SQLException {
+        for (Participant participant : participants) {
+            var meetDto = Database.getMeetDao().queryForId(String.valueOf(participant.getMeetId()));
+            var participantDto = new ParticipantDto(participant.getName(), meetDto);
+
+            Database.getParticipantDao().create(participantDto);
+
+            participant.setId(participantDto.getId());
+        }
+    }
+
+    private void removeParticipants(List<? extends Participant> participants) throws SQLException {
+        var deleteBuilder = Database.getParticipantDao().deleteBuilder();
+
+        for (Participant participant : participants) {
+            deleteBuilder.where().eq("id", participant.getId());
+        }
+
+        deleteBuilder.delete();
     }
 
     private Timestamp getEntryStartTimestamp(Entry<Meet> entry) {
@@ -126,6 +182,8 @@ public class HomeController implements Initializable {
         Database.getMeetDao().create(meetDto);
 
         var meet = new Meet(meetDto);
+
+        addMeetListener(meet);
 
         entry.setUserObject(meet);
     }

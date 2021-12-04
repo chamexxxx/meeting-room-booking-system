@@ -1,19 +1,24 @@
 package com.github.chamexxxx.meetingroombookingsystem.control.calendar;
 
-import com.calendarfx.model.CalendarEvent;
 import com.calendarfx.model.Entry;
 import com.calendarfx.view.Messages;
 import com.calendarfx.view.TimeField;
 import com.github.chamexxxx.meetingroombookingsystem.models.Meet;
 import com.github.chamexxxx.meetingroombookingsystem.models.Participant;
+import com.github.chamexxxx.meetingroombookingsystem.utils.FontIconFactory;
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import org.controlsfx.control.textfield.CustomTextField;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Implementing your own {@link com.calendarfx.view.popover.EntryDetailsView} and {@link com.calendarfx.view.popover.EntryHeaderView} for use in a dialog
@@ -90,18 +95,38 @@ public class EntryDetailsView extends VBox {
 
         var participantModels = participantsSection.getParticipants();
 
-        participantModels.forEach(participant -> System.out.println(participant.getName()));
-
-        var participantsIsEquals = meet.getParticipants().equals(participantModels);
-
-        meet.getParticipants().clear();
-        meet.getParticipants().addAll(participantModels);
+        syncParticipants(participantModels);
 
         entry.setUserObject(meet);
+    }
 
-        if (!participantsIsEquals) {
-            entry.getCalendar().fireEvent(new CalendarEvent(CalendarEvent.ENTRY_USER_OBJECT_CHANGED, entry.getCalendar(), entry));
+    private void syncParticipants(ObservableList<Participant> participants) {
+        var participantsIterator = meet.getParticipants().iterator();
+
+        while (participantsIterator.hasNext()) {
+            var participant = participantsIterator.next();
+            var optionalParticipant = participants
+                    .stream()
+                    .filter(p -> p.getId() == participant.getId())
+                    .findFirst();
+
+            if (optionalParticipant.isPresent()) {
+                var participantModel = optionalParticipant.get();
+
+                if (!participantModel.getName().equals(participant.getName())) {
+                    participant.setName(participantModel.getName());
+                }
+            } else {
+                participantsIterator.remove();
+            }
         }
+
+        participants.forEach(participant -> {
+            if (participant.getId() == 0) {
+                participant.setMeetId(meet.getId());
+                meet.getParticipants().add(participant);
+            }
+        });
     }
 
     private TimeField createTimeField(LocalTime localTime) {
