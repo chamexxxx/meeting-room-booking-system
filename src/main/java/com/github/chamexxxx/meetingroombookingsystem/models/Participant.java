@@ -1,12 +1,11 @@
 package com.github.chamexxxx.meetingroombookingsystem.models;
 
-import com.github.chamexxxx.meetingroombookingsystem.control.ToDoList;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-public class Participant implements ToDoList.Model {
+public class Participant {
     private final IntegerProperty id;
     private final IntegerProperty meetId;
     private final StringProperty name;

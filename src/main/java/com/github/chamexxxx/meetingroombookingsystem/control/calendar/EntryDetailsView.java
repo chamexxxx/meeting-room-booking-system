@@ -4,7 +4,6 @@ import com.calendarfx.model.CalendarEvent;
 import com.calendarfx.model.Entry;
 import com.calendarfx.view.Messages;
 import com.calendarfx.view.TimeField;
-import com.github.chamexxxx.meetingroombookingsystem.control.ToDoList;
 import com.github.chamexxxx.meetingroombookingsystem.models.Meet;
 import com.github.chamexxxx.meetingroombookingsystem.models.Participant;
 import javafx.geometry.Insets;
@@ -89,7 +88,7 @@ public class EntryDetailsView extends VBox {
         entry.changeEndDate(endDatePicker.getValue());
         entry.changeEndTime(endTimeField.getValue());
 
-        var participantModels = participantsSection.getModels();
+        var participantModels = participantsSection.getParticipants();
 
         participantModels.forEach(participant -> System.out.println(participant.getName()));
 
@@ -131,25 +130,110 @@ public class EntryDetailsView extends VBox {
 /**
  * A container with a list of participants with the ability to create, edit and delete
  */
-class ParticipantsSection extends ToDoList<Participant> {
-    public ParticipantsSection(ArrayList<Participant> initialParticipants) {
-        super(Participant::new, initialParticipants);
+class ParticipantsSection extends VBox {
+    private final VBox fields = new VBox(10);
+    private final ObservableList<Participant> participants = FXCollections.observableArrayList();
+    private final VBox container = new VBox();
+    private final ScrollPane scrollPane;
 
+    public ParticipantsSection(ArrayList<Participant> initialParticipants) {
         var label = new Label("Participants");
 
         label.getStyleClass().add("section__title");
         label.setPadding(new Insets(0, 0, 10, 0));
 
-        getChildren().add(0, label);
+        initializeModelsListener();
+
+        initialParticipants.forEach(p -> participants.addAll(new Participant(p.getId(), p.getMeetId(), p.getName())));
+
+        if (fields.getChildren().size() == 0) {
+            fields.setVisible(false);
+        }
+
+        var buttonBox = createButtonBox();
+
+        scrollPane = createScrollPane(fields);
+        container.getChildren().add(scrollPane);
+
+        getChildren().addAll(label, container, buttonBox);
     }
 
-    @Override
-    protected String getAddButtonText() {
-        return "Add participant".toUpperCase();
+    public ObservableList<Participant> getParticipants() {
+        return participants;
     }
 
-    @Override
-    protected String getFieldPromptText() {
-        return "Participant name";
+    public VBox getContainer() {
+        return container;
+    }
+
+    private void initializeModelsListener() {
+        participants.addListener((ListChangeListener<Participant>) c -> {
+            while (c.next()) {
+                if (c.wasAdded()) {
+                    for (Participant addITem : c.getAddedSubList()) {
+                        var customTextField = new CustomTextField();
+
+                        customTextField.setText(addITem.getName());
+                        customTextField.setPromptText("Participant name");
+                        customTextField.getStyleClass().add("field");
+
+                        fields.getChildren().add(customTextField);
+
+                        var fontIcon = FontIconFactory.createFontIcon(FontIconFactory.ICON.DELETE, 17);
+
+                        fontIcon.getStyleClass().add("cursor-hand");
+
+                        customTextField.setRight(fontIcon);
+
+                        customTextField.getRight().setOnMouseClicked(event -> {
+                            fields.getChildren().remove(customTextField);
+                            participants.remove(addITem);
+                        });
+
+                        customTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+                            addITem.setName(newValue);
+                        });
+                    }
+                }
+            }
+        });
+    }
+
+    private HBox createButtonBox() {
+        var addButton = createAddButton();
+        var buttonBox = new HBox(addButton);
+
+        buttonBox.setPadding(new Insets(10, 0, 10, 0));
+        buttonBox.setAlignment(Pos.CENTER_RIGHT);
+
+        return buttonBox;
+    }
+
+    private ScrollPane createScrollPane(Pane pane) {
+        var scrollPane = new ScrollPane(pane);
+
+        scrollPane.setPrefHeight(200);
+        scrollPane.setFitToWidth(true);
+        scrollPane.setPadding(new Insets(10));
+        scrollPane.setFocusTraversable(false);
+
+        return scrollPane;
+    }
+
+    private Button createAddButton() {
+        var button = new Button("Add participant".toUpperCase());
+
+        button.getStyleClass().add("action-button");
+        button.setOnAction(event -> {
+            var participant = new Participant();
+
+            participant.setName(null);
+            participants.add(participant);
+
+            fields.setVisible(true);
+            scrollPane.setVvalue(1);
+        });
+
+        return button;
     }
 }
