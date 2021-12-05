@@ -5,10 +5,7 @@ import com.github.chamexxxx.meetingroombookingsystem.Router;
 import com.github.chamexxxx.meetingroombookingsystem.control.forms.RegisterForm;
 import com.github.chamexxxx.meetingroombookingsystem.control.RouterLink;
 import com.github.chamexxxx.meetingroombookingsystem.dto.AccountDto;
-import com.github.chamexxxx.meetingroombookingsystem.utils.PasswordHashing;
-import com.github.chamexxxx.meetingroombookingsystem.utils.PasswordValidator;
-import com.github.chamexxxx.meetingroombookingsystem.utils.UserSession;
-import com.github.chamexxxx.meetingroombookingsystem.utils.UsernameValidator;
+import com.github.chamexxxx.meetingroombookingsystem.utils.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -37,22 +34,22 @@ public class RegisterController implements Initializable {
         var confirmPassword = formData.get("confirmPassword");
 
         if (!everyoneIsNotEmpty(username, password, confirmPassword)) {
-            showAlertError("All fields are required");
+            Dialogs.error("All fields are required");
             return;
         }
 
         if (!UsernameValidator.isValid(username)) {
-            showAlertError(UsernameValidator.message);
+            Dialogs.error(UsernameValidator.message);
             return;
         };
 
         if (!PasswordValidator.isValid(password)) {
-            showAlertError(PasswordValidator.message);
+            Dialogs.error(PasswordValidator.message);
             return;
         }
 
         if (!password.equals(confirmPassword)) {
-            showAlertError("Passwords are not identical");
+            Dialogs.error("Passwords are not identical");
             return;
         }
 
@@ -69,16 +66,9 @@ public class RegisterController implements Initializable {
             var errorCode = e.getErrorCode();
 
             if (errorCode == 0) {
-                showAlertError("A user with the same name already exists");
+                Dialogs.error("A user with the same name already exists");
             }
         }
-    }
-
-    private void showAlertError(String contentText) {
-        var errorAlert = new Alert(Alert.AlertType.ERROR);
-        errorAlert.setHeaderText(null);
-        errorAlert.setContentText(contentText);
-        errorAlert.showAndWait();
     }
 
     private Boolean everyoneIsNotEmpty(String... strings) {

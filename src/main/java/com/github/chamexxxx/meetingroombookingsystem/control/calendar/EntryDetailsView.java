@@ -5,6 +5,7 @@ import com.calendarfx.view.Messages;
 import com.calendarfx.view.TimeField;
 import com.github.chamexxxx.meetingroombookingsystem.models.Meet;
 import com.github.chamexxxx.meetingroombookingsystem.models.Participant;
+import com.github.chamexxxx.meetingroombookingsystem.utils.Dialogs;
 import com.github.chamexxxx.meetingroombookingsystem.utils.FontIconFactory;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
@@ -128,14 +129,14 @@ public class EntryDetailsView extends VBox {
 
     private boolean validate(String title, LocalDateTime startDateTime, LocalDateTime endDateTime) {
         if (title.isEmpty()) {
-            showAlertError("The title is required");
+            Dialogs.error("The title is required");
             return false;
         }
 
         var wholeMinutes = ChronoUnit.MINUTES.between(startDateTime, endDateTime);
 
         if (wholeMinutes < 30) {
-            showAlertError("Minimum booking interval 30 minutes");
+            Dialogs.error("Minimum booking interval 30 minutes");
             return false;
         }
 
@@ -143,19 +144,11 @@ public class EntryDetailsView extends VBox {
         var minutes = wholeMinutes - hours * 60;
 
         if (hours > 24 || (hours == 24 && minutes > 0)) {
-            showAlertError("Maximum booking interval 24 hours");
+            Dialogs.error("Maximum booking interval 24 hours");
             return false;
         }
 
         return true;
-    }
-
-    private void showAlertError(String contentText) {
-        var errorAlert = new Alert(Alert.AlertType.ERROR);
-
-        errorAlert.setHeaderText(null);
-        errorAlert.setContentText(contentText);
-        errorAlert.showAndWait();
     }
 
     private void syncParticipants(ObservableList<Participant> participants) {

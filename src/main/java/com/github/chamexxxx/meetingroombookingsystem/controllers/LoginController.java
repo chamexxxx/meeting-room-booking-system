@@ -4,6 +4,7 @@ import com.github.chamexxxx.meetingroombookingsystem.Database;
 import com.github.chamexxxx.meetingroombookingsystem.Router;
 import com.github.chamexxxx.meetingroombookingsystem.control.forms.LoginForm;
 import com.github.chamexxxx.meetingroombookingsystem.control.RouterLink;
+import com.github.chamexxxx.meetingroombookingsystem.utils.Dialogs;
 import com.github.chamexxxx.meetingroombookingsystem.utils.UserSession;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -36,7 +37,7 @@ public class LoginController implements Initializable {
             var accountIsVerified = Database.getAccountDao().verify(username, password);
 
             if (!accountIsVerified) {
-                showLoginError();
+                Dialogs.error("Wrong login or password");
                 return;
             }
 
@@ -47,14 +48,7 @@ public class LoginController implements Initializable {
             loginForm.reset();
         } catch (SQLException e) {
             e.printStackTrace();
-            showLoginError();
+            Dialogs.error("Wrong login or password");
         }
-    }
-
-    private void showLoginError() {
-        var errorAlert = new Alert(Alert.AlertType.ERROR);
-        errorAlert.setHeaderText(null);
-        errorAlert.setContentText("Wrong login or password");
-        errorAlert.showAndWait();
     }
 }
