@@ -55,6 +55,7 @@ public class RegisterController implements Initializable {
         var user = new AccountDto();
 
         user.setUsername(username);
+        user.setPassword(password);
 
         try {
             Database.getAccountDao().create(user);
