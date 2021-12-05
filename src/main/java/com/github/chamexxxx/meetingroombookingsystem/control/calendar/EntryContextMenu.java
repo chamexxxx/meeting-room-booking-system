@@ -33,9 +33,11 @@ public class EntryContextMenu extends ContextMenu {
 
         editItem.setOnAction(evt -> {
             Callback<DateControl.EntryDetailsParameter, Boolean> detailsCallback = control.getEntryDetailsCallback();
+
             if (detailsCallback != null) {
                 var ctxEvent = param.getContextMenuEvent();
                 var entryDetailsParam = new DateControl.EntryDetailsParameter(ctxEvent, control, entryView.getEntry(), control, ctxEvent.getScreenX(), ctxEvent.getScreenY());
+
                 detailsCallback.call(entryDetailsParam);
             }
         });
