@@ -19,6 +19,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.stream.Collectors;
 
 /**
  * Implementing your own {@link com.calendarfx.view.popover.EntryDetailsView}
@@ -94,7 +95,10 @@ public class EntryDetailsView extends VBox {
         entry.changeEndDate(endDatePicker.getValue());
         entry.changeEndTime(endTimeField.getValue());
 
-        var participantModels = participantsSection.getParticipants();
+        var participantModels = participantsSection.getParticipants()
+                .stream()
+                .filter(participant -> participant.getName() != null)
+                .collect(Collectors.toCollection(FXCollections::observableArrayList));
 
         syncParticipants(participantModels);
 
