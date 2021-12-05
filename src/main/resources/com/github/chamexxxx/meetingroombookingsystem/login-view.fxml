@@ -10,6 +10,7 @@
 <?import com.github.chamexxxx.meetingroombookingsystem.control.RouterLink?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.layout.HBox?>
+<?import com.github.chamexxxx.meetingroombookingsystem.control.LogoImage?>
 <VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.github.chamexxxx.meetingroombookingsystem.controllers.LoginController"
 >
@@ -17,19 +18,14 @@
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </padding>
 
-    <ImageView
+    <LogoImage
             fitHeight="120.0"
             fitWidth="170.0"
             layoutX="61.0"
             layoutY="83.0"
             pickOnBounds="true"
             preserveRatio="true"
-    >
-        <Image
-                url="file:logo.png"
-                backgroundLoading="true"
-        />
-    </ImageView>
+    />
 
     <Label text="Meeting room booking system">
         <font>
