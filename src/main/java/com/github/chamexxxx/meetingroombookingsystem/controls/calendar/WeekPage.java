@@ -28,6 +28,7 @@ public class WeekPage extends com.calendarfx.view.page.WeekPage {
         setEntryFactory(param -> {
             var entry = entryFactory.call(param);
 
+            entry.setTitle("Room");
             entry.changeEndTime(entry.getStartTime().plusHours(2));
 
             return entry;
