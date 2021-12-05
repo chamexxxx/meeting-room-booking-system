@@ -15,6 +15,7 @@ import java.util.Objects;
 
 public class Application extends javafx.application.Application {
     private static final String[] stylesheetNames = {"variables", "jfx", "calendarfx", "app"};
+    private static final Image logoImage = new Image(Objects.requireNonNull(Application.class.getResource("logo.png")).toString());
 
     @Override
     public void start(Stage stage) throws IOException, SQLException {
@@ -51,6 +52,10 @@ public class Application extends javafx.application.Application {
         return getResourceInExternalForm(fileName + ".css");
     }
 
+    public static Image getLogoImage() {
+        return logoImage;
+    }
+
     private Scene createInitialScene() throws IOException {
         var resourceName = UserSession.accountExists() ? "home-view.fxml" : "login-view.fxml";
         FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource(resourceName));
@@ -59,7 +64,7 @@ public class Application extends javafx.application.Application {
     }
 
     private void configureStage(Stage stage) {
-        stage.getIcons().add(new Image("file:logo.png"));
+        stage.getIcons().add(logoImage);
         stage.setTitle("Meeting room booking system");
         stage.setMinWidth(800);
         stage.setMinHeight(600);

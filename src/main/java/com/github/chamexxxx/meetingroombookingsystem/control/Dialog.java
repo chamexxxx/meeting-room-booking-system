@@ -1,12 +1,13 @@
 package com.github.chamexxxx.meetingroombookingsystem.control;
 
+import com.github.chamexxxx.meetingroombookingsystem.Application;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class Dialog<R> extends javafx.scene.control.Dialog<R> {
     public Dialog() {
         super();
-        setIcon(new Image("file:logo.png"));
+        setIcon(Application.getLogoImage());
     }
 
     public void setIcon(Image image) {
