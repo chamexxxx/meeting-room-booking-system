@@ -10,16 +10,12 @@ public class WeekPage extends com.calendarfx.view.page.WeekPage {
     }
 
     private void configure() {
+        getDetailedWeekView().setShowAllDayView(false);
         setContextMenuCallback(new ContextMenuProvider());
-        configureEntryViewFactory();
         setEntryContextMenuCallback(EntryContextMenu::new);
         setEntryDetailsCallback(param -> new EntryDetailsCallback().call(param));
-        getDetailedWeekView().setShowAllDayView(false);
-        setEntryEditPolicy(param -> {
-            var editOperation = param.getEditOperation();
-
-            return !editOperation.equals(EditOperation.CHANGE_START) && !editOperation.equals(EditOperation.CHANGE_END);
-        });
+        configureEntryViewFactory();
+        configureEntryEditPolicy();
     }
 
     private void configureEntryViewFactory() {
@@ -31,6 +27,14 @@ public class WeekPage extends com.calendarfx.view.page.WeekPage {
             weekDayView.setEntryViewFactory(DayEntryView::new);
 
             return weekDayView;
+        });
+    }
+
+    private void configureEntryEditPolicy() {
+        setEntryEditPolicy(param -> {
+            var editOperation = param.getEditOperation();
+
+            return !editOperation.equals(EditOperation.CHANGE_START) && !editOperation.equals(EditOperation.CHANGE_END);
         });
     }
 }
