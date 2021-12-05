@@ -58,11 +58,6 @@ public class Router {
         routes.put(sceneName, new Route(resourceName, stageOptions));
     }
 
-    private static Parent load(String resourceName) throws IOException {
-        var fxmlLoader = new FXMLLoader(Application.class.getResource(resourceName));
-        return fxmlLoader.load();
-    }
-
     public static void switchScene(String sceneName) {
         try {
             var route = routes.get(sceneName);
@@ -82,5 +77,10 @@ public class Router {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private static Parent load(String resourceName) throws IOException {
+        var fxmlLoader = new FXMLLoader(Application.class.getResource(resourceName));
+        return fxmlLoader.load();
     }
 }
