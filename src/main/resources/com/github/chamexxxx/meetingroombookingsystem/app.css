@@ -50,7 +50,7 @@
 }
 
 .entry-details__title {
-    -fx-padding: 10px 10px 10px 5px;
+    -fx-padding: 10px 0px;
     -fx-font-size: 15px;
     -fx-font-weight: bold;
     -fx-text-fill: -fx-base-background-color;
