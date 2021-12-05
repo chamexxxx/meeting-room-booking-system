@@ -3,6 +3,7 @@ package com.github.chamexxxx.meetingroombookingsystem.control.calendar;
 import com.calendarfx.model.Entry;
 import com.github.chamexxxx.meetingroombookingsystem.Application;
 import com.github.chamexxxx.meetingroombookingsystem.models.Meet;
+import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
@@ -47,8 +48,12 @@ public class EntryDialog extends Dialog<Meet> {
         saveButton.getStyleClass().add("primary-button");
         cancelButton.getStyleClass().add("secondary-button");
 
-        saveButton.setOnAction(e -> {
+        saveButton.addEventFilter(ActionEvent.ACTION, event -> {
             entryDetailsView.save();
+
+            if (!entryDetailsView.isValidated()) {
+                event.consume();
+            }
         });
     }
 }

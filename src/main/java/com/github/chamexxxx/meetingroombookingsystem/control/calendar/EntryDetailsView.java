@@ -16,7 +16,9 @@ import javafx.scene.layout.*;
 import org.controlsfx.control.textfield.CustomTextField;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.stream.Collectors;
@@ -33,6 +35,7 @@ public class EntryDetailsView extends VBox {
     private final TimeField endTimeField;
     private final DatePicker startDatePicker;
     private final DatePicker endDatePicker;
+    private boolean validated = false;
     private final ParticipantsSection participantsSection;
 
     public EntryDetailsView(Entry<Meet> entry) {
@@ -88,12 +91,30 @@ public class EntryDetailsView extends VBox {
         getChildren().add(container);
     }
 
+    public boolean isValidated() {
+        return validated;
+    }
+
     public void save() {
-        entry.setTitle(titleField.getText());
-        entry.changeStartDate(startDatePicker.getValue());
-        entry.changeStartTime(startTimeField.getValue());
-        entry.changeEndDate(endDatePicker.getValue());
-        entry.changeEndTime(endTimeField.getValue());
+        var title = titleField.getText().trim();
+        var startDate = startDatePicker.getValue();
+        var startTime = startTimeField.getValue();
+        var endDate = endDatePicker.getValue();
+        var endTime = endTimeField.getValue();
+        var startDateTime = startDate.atTime(startTime);
+        var endDateTime = endDate.atTime(endTime);
+
+        validated = validate(title, startDateTime, endDateTime);
+
+        if (!validated) {
+            return;
+        }
+
+        entry.setTitle(title);
+        entry.changeStartDate(startDate);
+        entry.changeStartTime(startTime);
+        entry.changeEndDate(endDate);
+        entry.changeEndTime(endTime);
 
         var participantModels = participantsSection.getParticipants()
                 .stream()
@@ -103,6 +124,38 @@ public class EntryDetailsView extends VBox {
         syncParticipants(participantModels);
 
         entry.setUserObject(meet);
+    }
+
+    private boolean validate(String title, LocalDateTime startDateTime, LocalDateTime endDateTime) {
+        if (title.isEmpty()) {
+            showAlertError("The title is required");
+            return false;
+        }
+
+        var wholeMinutes = ChronoUnit.MINUTES.between(startDateTime, endDateTime);
+
+        if (wholeMinutes < 30) {
+            showAlertError("Minimum booking interval 30 minutes");
+            return false;
+        }
+
+        var hours = wholeMinutes / 60;
+        var minutes = wholeMinutes - hours * 60;
+
+        if (hours > 24 || (hours == 24 && minutes > 0)) {
+            showAlertError("Maximum booking interval 24 hours");
+            return false;
+        }
+
+        return true;
+    }
+
+    private void showAlertError(String contentText) {
+        var errorAlert = new Alert(Alert.AlertType.ERROR);
+
+        errorAlert.setHeaderText(null);
+        errorAlert.setContentText(contentText);
+        errorAlert.showAndWait();
     }
 
     private void syncParticipants(ObservableList<Participant> participants) {
