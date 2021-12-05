@@ -1,4 +1,4 @@
-package com.github.chamexxxx.meetingroombookingsystem.control.forms;
+package com.github.chamexxxx.meetingroombookingsystem.controls.forms;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.Control;

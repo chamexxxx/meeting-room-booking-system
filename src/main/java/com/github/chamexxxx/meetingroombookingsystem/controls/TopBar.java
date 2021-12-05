@@ -1,4 +1,4 @@
-package com.github.chamexxxx.meetingroombookingsystem.control;
+package com.github.chamexxxx.meetingroombookingsystem.controls;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;

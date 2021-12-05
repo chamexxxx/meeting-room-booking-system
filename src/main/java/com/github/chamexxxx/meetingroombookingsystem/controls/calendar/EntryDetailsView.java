@@ -1,4 +1,4 @@
-package com.github.chamexxxx.meetingroombookingsystem.control.calendar;
+package com.github.chamexxxx.meetingroombookingsystem.controls.calendar;
 
 import com.calendarfx.model.Entry;
 import com.calendarfx.view.Messages;
@@ -21,7 +21,6 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.stream.Collectors;
 
 /**

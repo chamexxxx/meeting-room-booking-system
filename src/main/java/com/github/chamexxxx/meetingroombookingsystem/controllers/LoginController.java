@@ -2,13 +2,12 @@ package com.github.chamexxxx.meetingroombookingsystem.controllers;
 
 import com.github.chamexxxx.meetingroombookingsystem.Database;
 import com.github.chamexxxx.meetingroombookingsystem.Router;
-import com.github.chamexxxx.meetingroombookingsystem.control.forms.LoginForm;
-import com.github.chamexxxx.meetingroombookingsystem.control.RouterLink;
+import com.github.chamexxxx.meetingroombookingsystem.controls.forms.LoginForm;
+import com.github.chamexxxx.meetingroombookingsystem.controls.RouterLink;
 import com.github.chamexxxx.meetingroombookingsystem.utils.Dialogs;
 import com.github.chamexxxx.meetingroombookingsystem.utils.UserSession;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 
 import java.net.URL;
 import java.sql.SQLException;

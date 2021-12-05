@@ -1,4 +1,4 @@
-package com.github.chamexxxx.meetingroombookingsystem.control.calendar;
+package com.github.chamexxxx.meetingroombookingsystem.controls.calendar;
 
 import com.calendarfx.view.*;
 import com.github.chamexxxx.meetingroombookingsystem.utils.FontIconFactory;

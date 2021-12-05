@@ -1,8 +1,8 @@
-package com.github.chamexxxx.meetingroombookingsystem.control.calendar;
+package com.github.chamexxxx.meetingroombookingsystem.controls.calendar;
 
 import com.calendarfx.model.Entry;
 import com.github.chamexxxx.meetingroombookingsystem.Application;
-import com.github.chamexxxx.meetingroombookingsystem.control.Dialog;
+import com.github.chamexxxx.meetingroombookingsystem.controls.Dialog;
 import com.github.chamexxxx.meetingroombookingsystem.models.Meet;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;

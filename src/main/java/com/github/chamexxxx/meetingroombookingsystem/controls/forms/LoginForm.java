@@ -1,16 +1,14 @@
-package com.github.chamexxxx.meetingroombookingsystem.control.forms;
+package com.github.chamexxxx.meetingroombookingsystem.controls.forms;
 
 import com.github.chamexxxx.meetingroombookingsystem.utils.FontIconFactory;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import org.controlsfx.control.textfield.CustomPasswordField;
 import org.controlsfx.control.textfield.CustomTextField;
 
 import java.util.HashMap;
-import java.util.function.Consumer;
 
 public class LoginForm extends Form {
     protected CustomTextField usernameField = new CustomTextField();

@@ -2,7 +2,7 @@ package com.github.chamexxxx.meetingroombookingsystem.controllers;
 
 import com.calendarfx.model.*;
 import com.github.chamexxxx.meetingroombookingsystem.Database;
-import com.github.chamexxxx.meetingroombookingsystem.control.calendar.WeeklyCalendar;
+import com.github.chamexxxx.meetingroombookingsystem.controls.calendar.WeeklyCalendar;
 import com.github.chamexxxx.meetingroombookingsystem.dto.MeetDto;
 import com.github.chamexxxx.meetingroombookingsystem.dto.ParticipantDto;
 import com.github.chamexxxx.meetingroombookingsystem.models.Meet;

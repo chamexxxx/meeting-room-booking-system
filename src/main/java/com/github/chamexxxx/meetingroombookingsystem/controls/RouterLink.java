@@ -1,4 +1,4 @@
-package com.github.chamexxxx.meetingroombookingsystem.control;
+package com.github.chamexxxx.meetingroombookingsystem.controls;
 
 import com.github.chamexxxx.meetingroombookingsystem.Router;
 import javafx.event.ActionEvent;

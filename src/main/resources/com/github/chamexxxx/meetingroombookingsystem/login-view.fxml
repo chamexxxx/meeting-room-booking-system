@@ -6,11 +6,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
-<?import com.github.chamexxxx.meetingroombookingsystem.control.forms.LoginForm?>
-<?import com.github.chamexxxx.meetingroombookingsystem.control.RouterLink?>
+<?import com.github.chamexxxx.meetingroombookingsystem.controls.forms.LoginForm?>
+<?import com.github.chamexxxx.meetingroombookingsystem.controls.RouterLink?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.layout.HBox?>
-<?import com.github.chamexxxx.meetingroombookingsystem.control.LogoImage?>
+<?import com.github.chamexxxx.meetingroombookingsystem.controls.LogoImage?>
 <VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.github.chamexxxx.meetingroombookingsystem.controllers.LoginController"
 >

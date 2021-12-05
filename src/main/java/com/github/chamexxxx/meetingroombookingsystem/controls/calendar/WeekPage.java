@@ -1,4 +1,4 @@
-package com.github.chamexxxx.meetingroombookingsystem.control.calendar;
+package com.github.chamexxxx.meetingroombookingsystem.controls.calendar;
 
 /**
  * Custom {@link com.calendarfx.view.page.WeekPage} implementation changing default skin creation

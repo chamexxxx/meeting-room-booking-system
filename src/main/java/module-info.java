@@ -12,10 +12,10 @@ module com.github.chamexxxx.meetingroombookingsystem {
 
     opens com.github.chamexxxx.meetingroombookingsystem to javafx.fxml;
     exports com.github.chamexxxx.meetingroombookingsystem;
-    opens com.github.chamexxxx.meetingroombookingsystem.control to javafx.fxml;
-    exports com.github.chamexxxx.meetingroombookingsystem.control;
-    exports com.github.chamexxxx.meetingroombookingsystem.control.forms;
-    opens com.github.chamexxxx.meetingroombookingsystem.control.forms to javafx.fxml;
+    opens com.github.chamexxxx.meetingroombookingsystem.controls to javafx.fxml;
+    exports com.github.chamexxxx.meetingroombookingsystem.controls;
+    exports com.github.chamexxxx.meetingroombookingsystem.controls.forms;
+    opens com.github.chamexxxx.meetingroombookingsystem.controls.forms to javafx.fxml;
     opens com.github.chamexxxx.meetingroombookingsystem.dto to ormlite.core;
     exports com.github.chamexxxx.meetingroombookingsystem.dto;
     opens com.github.chamexxxx.meetingroombookingsystem.models to ormlite.core;
