@@ -2,12 +2,12 @@ package com.github.chamexxxx.meetingroombookingsystem.control.calendar;
 
 import com.calendarfx.model.Entry;
 import com.github.chamexxxx.meetingroombookingsystem.Application;
+import com.github.chamexxxx.meetingroombookingsystem.control.Dialog;
 import com.github.chamexxxx.meetingroombookingsystem.models.Meet;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.Dialog;
 
 /**
  * Implementation of a dialog for editing entries in the calendar.
