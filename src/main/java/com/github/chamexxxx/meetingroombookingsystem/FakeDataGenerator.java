@@ -36,7 +36,7 @@ public class FakeDataGenerator {
 
     private void createMeets(AccountDto accountDto) {
         IntStream.range(0, 50).forEachOrdered(value -> {
-            var room = "Room " + faker.random().nextInt(1, 10);
+            var room = generateRoomName();
             var dates = getRandomDates();
             var startDate = new Timestamp(dates[0].getTime());
             var endDate = new Timestamp(dates[1].getTime());
@@ -50,6 +50,11 @@ public class FakeDataGenerator {
                 e.printStackTrace();
             }
         });
+    }
+
+    private String generateRoomName() {
+        return new String[]{"Room", "Large Room", "Conference Room"}
+                [faker.random().nextInt(0, 2)] + " " + faker.random().nextInt(1, 20);
     }
 
     private void createParticipants(MeetDto meetDto) {
