@@ -12,7 +12,7 @@ import javafx.scene.layout.VBox;
 import java.util.ArrayList;
 
 /**
- * {@link impl.com.calendarfx.view.DayEntryViewSkin} implementation for custom skin by default
+ * {@link impl.com.calendarfx.view.DayEntryViewSkin} implementation for custom skin by default.
  */
 public class DayEntryViewSkin extends impl.com.calendarfx.view.DayEntryViewSkin {
     private final VBox participantsContainer;

@@ -7,12 +7,19 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 
 /**
- * Custom implementation of {@link com.calendarfx.view.ContextMenuProvider}
+ * Custom implementation of {@link com.calendarfx.view.ContextMenuProvider}.
+ *
  * <ul>
  * <li>removes unnecessary menu items: Early / Late Hours, Grid, Show Days</li>
  * <li>renames the Show Hours menu item</li>
  * <li>removes all menu items from the Show Hours menu except the slider</li>
  * </ul>
+ *
+ * <h2>Code Example</h2>The code below shows setting callback for week page.
+ *
+ * <pre>
+ * weekPage.setContextMenuCallback(new ContextMenuProvider());
+ * </pre>
  */
 public class ContextMenuProvider extends com.calendarfx.view.ContextMenuProvider {
     @Override

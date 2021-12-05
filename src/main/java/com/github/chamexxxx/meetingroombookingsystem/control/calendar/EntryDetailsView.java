@@ -21,7 +21,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- * Implementing your own {@link com.calendarfx.view.popover.EntryDetailsView} and {@link com.calendarfx.view.popover.EntryHeaderView} for use in a dialog
+ * Implementing your own {@link com.calendarfx.view.popover.EntryDetailsView}
+ * and {@link com.calendarfx.view.popover.EntryHeaderView} for use in a dialog.
  */
 public class EntryDetailsView extends VBox {
     private final Entry<Meet> entry;

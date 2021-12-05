@@ -14,7 +14,7 @@ import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
 /**
- * Implementing a weekly calendar for booking meets based on the CalendarFX dependency
+ * Implementing a weekly calendar for booking meets based on the CalendarFX dependency.
  */
 public class WeeklyCalendar {
     private final WeekPage weekPage = new WeekPage();

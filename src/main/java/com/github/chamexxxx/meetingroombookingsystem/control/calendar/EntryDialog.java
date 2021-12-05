@@ -9,7 +9,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 
 /**
- * Implementation of a dialog for editing entries in the calendar
+ * Implementation of a dialog for editing entries in the calendar.
  */
 public class EntryDialog extends Dialog<Meet> {
     private EntryDetailsView entryDetailsView;

@@ -7,6 +7,17 @@ import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.util.Callback;
 
+/**
+ * An entry context menu implementation
+ * that only allows editing and deleting entries,
+ * and adds icons to menu items.
+ *
+ * <h2>Code Example</h2>The code below shows setting callback for week page.
+ *
+ * <pre>
+ * weekPage.setEntryContextMenuCallback(EntryContextMenu::new);
+ * </pre>
+ */
 public class EntryContextMenu extends ContextMenu {
 
     public EntryContextMenu(DateControl.EntryContextMenuParameter param) {

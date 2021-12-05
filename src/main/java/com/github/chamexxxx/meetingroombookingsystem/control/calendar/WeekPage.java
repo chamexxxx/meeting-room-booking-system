@@ -1,5 +1,8 @@
 package com.github.chamexxxx.meetingroombookingsystem.control.calendar;
 
+/**
+ * Custom {@link com.calendarfx.view.page.WeekPage} implementation changing default skin creation
+ */
 public class WeekPage extends com.calendarfx.view.page.WeekPage {
     public WeekPage() {
         super();
