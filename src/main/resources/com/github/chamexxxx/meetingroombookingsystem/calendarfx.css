@@ -191,18 +191,3 @@
 .style7-entry:selected {
     -fx-background-color: rgba(174.0, 102.0, 62.0, 0.8);
 }
-
-/*.default-style-entry:dragged {*/
-/*    -fx-background-color: lightgrey;*/
-/*    -fx-border-color: lightgrey;*/
-/*}*/
-
-/*.default-style-entry:dragged .label {*/
-/*    -fx-text-fill: black;*/
-/*}*/
-
-/*.default-style-entry:dragged-start,*/
-/*.default-style-entry:dragged-end {*/
-/*    -fx-opacity: 0.5;*/
-/*}*/
-
