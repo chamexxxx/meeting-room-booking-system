@@ -70,7 +70,7 @@ public class FakeDataGenerator {
 
     private Date[] getRandomDates() {
         var startDate = getRandomDateOfCurrentMonth();
-        var endDate = DateUtils.addHoursToDate(startDate, faker.random().nextInt(1, 6));
+        var endDate = DateUtils.addHoursToDate(startDate, faker.random().nextInt(2, 6));
 
         return new Date[]{startDate, endDate};
     }
