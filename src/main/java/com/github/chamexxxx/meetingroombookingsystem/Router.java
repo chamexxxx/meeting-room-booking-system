@@ -7,11 +7,13 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.function.Consumer;
 
 public class Router {
     private static Stage stage = null;
     private static StageOptions defaultStageOptions;
     private static Scene initialScene = null;
+    private static Consumer<Scene> initialSceneCallback;
     private final static HashMap<String, Route> routes = new HashMap<>();
 
     public static class StageOptions {
@@ -36,18 +38,13 @@ public class Router {
         }
     }
 
-    public static void bind(Stage stage, Scene initialScene) {
-        setStage(stage);
-        setInitialScene(initialScene);
+    public static void setInitialSceneConfigurator(Consumer<Scene> initialSceneCallback) {
+        Router.initialSceneCallback = initialSceneCallback;
     }
 
     public static void setStage(Stage stage) {
         Router.stage = stage;
         Router.defaultStageOptions = new StageOptions(stage.getWidth(), stage.getHeight(), stage.isMaximized());
-    }
-
-    public static void setInitialScene(Scene initialScene) {
-        Router.initialScene = initialScene;
     }
 
     public static void addScene(String sceneName, String resourceName) {
@@ -63,7 +60,17 @@ public class Router {
             var route = routes.get(sceneName);
             var root = load(route.resourceName);
 
-            initialScene.setRoot(root);
+            if (initialScene == null) {
+                initialScene = new Scene(root);
+
+                if (initialSceneCallback != null) {
+                    initialSceneCallback.accept(initialScene);
+                }
+
+                stage.setScene(initialScene);
+            } else {
+                initialScene.setRoot(root);
+            }
 
             if (route.stageOptions != null) {
                 stage.setWidth(route.stageOptions.width);

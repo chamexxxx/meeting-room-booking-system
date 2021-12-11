@@ -1,12 +1,10 @@
 package com.github.chamexxxx.meetingroombookingsystem;
 
 import com.github.chamexxxx.meetingroombookingsystem.utils.UserSession;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,19 +16,19 @@ public class Application extends javafx.application.Application {
     private static final Image logoImage = new Image(Objects.requireNonNull(Application.class.getResource("logo.png")).toString());
 
     @Override
-    public void start(Stage stage) throws IOException, SQLException {
+    public void start(Stage stage) {
         configureStage(stage);
 
-        var initialScene = createInitialScene();
-
-        addStylesheetsToScene(initialScene, getAllStylesheets());
-
-        Router.bind(stage, initialScene);
+        Router.setStage(stage);
+        Router.setInitialSceneConfigurator(scene -> {
+            addStylesheetsToScene(scene, getAllStylesheets());
+        });
         Router.addScene("login", "login-view.fxml", new Router.StageOptions(800, 600, false));
         Router.addScene("register", "register-view.fxml", new Router.StageOptions(800, 600, false));
         Router.addScene("home", "home-view.fxml");
 
-        stage.setScene(initialScene);
+        Router.switchScene(UserSession.accountExists() ? "home" : "login");
+
         stage.show();
     }
 
@@ -54,13 +52,6 @@ public class Application extends javafx.application.Application {
 
     public static Image getLogoImage() {
         return logoImage;
-    }
-
-    private Scene createInitialScene() throws IOException {
-        var resourceName = UserSession.accountExists() ? "home-view.fxml" : "login-view.fxml";
-        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource(resourceName));
-
-        return new Scene(fxmlLoader.load(), 800, 600);
     }
 
     private void configureStage(Stage stage) {
