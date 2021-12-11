@@ -2,6 +2,7 @@
 
 .root {
     -fx-background-color: -fx-base-gradient-color;
+    -fx-focus-color: transparent;
 }
 
 .dialog-pane {
@@ -30,6 +31,10 @@
     -fx-border-radius: 4px;
     -fx-background-radius: 4px;
     -fx-padding: 7px;
+}
+
+.date-picker .arrow-button {
+    -fx-border-color: #B5B5B5;
 }
 
 .hyperlink {
