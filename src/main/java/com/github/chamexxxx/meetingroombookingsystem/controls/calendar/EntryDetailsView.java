@@ -115,7 +115,7 @@ public class EntryDetailsView extends VBox {
 
         var participantModels = participantsSection.getParticipants()
                 .stream()
-                .filter(participant -> participant.getName() != null)
+                .filter(participant -> participant.getName() != null && !participant.getName().isEmpty())
                 .collect(Collectors.toCollection(FXCollections::observableArrayList));
 
         syncParticipants(participantModels);
