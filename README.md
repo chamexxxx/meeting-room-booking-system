@@ -2,6 +2,8 @@
 
 > Desktop application for booking meeting rooms
 
+![image preview](./preview.png)
+
 ## How to build
 
 Install a valid Java 11 version, and set JAVA_HOME accordingly.
