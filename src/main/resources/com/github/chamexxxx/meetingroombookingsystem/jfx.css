@@ -28,6 +28,7 @@
     -fx-font-size: 13px;
     -fx-text-inner-color: -fx-primary-color;
     -fx-label-padding: 10px;
+    -fx-border-color: #d1d1d1;
     -fx-border-radius: 4px;
     -fx-background-radius: 4px;
     -fx-padding: 7px;
